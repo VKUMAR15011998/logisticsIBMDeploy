@@ -195,11 +195,11 @@ DELETE http://localhost:4004/odata/v4/logistics-/Get_Adani_Logistics_LRF_Master/
 ###
 GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Packing_Doc
 ###
-POST http://localhost:4004/odata/v4/logistics-/per_Adani_Logistics_LRF_Master
+POST http://localhost:41341/odata/v4/logistics-/per_Adani_Logistics_LRF_Master
 Content-Type: application/json
 
 {
-
+    
 }
 
 ###

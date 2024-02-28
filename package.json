@@ -11,6 +11,7 @@
     "@sap/cds": "^7",
     "@sap/cds-hana": "^2",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "@sap/hana-client": "^2.19.21",
     "express": "^4"
   },
   "devDependencies": {
@@ -32,9 +33,7 @@
   },
   "cds": {
     "requires": {
-      "db": {
-        "kind": "hana"
-      },
+      "db": "hana",
       "PODetails": {
         "kind": "odata-v2",
         "model": "srv/external/PODetails",
@@ -43,7 +42,6 @@
           "path": "/sap/opu/odata/sap/ZMM_BTP_PO_DET_SRV"
         }
       }
-      
     }
   },
   "sapux": [

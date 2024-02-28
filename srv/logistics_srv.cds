@@ -1,5 +1,5 @@
 using app.logistics from '../db/logistics1';
-using { PODetails } from './external/PODetails';
+using { PODetails } from './external/PODetails.csn';
 
 service Logistics_Service {
     
@@ -32,6 +32,7 @@ service Logistics_Service {
     entity LrfTracker2 as projection on logistics.LrfTracker2; 
     @cds.redirection.target
     entity LrfTracker3 as projection on  logistics.LrfTracker3;
+   
     entity PODetailsSercive as select from PODetails.PODetailsSet{
         Ponumber,
         Vendormail,
