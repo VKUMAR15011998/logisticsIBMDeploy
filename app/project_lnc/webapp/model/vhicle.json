@@ -1,0 +1,16 @@
+{
+    "vn_nos": [{
+        "Key": "Normal Truck",
+        "Name": "Normal Truck"
+    }, 
+    {
+        "Key": "Low Bed Trailer",
+        "Name": "Low Bed Trailer"
+    },{
+        "Key": "Semi Articulated Truck",
+        "Name": "Semi Articulated Truck"
+    },{
+        "Key":"Closed Truck",
+        "Name":"Closed Truck"
+    }]
+}

@@ -1,0 +1,211 @@
+###CREATE LRF
+
+POST http://localhost:4004/odata/v4/logistics-/Get_Adani_Logistics_LRF_Master
+Content-Type: application/json
+
+{ 
+  "Lrf_No":"",
+  "PO_Number": "1111",
+  "Requ_Date":  "2024-11-24",
+  "Project_ID": "ADANI",
+  "Vendor_Name": "Vishal",
+  "Initiator_Name": "Vishal",
+  "Mobile_No": "+9172465238765",
+  "Additional_Mob": "+918736487523",
+  "Email_Id": "vis1@dgp",
+  "Additional_MailID": ["vis1@dgp","vis2@dgp"]
+}
+###
+PATCH  http://localhost:4004/odata/v4/logistics-/Get_Adani_Logistics_LRF_Master/4eda18ac-084c-4340-8596-453b2bc73065
+Content-Type: application/json 
+
+{         "Submit_Flag":"",
+          "Shipment_Type": "ConatainarisedN",
+          "C20_HighCube": 1,
+          "C20_FlatRack": 2,
+          "C20_OpenTop": 3,
+          "C20_GeneralPurpose": 4,
+          "C40_HighCube": 1,
+          "C40_FlatRack": 6,
+          "C40_OpenTop": 8,
+          "C40_GeneralPurpose": 5,
+          "PO_Inco_Terms": "Inco1",
+          "Act_Incoterms": "Act01",
+          "TypeOfVehicle": ["Heavy","Light"],
+          "TypeOfLoadPort": "Load1",
+          "NameOfDisPort": "Load2",
+          "Ship_Cont_Name": "Vishal",
+          "Ship_Cont_No": "+91528753218",
+          "Ship_Email_ID": "Vis1@gmail.com",
+          "Version": 1,
+          "Approval_Status": 0,
+          "TotalNetWeight": 456.00,
+          "TotalGrossWeight": 456.00,
+          "TotalPackage": 54,
+          "Sp_Req": "Requirements",
+          "Remarks": "Test",
+          "To_PackingDoc":[{
+            "mediaType":"image/png",
+            "fileName":"File 1",
+            "content":"iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII",
+            "url":"dowmloadURL"
+          }],
+          "To_MaterialDesc":[{
+              "PackageNo": 1,
+              "HAZ_DG_Cargo": "YES",
+              "Description": "Desc1",
+              "Length": 12,
+              "Width": 11,
+              "Height": 13,
+              "QtyInNumbers": 45,
+              "PerPackNetWeight": 32,
+              "PerPackGrossWeight": 45,
+              "TypeOfPacking": "Pack1",
+              "VolInCBM": 31223.00,
+              "Stackable": "YES",
+              "Remarks": "test Remark"
+          },
+          {
+            "PackageNo": 2,
+            "HAZ_DG_Cargo": "YES",
+            "Description": "Desc1",
+            "Length": 12,
+            "Width": 11,
+            "Height": 13,
+            "QtyInNumbers": 45,
+            "PerPackNetWeight": 32,
+            "PerPackGrossWeight": 45,
+            "TypeOfPacking": "Pack1",
+            "VolInCBM": 31223.00,
+            "Stackable": "YES",
+            "Remarks": "test Remark"
+        }],
+        "To_CkeckList": [
+          {
+              "Check1": "Yes",
+              "Check1_type": null,
+              "Check1_FileName": null,
+              "Check1_url": null,
+              "Check2": null,
+              "Check2_type": null,
+              "Check2FileName": null,
+              "Check2_url": null,
+              "Check3": null,
+              "Check3_type": null,
+              "Check3FileName": null,
+              "Check3_url": null,
+              "Check4": null,
+              "Check5": null,
+              "Check6": null
+          }
+      ],
+      "To_Draft": [
+          {
+              "D_FileType": null,
+              "D_FileName": null,
+              "D_Url": null,
+              "D_DocTyp": null
+          }
+      ],
+      "To_Final": [
+          {
+              "F_FileType": null,
+              "F_FileName": null,
+              "F_Url": null,
+              "F_DocTyp": null
+          }
+      ],
+      "To_Approval": {
+          "FF_Email": null,
+          "CHA_Email": null,
+          "Logistics_Email": null,
+          "FF_Status": null,
+          "CHA_Status": null,
+          "logistics_Status": null,
+          "FF_Comments": null,
+          "CHA_Comments": null,
+          "Logistics_Comments": null
+      },
+      "To_DeliveryDetails": {
+          "Site_Address": null,
+          "DContact_Person": null,
+          "DContact_No": null,
+          "DEmail_ID": null,
+          "Ins_Pol_01": null,
+          "Ins_Pol_No1": null,
+          "Ins_Company1": null,
+          "Pol_Exp_Date1": null,
+          "Ins_Pol_02": null,
+          "Ins_Pol_No2": null,
+          "Ins_Company2": null,
+          "Pol_Exp_Date2": null,
+          "Ins_Pol_03": null,
+          "Ins_Pol_No3": null,
+          "Ins_Company3": null,
+          "Pol_Exp_Date3": null
+      },
+      "To_FF_Shipment": {
+          "lines_name": null,
+          "Foriegn_Agent_Details": null,
+          "Trans_Dir": null,
+          "Vessel_Name": null,
+          "Ship_Mode": null,
+          "Courier_Name": null,
+          "Docket_No": null,
+          "Docket_Date": null,
+          "Allocation_Date": null,
+          "BL_No": null,
+          "BL_Rel_Date": null,
+          "ETD_Plan": null,
+          "ETA_Plan": null,
+          "Delivery_Date": null,
+          "Arrival_Date": null
+      },
+      "To_FF_Documents": {
+          "Uploaded_By": null,
+          "FF_File_Type": null,
+          "FF_File_Name": null,
+          "FF_Url": null
+      }
+}
+###
+POST http://localhost:4004/odata/v4/logistics-/MyAction
+Content-Type: application/json
+
+{
+  
+}
+###
+GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Packing_Doc
+###
+GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Material_Desc
+###
+GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_LRF_Master
+###
+
+POST http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Packing_Doc
+Content-Type: application/json
+
+{
+  "fileName": "2ndScDMC.png",
+  "mediaType": "image/png"
+}
+###
+DELETE http://localhost:4004/odata/v4/logistics-/Get_Adani_Logistics_LRF_Master/1ce8f2ed-d6a4-483f-9696-c4743cde79d0
+###
+GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Packing_Doc
+###
+POST http://localhost:4004/odata/v4/logistics-/per_Adani_Logistics_LRF_Master
+Content-Type: application/json
+
+{
+
+}
+
+###
+PATCH  http://localhost:4004/odata/v4/logistics-/per_Adani_Logistics_LRF_Master(091a9507-b6aa-4f0d-b417-5071f1442f5d)
+Content-Type: application/json
+
+{
+    "FF_Status": "Accept"
+}

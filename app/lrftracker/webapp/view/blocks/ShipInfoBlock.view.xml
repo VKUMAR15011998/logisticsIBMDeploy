@@ -1,0 +1,169 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+	xmlns:core="sap.ui.core">
+	<VBox>
+		<f:SimpleForm id="SimpleFormDisplay480_Trial"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="5"
+			labelSpanL="5"
+			labelSpanM="5"
+			labelSpanS="5"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="true" >
+			<f:content>
+				
+				<core:Title />
+                
+				<Label text="Shipment Readiness Date" />
+                <Text text="{path:'Ship_ReadDate',
+                            type: 'sap.ui.model.type.Date',
+				                     formatOptions: {
+				                        pattern: 'dd-MMM-yyyy'
+				                     }}" />
+				<Label text="Address of Origin Location" />
+				<Text text="{=${Address_radio}==='Yes'?${Origin_address}:${Origin_new_address}}" />
+				<Label text="Country" />
+				
+				<Text text="{Address_country}" />
+				<Label text="Type of Packaging" />
+				
+                <!-- <VBox id="dynamicFieldsContainer1" items="{Packing_Type/}">
+                    <items > -->
+                        <Text text="{Packing_Type}" />
+                        
+                    <!-- </items>
+                </VBox> -->
+				<Label text="PO INCOTERMS" />
+				<Text text="{PO_Inco_Terms}" />
+				<Label text="Actual INCOTERMS" />
+				<Text text="{Act_Incoterms}" />
+				
+
+				<core:Title />
+                <Label text="Name of Load Port" />
+				<Text text="{TypeOfLoadPort}" />
+				<Label text="Name of Discharge Port" />
+				<Text text="{NameOfDisPort}" />
+				<Label text="Type of Vehicle at Load port"></Label>				
+                <!-- <VBox id="dynamicFieldsContainer" items="{TypeOfVehicle/}">
+                    <items>-->
+                        <Text text="{TypeOfVehicle}" />
+                        
+                    <!-- </items>
+                </VBox> -->
+				<Label text="Type of Shipment" visible="{= ${Contanarised}==='Non Containerised'?true:false}"/>
+				<Text text="{Contanarised}" visible="{= ${Contanarised}==='Non Containerised'?true:false}" />
+                <Label text="Contact Person" />
+				<Text text="{Ship_Cont_Name}" />
+                <Label text="Email Address" />
+				<Text text="{Ship_Email_ID}" />
+                <Label text="Contact Name" />
+				<Text text="{Ship_Cont_Name}" />
+                <Label text="Contact Number" />
+				<Text text="{Ship_Country_code} {Ship_Cont_No}" />
+    
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+    <Table class="sapUiLargeMargin" visible="{= ${Contanarised}==='Containerised'?true:false}" width="50%">
+			<headerToolbar>
+                    <OverflowToolbar>
+                        <Title
+                            
+                            text="Type of Shipment:Containarised"
+                            level="H4"
+                        />
+					</OverflowToolbar>
+				</headerToolbar>
+    <columns>
+        <Column>
+            <Text text="Type" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="20' Numbers" />
+        </Column>
+		<Column hAlign="Center">
+            <Text text="40' Numbers" />
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="High Cube" />
+                <Text text="{C20_HighCube}" />
+				<Text text="{C40_HighCube}" />
+            </cells>
+        </ColumnListItem>
+        <ColumnListItem>
+            <cells>
+                <Text text="Flat Rack" />
+                <Text text="{C20_FlatRack}" />
+				<Text text="{C40_FlatRack}" />
+            </cells>
+        </ColumnListItem>
+		<ColumnListItem>
+            <cells>
+                <Text text="Open Top" />
+                <Text text="{C20_OpenTop}" />
+				<Text text="{C40_OpenTop}" />
+            </cells>
+        </ColumnListItem>
+		<ColumnListItem>
+            <cells>
+                <Text text="General Purpose" />
+                <Text text="{C20_GeneralPurpose}" />
+				<Text text="{C40_GeneralPurpose}" />
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+    <Panel class="sapUiSmallMarginTop">
+        <Label
+            class="sapUiSmallMargin"
+            text="Packing Documents"
+            required="true"
+            design="Bold"
+        />
+        
+        <upload:UploadSet
+            id="ref_pack_photo"
+            uploadButtonInvisible="true"
+            mode="None"
+            instantUpload="false"
+            afterItemAdded="onAfterItemAdded"
+            uploadCompleted="onUploadCompleted"
+            uploadUrl="/Adani_Logistics_Packing_Doc/"
+            items="{
+								path: 'To_PackingDoc/',								templateShareable: false}"
+        >
+            <!-- <upload:toolbar /> -->
+            <upload:items>
+                <upload:UploadSetItem
+                    fileName="{fileName}"
+                    visibleRemove="false"
+                    mediaType="{mediaType}"
+                    url="{url}"
+                    enabledEdit="false"
+                    visibleEdit="false"
+                    openPressed="onOpenPressed"
+                    removePressed="onRemovePressed"
+                >
+                    
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+    </Panel>
+
+</core:FragmentDefinition>

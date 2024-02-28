@@ -1,0 +1,24 @@
+{
+    "docs_nos": [{
+        "Key": "Invoice",
+        "Name": "Invoice"
+    }, 
+    {
+        "Key": "BL",
+        "Name": "BL"
+    },{
+        "Key": "COO",
+        "Name": "COO"
+    },{
+        "Key":"Packing List",
+        "Name":"Packing List"
+    },
+    {
+        "Key":"Freight insurance policy",
+        "Name":"Freight insurance policy"
+    },
+    {
+        "Key":"Others",
+        "Name":"Others"
+    }]
+}

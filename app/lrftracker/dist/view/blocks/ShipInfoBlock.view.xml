@@ -1,0 +1,128 @@
+<mvc:View
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:forms="sap.ui.layout.form"
+        xmlns:ui="sap.ui.unified"
+        xmlns:upload="sap.m.upload"
+		xmlns="sap.m">
+
+	<forms:Form width="100%">
+		<forms:layout>
+			<forms:ColumnLayout/>
+		</forms:layout>
+		<forms:formContainers>
+
+			<forms:FormContainer  >
+				<forms:formElements>
+
+					<forms:FormElement label="Shipment Readiness Date">
+						<forms:fields>
+							<Text text="{objectModel>/Ship_ReadDate}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="Address of Origin Location">
+						<forms:fields>
+							<Text text="{objectModel>/Origin_address}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="Country">
+						<forms:fields>
+							<Text text="{objectModel>/Address_country}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="Type of Packaging">
+						<forms:fields>
+							<Text text="{objectModel>/Packing_Type/0} {objectModel>/Packing_Type/1}"/>
+						</forms:fields>
+					</forms:FormElement>
+					<forms:FormElement label="PO INCOTERMS">
+						<forms:fields>
+							<Text text="{objectModel>/PO_Inco_Terms}"/>
+						</forms:fields>
+					</forms:FormElement>
+					<forms:FormElement label="Actual INCOTERMS">
+						<forms:fields>
+							<Text text="{objectModel>/Act_Incoterms}"/>
+						</forms:fields>
+					</forms:FormElement>
+					
+
+				</forms:formElements>
+			</forms:FormContainer>
+
+
+			<forms:FormContainer id="socialInfo" >
+				<forms:formElements>
+
+					<forms:FormElement label="Name of Load Port">
+						<forms:fields>
+							<Text text="{objectModel>/TypeOfLoadPort}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="Name of Discharge Port">
+						<forms:fields>
+							<Text text="{objectModel>/NameOfDisPort}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="Type of Vehicle at Load port">
+						<forms:fields>
+							<Text text="{objectModel>/TypeOfVehicle/0} {objectModel>/TypeOfVehicle/1}"/>
+						</forms:fields>
+					</forms:FormElement>
+					<forms:FormElement label="Type of Shipment">
+						<forms:fields>
+							<Text text="{objectModel>/Shipment_Type}"/>
+						</forms:fields>
+					</forms:FormElement>
+					<forms:FormElement label="Contact Person">
+						<forms:fields>
+							<Text text="{objectModel>/Ship_Cont_Name}"/>
+						</forms:fields>
+					</forms:FormElement>
+                    <forms:FormElement label="Email Address">
+						<forms:fields>
+							<Text text="{objectModel>/Ship_Email_ID}"/>
+						</forms:fields>
+					</forms:FormElement>
+                    <forms:FormElement label="Contact Name">
+						<forms:fields>
+							<Text text="{objectModel>/Ship_Cont_Name}"/>
+						</forms:fields>
+					</forms:FormElement>
+                    <forms:FormElement label="Contact Number">
+						<forms:fields>
+							<Text text="{objectModel>/Ship_Country_code} {objectModel>/Ship_Cont_No}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+				</forms:formElements>
+			</forms:FormContainer>
+
+		</forms:formContainers>
+
+	</forms:Form>
+    <Panel class="sapUiSmallMarginTop">
+        <Label class="sapUiSmallMargin" text="Packing Documents" required="true" design="Bold"/>
+        <!-- <upload:UploadSet id="ref_pack_photo" uploadEnabled="{=${lrf>/submit}==='No'?true:false}" multiple="true" afterItemRemoved="deleteFile" afterItemAdded="afterItemAdded" uploadCompleted="fileUploaded" uploadUrl="Files" items="{path: 'file>/items', templateShareable: false}" mode="None">
+        <upload:items>
+            <upload:UploadSetItem fileName="{file>fileName}" url="{file>url}" mediaType="{file>mediaType}" visibleEdit="false" openPressed="stopDefault" />
+        </upload:items>
+    </upload:UploadSet> -->
+        <upload:UploadSet id="ref_pack_photo" mode="None" instantUpload="false" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/Adani_Logistics_Packing_Doc/" items="{
+								path: 'objectModel>/To_PackingDoc/',								templateShareable: false}">
+            <upload:toolbar>
+            </upload:toolbar>
+            <upload:items>
+                <upload:UploadSetItem fileName="{objectModel>fileName}" mediaType="{objectModel>mediaType}" url="{objectModel>url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressed" removePressed="onRemovePressed">
+                    <!-- <upload:attributes> <ObjectAttribute title="File Size" text="{Adani_Logistics_LRF_Master_LRF_Master_ID}" active="false" />
+							</upload:attributes> -->
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+    </Panel>
+
+</mvc:View>

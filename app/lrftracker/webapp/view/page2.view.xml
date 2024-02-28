@@ -1,0 +1,116 @@
+<!-- <mvc:View controllerName="lrftracker.controller.page2" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" displayBlock="true">
+	<App>
+		<pages>
+			<Page showNavButton="true" navButtonPress="onNavBack">
+				<content>
+					
+        			<Input id="vendor_name" type="Text" value="{Lrf_No}" width="50%"/>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View> -->
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:layout="sap.ui.layout"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:basicInfo="lrftracker.controller.blocks"
+	xmlns:shipInfo="lrftracker.controller.blocks"
+	xmlns:matInfo="lrftracker.controller.blocks"
+	xmlns:checkInfo="lrftracker.controller.blocks" controllerName="lrftracker.controller.page2" height="100%">
+
+	<ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true" upperCaseAnchorBar="false" showTitleInHeaderContent="true" showFooter="true" showEditHeaderButton="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="LRF Tracker:{Lrf_No}" wrapping="true"/>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox fitContainer="true" alignItems="Center">
+						<m:Avatar src="./test-resources/sap/uxap/images/imageID_275314.png" class="sapUiTinyMarginEnd"/>
+						<m:Title text="LRF Number:{Lrf_No}" wrapping="true" />
+					</m:FlexBox>
+				</snappedHeading>
+
+
+
+				<actions>
+					<m:Button type="Accept" enabled="{=${LogisticsMPL_Status}==='Accept'?false:true}" visible="{=${LogisticsMPL_AssignEmail_Id}==='' || ${LogisticsMPL_AssignEmail_Id}===null?false:true}" text="Edit" press="onEdit"/>
+					<m:Button type="Accept" enabled="{=${LogisticsMPL_Status}==='Accept'?true:false}" visible="{=${LogisticsMPL_AssignEmail_Id}==='' || ${LogisticsMPL_AssignEmail_Id}===null?false:true}" text="Delivery Details" press="onDeliveryDetailsPage"/>
+					<m:Button type="Accept" enabled="{=${LogisticsMPL_Status}==='Accept'?true:false}" visible="{=${FF_AssignEmail_Id}==='' || ${FF_AssignEmail_Id}===null?false:true}" text="FF Details" press="onFFDetailsPage"/>
+
+
+
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+
+
+
+
+		<sections>
+			<ObjectPageSection titleUppercase="false" title="Basic Information">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<basicInfo:BasicInfoBlock id="ibasicInfo" columnLayout="3"/>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection titleUppercase="false" title="Shipping Information">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<shipInfo:ShipInfoBlock id="iShipInfo" columnLayout="3"/>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" title="Material Description">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<matInfo:MatInfoBlock id="iMatInfo" columnLayout="3"/>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" title="Check List Description">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<checkInfo:CheckInfoBlock id="iCheckInfo" columnLayout="3"/>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection titleUppercase="false" title="MPL Logistics Comments" visible="{=${LogisticsMPL_AssignEmail_Id}==='' || ${LogisticsMPL_AssignEmail_Id}===null?false:true}">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<m:TextArea id="mpl_comment" liveChange="emptyComment" editable="{=${LogisticsMPL_Status}==='Accept'?false:true}" maxLength="80" width="40%" value="{LogisticsMPL_Comments}"/>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+		<footer>
+			<m:OverflowToolbar visible="{=${LogisticsMPL_AssignEmail_Id}==='' || ${LogisticsMPL_AssignEmail_Id}===null?false:true}">
+				<m:ToolbarSpacer />
+				<m:Text text="LRF is already {LogisticsMPL_Status}ed... Kindly fill delivery details" visible="{=${LogisticsMPL_Status}==='Accept'?true:false}"/>
+				<m:ToolbarSpacer />
+				<m:Button type="Emphasized" enabled="{=${LogisticsMPL_Status}==='Accept'?false:true}" text="Accept" press="onAccept"/>
+				<m:Button type="Negative" enabled="{=${LogisticsMPL_Status}==='Accept'?false:true}" text="Return" press="onReturn"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+
+
+</mvc:View>

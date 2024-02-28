@@ -1,0 +1,200 @@
+
+<!-- <mvc:View
+		
+		height="100%"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m"
+		xmlns:f="sap.f"
+		xmlns:fb="sap.ui.comp.filterbar"
+		xmlns:svm="sap.ui.comp.smartvariants">
+		<f:DynamicPage headerExpanded="{/headerExpanded}">
+			<f:title>
+				
+			</f:title>
+			<f:header>
+				
+			</f:header>
+			<f:content>
+				<Table
+					id="abc"
+					inset="false"
+					items="{
+						path: 'objectModel>/To_MaterialDesc/'
+					}"
+                    selectionChange="onSelectTable"
+                    
+				>
+                <headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<ToolbarSpacer/>
+										<SearchField
+											id="searchField"
+											width="20%"
+											placeholder="{i18n>searchFieldPlaceholder}"
+											search=".onSearch"/>
+										<Button
+											id="refreshUsersButton"
+											icon="sap-icon://refresh"
+											tooltip="{i18n>refreshButtonText}"
+											press=".onRefresh"/>
+										<Button
+											id="sortUsersButton"
+											icon="sap-icon://sort"
+											tooltip="{i18n>sortButtonText}"
+											press="onSort"/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="objectModel No"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Po Number"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Ref objectModel Number"/>
+						</Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Req Date"/>
+						</Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Project ID"/>
+						</Column>
+					</columns>
+
+					<items>
+						<ColumnListItem vAlign="Middle" press="onPress" type="Navigation">
+							<cells>
+								<ObjectIdentifier title="{objectModel>MatID}"/>
+								<Text text="{modelTrk>PO_Number}" />
+								<Text text="{modelTrk>Ref_objectModel_No}" />
+                                <Text text="{modelTrk>Requ_Date}" />
+                                <Text text="{modelTrk>Project_ID}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</f:content>
+		</f:DynamicPage>
+</mvc:View> -->
+<mvc:View 
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+    xmlns="sap.m">
+    <!-- <t:Table id="uitable" rows="{objectModel>/To_MaterialDesc/}" selectionMode="None"  > -->
+        
+        <t:Table id="myTable" rows="{ path: 'objectModel>/To_MaterialDesc/', events: { change: '.onBindingChange' } }" selectionMode="None">
+      
+        <t:columns>
+            <t:Column width="5rem">
+                <Label text="{i18n>pack_no}" wrapping="true"/>
+                <t:template>
+                    <ObjectIdentifier title="{objectModel>PackageNo}"/>
+                </t:template>
+            </t:Column>
+            <t:Column width="5rem">
+                <Label text="{i18n>hazard}" wrapping="true" />
+                <t:template>
+                    <Text text="{objectModel>HAZ_DG_Cargo}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="10rem">
+                <Label text="{i18n>desc}" />
+                <t:template>
+                    <Text text="{objectModel>Description}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="6rem">
+                <Label text="{i18n>len}" wrapping="true" />
+                <t:template>
+                   <Text text="{objectModel>Length}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="6rem">
+                <Label text="{i18n>wid}" wrapping="true" />
+                <t:template>
+                    <Text text="{objectModel>Width}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="6rem">
+                <Label text="{i18n>hei}" wrapping="true" />
+                <t:template>
+                    <Text text="{objectModel>Height}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="5rem">
+                <Label text="{i18n>qty}" wrapping="true" />
+                <t:template>
+                    <Text text="{objectModel>QtyInNumbers}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>net_weight}" wrapping="true" />
+                <t:template>
+                    <Text text="{objectModel>PerPackNetWeight}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>gross_weight}" wrapping="true" />
+                <t:template>
+                    <Text text="{objectModel>PerPackGrossWeight}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>per_vol}" wrapping="true" />
+                <t:template>
+                    <Text  text="{= ((${objectModel>Length}/1000) * (${objectModel>Width}/1000) * (${objectModel>Height}/1000)).toFixed(3)  }" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>vol}" wrapping="true" />
+                <t:template>
+                    <Text text="{= (${objectModel>QtyInNumbers} * (${objectModel>Length}/1000) * (${objectModel>Width}/1000) * (${objectModel>Height}/1000)).toFixed(3) }" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>frt}" wrapping="true" />
+                <t:template>
+                    <Text text="{= ((${objectModel>Length}/1000) * (${objectModel>Width}/1000) * (${objectModel>Height}/1000)).toFixed(3) > ${objectModel>PerPackGrossWeight} ? ((${objectModel>Length}/1000) * (${objectModel>Width}/1000) * (${objectModel>Height}/1000)).toFixed(3) : ${objectModel>PerPackGrossWeight}  }" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>pack_type_tab}" />
+                <t:template>
+                    <Text text="{objectModel>TypeOfPacking}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="5rem">
+                <Label text="{i18n>stack}" />
+                <t:template>
+                    <Text text="{objectModel>Stackable}" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>remark}" />
+                <t:template>
+                    <Text text="{objectModel>Remarks}" />
+                </t:template>
+            </t:Column>
+        </t:columns>
+    </t:Table>
+    <forms:SimpleForm editable="false" layout="ColumnLayout" columnsL="3">
+        <Label text="{i18n>total_qty}" />
+        <Text id="total_qty" text="{objectModel>/total_qty}" />
+        <Label text="{i18n>total_net}" />
+        <Text id="total_net" text="{=${objectModel>/total_net}.toFixed(3)}" />
+        <Label text="{i18n>total_gross}" />
+        <Text id="total_gross" text="{=${objectModel>/total_gross}.toFixed(3)}" />
+    </forms:SimpleForm>
+    <!-- <Button text="Previous" type="Emphasized" press="go2"/>
+                        <Button text="Next" type="Emphasized" press="go4"/> -->
+</mvc:View>

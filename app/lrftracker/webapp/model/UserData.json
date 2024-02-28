@@ -1,0 +1,39 @@
+{
+    "Users": [
+        {
+            "CustomerNumber": "1",
+            "Form": "Firma",
+            "CustomerName": "SAP SE",
+            "Street": "Dietmar-Hopp-Allee 16",
+            "PostCode": "69190",
+            "City": "Walldorf",
+            "Country": "DE",
+            "Email": "info@sap.de",
+            "Telephone": "06227-34-0"    
+        },
+        {
+            "CustomerNumber": "2",
+            "Form": "Firma",
+            "CustomerName": "SAP SE",
+            "Street": "Dietmar-Hopp-Allee 16",
+            "PostCode": "69190",
+            "City": "Walldorf",
+            "Country": "DE",
+            "Email": "info2@sap.de",
+            "Telephone": "06227-34-0"    
+        },
+        {
+            "CustomerNumber": "3",
+            "Form": "Firma",
+            "CustomerName": "SAP SE",
+            "Street": "Dietmar-Hopp-Allee 16",
+            "PostCode": "69190",
+            "City": "Walldorf",
+            "Country": "DE",
+            "Email": "info3@sap.de",
+            "Telephone": "06227-34-0"    
+        }
+        
+        
+    ]
+}

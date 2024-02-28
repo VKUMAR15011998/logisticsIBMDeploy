@@ -1,0 +1,51 @@
+<mvc:View controllerName="projectlnc.controller.Part_1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+    xmlns="sap.m">
+    <forms:SimpleForm editable="true" layout="ColumnLayout">
+        <Label text="{i18n>requision_date}" required="true" />
+        <Input type="Datetime" id="req_date" editable="false" width="50%" value="{                                        path: 'lrf>/requision_date',                                        type: 'sap.ui.model.type.Date',                                        'formatOptions': {                                            'pattern': 'dd-MMM-yyyy'                                        }                                    }" />
+        <Label text="{i18n>po_no}" required="true" />
+        <!-- <ComboBox id="po_no" showClearIcon="true" change="BasicPOValidation" items="{                                                    path: 'po_list>/po_nos'                                                }">
+            <core:Item key="{po_list>Key}" text="{po_list>Name}" />
+        </ComboBox> -->
+        <Input id="po_no" value="{lrf>/po_no}" width="50%" editable="{=${lrf>/Lrf_No}===''?true:false}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequestPO" />
+        <Label text="{i18n>ref_lrf}" />
+        <Input id="ref_lrf" type="Text" width="50%" editable="false" value="{lrf>/ref_lrf}" />
+        <Label text="{i18n>project}" required="true" />
+        <!-- <ComboBox id="project" items="{                                    path: 'po_list>/po_nos'                                }">
+            <core:Item key="{po_list>Key}" text="{po_list>Name}" />
+        </ComboBox> -->
+        <Input id="project" width="50%" editable="{=${lrf>/Lrf_No}===''?true:false}" value="{lrf>/project}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequestPRO" />
+        <Label text="{i18n>vendor_name}" required="true" />
+        <Input id="vendor_name" width="50%" type="Text" editable="false" value="{lrf>/vendor_name}" />
+        <Label text="{i18n>init_name}" required="true" />
+        <Input id="init_name" width="50%" type="Text" editable="false" value="{lrf>/init_name}" />
+        <Label text="{i18n>init_mobile}" required="true"  />
+        <ComboBox id="country_code"   editable="{=${lrf>/submit}==='No'?true:false}" selectedKey="{lrf>/country_code}" change="BasicCCValidation" items="{                                        path: 'mo_list>/mo_nos'                                    }">
+            <core:Item key="{mo_list>dial_code}" text="({mo_list>dial_code}) {mo_list>name}" />
+        </ComboBox>
+        <Input id="mobile_no"  value="{lrf>/init_mobile}" editable="{=${lrf>/submit}==='No'?true:false}" type="Number" maxLength="15" liveChange="BasicMOValidation" />
+        <Label text="{i18n>add_mobile}"/>
+        <ComboBox id="add_country_code"  editable="{=${lrf>/submit}==='No'?true:false}" selectedKey="{lrf>/add_country_code}" change="BasicADCCValidation" items="{                                        path: 'mo_list>/mo_nos'                                    }">
+            <core:Item key="{mo_list>dial_code}" text="({mo_list>dial_code}) {mo_list>name}" />
+        </ComboBox>
+        <Input id="add_mobile_no"  editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>/add_mobile}" type="Number" maxLength="15" liveChange="BasicADMOValidation" />
+        <Label text="{i18n>init_email}" required="true" />
+        <Input id="init_email" width="50%" value="{lrf>/init_email}" type="Email" editable="false" />
+        <Label text="{i18n>extra_email}" />
+        <MultiInput id="multiInput1" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" type="Email" tokens="{
+			path: 'lrf>/emails'		}" showSuggestion="false" showValueHelp="false" submit="onsubmitEmails" placeholder="Type Email IDs one by one and press ENTER" >
+             	<tokens>
+			<Token key="{lrf>}" text="{lrf>}" />
+		</tokens>
+                </MultiInput>
+    </forms:SimpleForm>
+    
+</mvc:View>

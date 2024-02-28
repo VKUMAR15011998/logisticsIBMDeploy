@@ -1,0 +1,1 @@
+sap.ui.define(["sap/uxap/BlockBase"],function(e){"use strict";return e.extend("lrftracker.view.blocks.BasicInfoBlock",{metadata:{}})});

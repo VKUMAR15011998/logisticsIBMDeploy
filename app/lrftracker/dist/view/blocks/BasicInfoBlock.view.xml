@@ -1,0 +1,87 @@
+<mvc:View
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:forms="sap.ui.layout.form"
+		xmlns="sap.m">
+
+	<forms:Form width="100%">
+		<forms:layout>
+			<forms:ColumnLayout/>
+		</forms:layout>
+		<forms:formContainers>
+
+			<forms:FormContainer id="addressInfo" >
+				<forms:formElements>
+
+					<forms:FormElement label="Requisition Date">
+						<forms:fields>
+							<Text text="{objectModel>/Requ_Date}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="PO No">
+						<forms:fields>
+							<Text text="{objectModel>/PO_Number}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="Reference LRF No">
+						<forms:fields>
+							<Text text="{objectModel>/Ref_Lrf_No}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="Project">
+						<forms:fields>
+							<Text text="{objectModel>/Project_ID}"/>
+						</forms:fields>
+					</forms:FormElement>
+					<forms:FormElement label="Vendor Name">
+						<forms:fields>
+							<Text text="{objectModel>/Vendor_Name}"/>
+						</forms:fields>
+					</forms:FormElement>
+					
+
+				</forms:formElements>
+			</forms:FormContainer>
+
+
+			<forms:FormContainer id="socialInfo" >
+				<forms:formElements>
+
+					<forms:FormElement label="Name of Initiator">
+						<forms:fields>
+							<Text text="{objectModel>/Initiator_Name}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="Mobile">
+						<forms:fields>
+							<Text text="{objectModel>/Country_code} {objectModel>/Mobile_No}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+					<forms:FormElement label="Additional Mobile">
+						<forms:fields>
+							<Text text="{objectModel>/Add_Country_code} {objectModel>/Additional_Mob}"/>
+						</forms:fields>
+					</forms:FormElement>
+					<forms:FormElement label="Email ID">
+						<forms:fields>
+							<Text text="{objectModel>/Email_Id}"/>
+						</forms:fields>
+					</forms:FormElement>
+					<forms:FormElement label="Additional Email ID">
+						<forms:fields>
+							<Text text="{objectModel>/Additional_MailID/0}"/>
+						</forms:fields>
+					</forms:FormElement>
+
+				</forms:formElements>
+			</forms:FormContainer>
+
+		</forms:formContainers>
+
+	</forms:Form>
+
+</mvc:View>

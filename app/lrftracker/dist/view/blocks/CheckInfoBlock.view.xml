@@ -1,0 +1,29 @@
+<mvc:View
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:forms="sap.ui.layout.form"
+        xmlns:ui="sap.ui.unified"
+        xmlns:upload="sap.m.upload"
+		xmlns="sap.m">
+
+	
+    <Panel class="sapUiSmallMarginTop">
+        <Label class="sapUiSmallMargin" text="Packing Documents" required="true" design="Bold"/>
+        <!-- <upload:UploadSet id="ref_pack_photo" uploadEnabled="{=${lrf>/submit}==='No'?true:false}" multiple="true" afterItemRemoved="deleteFile" afterItemAdded="afterItemAdded" uploadCompleted="fileUploaded" uploadUrl="Files" items="{path: 'file>/items', templateShareable: false}" mode="None">
+        <upload:items>
+            <upload:UploadSetItem fileName="{file>fileName}" url="{file>url}" mediaType="{file>mediaType}" visibleEdit="false" openPressed="stopDefault" />
+        </upload:items>
+    </upload:UploadSet> -->
+        <upload:UploadSet id="ref_pack_photo" mode="None" instantUpload="false" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/Adani_Logistics_Packing_Doc/" items="{
+								path: 'objectModel>/To_CkeckList/',								templateShareable: false}">
+            <upload:toolbar>
+            </upload:toolbar>
+            <upload:items>
+                <upload:UploadSetItem fileName="{objectModel>fileName}" mediaType="{objectModel>mediaType}" url="{objectModel>url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressed" removePressed="onRemovePressed">
+                    <!-- <upload:attributes> <ObjectAttribute title="File Size" text="{Adani_Logistics_LRF_Master_LRF_Master_ID}" active="false" />
+							</upload:attributes> -->
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+    </Panel>
+
+</mvc:View>

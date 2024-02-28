@@ -1,0 +1,76 @@
+<mvc:View controllerName="lrftracker.controller.BLrfTracker" height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable">
+    <f:DynamicPage headerExpanded="true" busy="{objectViewModel>/busy}">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title id="pageTitle" text="LRF Tracker"/>
+                </f:heading>
+                <!-- <f:actions>
+                    <Button text="Register Vehicle" type="Emphasized" press="onVehicleRegistraion"></Button>
+                </f:actions> -->
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <f:content>
+                    <smartFilterBar:SmartFilterBar id="filterbar" entitySet="per_Adani_Logistics_LRF_Master"
+                    >
+                        <smartFilterBar:controlConfiguration>
+                            <smartFilterBar:ControlConfiguration key="Lrf_No" label="Lrf_No" visibleInAdvancedArea="true">
+                            </smartFilterBar:ControlConfiguration>
+                            <smartFilterBar:ControlConfiguration key="PO_Number" label="PO_Number" visibleInAdvancedArea="true">
+                            </smartFilterBar:ControlConfiguration>
+                            <smartFilterBar:ControlConfiguration key="Initiator_Name" label="Initiator_Name" visibleInAdvancedArea="true">
+                            </smartFilterBar:ControlConfiguration>
+                        </smartFilterBar:controlConfiguration>
+                        <smartFilterBar:layoutData>
+                            <FlexItemData shrinkFactor="0" />
+                        </smartFilterBar:layoutData>
+                    </smartFilterBar:SmartFilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <!-- DynamicPage Content -->
+        <f:content>
+            <smartTable:SmartTable class="sapUiResponsiveContentPadding"                 beforeRebindTable="onBeforeRebindTable"
+ id="idTokensTable" editable="false" smartFilterId="filterbar" requestAtLeastFields="FF_Status,LogisticsMPL_Status,CHA_Status" placeToolbarInTable="true" enableAutoBinding="true" showFullScreenButton="false" showRowCount="true" tableType="ResponsiveTable" demandPopin="true" useExportToExcel="true" initiallyVisibleFields="Lrf_No,PO_Number,Initiator_Name" useTablePersonalisation="true" useVariantManagement="true" entitySet="per_Adani_Logistics_LRF_Master" header="LRFs">
+                <smartTable:customToolbar>
+                    <OverflowToolbar design="Transparent">
+                        <ToolbarSpacer/>
+                        <Button id="iBtnMPL" text="Assign To MPL Logistics" press=".onSelectAssignMPL" enabled="false" ariaHasPopup="Dialog">
+                            <customData>
+                                <core:CustomData key="multi" value="true" />
+                                <core:CustomData key="draggable" value="true" />
+                            </customData>
+                        </Button>
+                        <Button id="iBtnFF" enabled="false" text="Assign To FF" press=".onSelectAssignFF" ariaHasPopup="Dialog">
+                            <customData>
+                                <core:CustomData key="multi" value="true" />
+                                <core:CustomData key="draggable" value="true" />
+                            </customData>
+                        </Button>
+                        <Button id="iBtnCHA" enabled="false" text="Assign To CHA" press=".onSelectAssignCHA">
+                            <customData>
+                                <core:CustomData key="multi" value="true" />
+                                <core:CustomData key="draggable" value="true" />
+                            </customData>
+                        </Button>
+                    </OverflowToolbar>
+                </smartTable:customToolbar>
+                <Table id="mtable" mode="SingleSelectLeft" selectionChange="onSelectRadio" sticky="ColumnHeaders,HeaderToolbar" growing="true" growingThreshold="50">
+                    <ColumnListItem type="Navigation" press="onPress"></ColumnListItem>
+                </Table>
+            </smartTable:SmartTable>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

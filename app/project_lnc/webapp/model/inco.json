@@ -1,0 +1,41 @@
+{
+    "inco_nos": [{
+        "Key": "EXW",
+        "Name": "EXW"
+    }, 
+    {
+        "Key": "FCA",
+        "Name": "FCA"
+    },{
+        "Key": "CPT",
+        "Name": "CPT"
+    },{
+        "Key":"CIP",
+        "Name":"CIP"
+    },
+    {
+        "Key": "DAT",
+        "Name": "DAT"
+    }, 
+    {
+        "Key": "DAP",
+        "Name": "DAP"
+    },{
+        "Key": "DDP",
+        "Name": "DDP"
+    },{
+        "Key":"FAS",
+        "Name":"FAS"
+    },
+    {
+        "Key": "FOB",
+        "Name": "FOB"
+    },{
+        "Key":"CFR",
+        "Name":"CFR"
+    },
+    {
+        "Key":"CIF",
+        "Name":"CIF"
+    }]
+}

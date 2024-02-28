@@ -1,0 +1,1 @@
+using Logistics_Service as service from '../../srv/logistics_srv';
