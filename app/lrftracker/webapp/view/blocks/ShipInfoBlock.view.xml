@@ -144,7 +144,7 @@
             instantUpload="false"
             afterItemAdded="onAfterItemAdded"
             uploadCompleted="onUploadCompleted"
-            uploadUrl="/Adani_Logistics_Packing_Doc/"
+            uploadUrl="/PAdani_Logistics_Packing_Doc/"
             items="{
 								path: 'To_PackingDoc/',								templateShareable: false}"
         >

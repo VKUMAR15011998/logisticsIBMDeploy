@@ -27,7 +27,7 @@
         </forms:SimpleForm>
         <Label text="Checklist Documents" class="sapUiSmallMargin" design="Bold"/>
 
-        <upload:UploadSet id="ref_pack_photo" mode="None" instantUpload="false" uploadButtonInvisible="true" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/Adani_Logistics_Check_List/" items="{
+        <upload:UploadSet id="ref_pack_photo" mode="None" instantUpload="false" uploadButtonInvisible="true" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/PAdani_Logistics_Check_List/" items="{
 								path: 'To_CkeckList/',								templateShareable: false}">
 
             <upload:items>
@@ -37,7 +37,7 @@
             </upload:items>
         </upload:UploadSet>
         <Label text="Draft Documents" labelFor="dcheck_3" class="sapUiSmallMargin" design="Bold"/>
-        <upload:UploadSet id="dcheck_3" mode="None" instantUpload="false" uploadButtonInvisible="true" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/Adani_Logistics_Draft/" items="{
+        <upload:UploadSet id="dcheck_3" mode="None" instantUpload="false" uploadButtonInvisible="true" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/PAdani_Logistics_Draft/" items="{
 								path: 'To_Draft/',								templateShareable: false}">
 
             <upload:items>
@@ -48,7 +48,7 @@
         </upload:UploadSet>
         <Label text="Final Documents" class="sapUiSmallMargin" design="Bold"/>
 
-        <upload:UploadSet id="fcheck_3" mode="None" instantUpload="false" uploadButtonInvisible="true" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/Adani_Logistics_Final/" items="{
+        <upload:UploadSet id="fcheck_3" mode="None" instantUpload="false" uploadButtonInvisible="true" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/PAdani_Logistics_Final/" items="{
 								path: 'To_Final/',								templateShareable: false}">
             <upload:items>
                 <upload:UploadSetItem fileName="{fileName}" visibleRemove="false" mediaType="{mediaType}" url="{url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressed" removePressed="onRemovePressed">
