@@ -1,11 +1,14 @@
 using app.logistics from '../db/logistics1';
 using { PODetails } from './external/PODetails.csn';
 
-service Logistics_Service {
+service Logistics_Service @(requires: 'authenticated-user'){
     
     
     
-     entity per_Adani_Logistics_LRF_Master as projection on logistics.per_Adani_Logistics_LRF_Master;
+     entity per_Adani_Logistics_LRF_Master  @(restrict : [
+         
+        { grant : [ '*' ], to : [ 'LRFMasterRole' ] }
+         ]) as projection on logistics.per_Adani_Logistics_LRF_Master;
      entity PAdani_Logistics_Packing_Doc as projection on logistics.PAdani_Logistics_Packing_Doc;
      entity PAdani_Logistics_Material_Desc as projection on logistics.PAdani_Logistics_Material_Desc;
      entity PAdani_Logistics_Check_List as projection on logistics.PAdani_Logistics_Check_List;

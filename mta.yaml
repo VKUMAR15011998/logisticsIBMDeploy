@@ -8,6 +8,8 @@ modules:
     path: gen/srv
     requires:
       - name: Logistics1-db
+      - name: Logistics1-destination-service
+      - name: Logistics1-auth
     provides:
       - name: srv-api
         properties:
@@ -93,6 +95,15 @@ resources:
     parameters:
       service: html5-apps-repo
       service-plan: app-runtime
+  - name: Logistics1-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: Logistics1-${org}-${space}
+        tenant-mode: dedicated
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true

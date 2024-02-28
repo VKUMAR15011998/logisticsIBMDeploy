@@ -1,0 +1,31 @@
+{
+  "xsappname": "logisticsxsapp",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.LRFMasterRole",
+      "description": "LRFMasterRole"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "LRFMasterRole",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.LRFMasterRole"
+      ],
+      "attribute-references": []
+    }
+  ],
+  "oauth2-configuration": {
+    "credential-types": [
+      "binding-secret",
+      "x509"
+    ],
+    "redirect-uris": [
+      "https://**api.cf.ap11.hana.ondemand.com/**",
+      "http://localhost:4004/**"
+    ]
+  }
+}

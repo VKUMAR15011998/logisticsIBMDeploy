@@ -33,6 +33,7 @@
   },
   "cds": {
     "requires": {
+      "auth": "xsuaa",
       "db": "hana",
       "PODetails": {
         "kind": "odata-v2",
