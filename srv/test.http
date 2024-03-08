@@ -183,7 +183,7 @@ GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Material_Desc
 GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_LRF_Master
 ###
 
-POST http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Packing_Doc
+POST http://localhost:4004/odata/v4/logistics-/PAdani_Logistics_Packing_Doc
 Content-Type: application/json
 
 {
@@ -209,3 +209,5 @@ Content-Type: application/json
 {
     "FF_Status": "Accept"
 }
+###
+DELETE   http://localhost:4004/v2/odata/v4/logistics-/PAdani_Logistics_Check_List

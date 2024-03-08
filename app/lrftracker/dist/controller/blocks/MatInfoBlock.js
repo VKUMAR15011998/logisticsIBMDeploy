@@ -1,1 +1,1 @@
-sap.ui.define(["sap/uxap/BlockBase"],function(e){"use strict";return e.extend("lrftracker.view.blocks.MatInfoBlock",{metadata:{onBindingChange:function(e){this.getView().byId("myTable").setVisibleRowCount(e.getSource().getLength())}}})});
+sap.ui.define(["sap/uxap/BlockBase","sap/ui/core/mvc/Controller"],function(e,n){"use strict";return e.extend("lrftracker.view.blocks.MatInfoBlock",{onInit:function(e){}})});

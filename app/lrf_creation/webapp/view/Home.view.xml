@@ -1,0 +1,49 @@
+<mvc:View controllerName="projectlnc.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+    xmlns="sap.m">
+    <f:DynamicPage>
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Logistics Requisition Form (LRF)"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:content>
+            <forms:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                <Label class="sapUiTinyMargin" text="LRF Type"></Label>
+                <RadioButtonGroup columns="2">
+                    <RadioButton text="International"></RadioButton>
+                    <!-- <RadioButton text="Domestic"></RadioButton> -->
+                </RadioButtonGroup>
+                <Label  class="sapUiTinyMargin" text="Choose LRF"></Label>
+                <RadioButtonGroup id="lrf_Type" columns="2" select="onSelectLRF">
+                    <RadioButton text="New LRF" selected="true"></RadioButton>
+                    <RadioButton text="Saved LRF"></RadioButton>
+                </RadioButtonGroup>
+                <Label class="sapUiTinyMargin"></Label>
+                <Input id="saved_lrf"  valueHelpOnly="true"  placeholder="Select saved LRF no." visible="false" width="250px" showValueHelp="true" valueHelpRequest="onValueHelpRequestSave" />
+                <Label id="RefLabel" class="sapUiTinyMargin" text="Create new LRF by"></Label>
+                <RadioButtonGroup id="Refradio" columns="2" select="onSelectRef">
+                    <RadioButton text="Blank LRF" selected="true"></RadioButton>
+                    <RadioButton text="Reference LRF"></RadioButton>
+                </RadioButtonGroup>
+                <Label class="sapUiTinyMargin"></Label>
+                <Input id="ref_lrf"  valueHelpOnly="true"  placeholder="Select Reference LRF no." visible="false" width="250px" showValueHelp="true" valueHelpRequest="onValueHelpRequest" />
+                <Label class="sapUiTinyMargin"></Label>
+                <Button width="150px" text="Generate LRF" type="Emphasized" press="onGenerateLRF"/>
+
+            </forms:SimpleForm>
+
+        </f:content>
+
+    </f:DynamicPage>
+
+</mvc:View>

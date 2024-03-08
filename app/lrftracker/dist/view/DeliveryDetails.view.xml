@@ -1,0 +1,100 @@
+<mvc:View controllerName="lrftracker.controller.DeliveryDetails"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:ui="sap.ui.unified"
+    xmlns:t="sap.ui.table"
+    xmlns="sap.m">
+    <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" showFooter="false">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Delivery Details"/>
+                </f:heading>
+                <f:actions>
+                    <Button text="Save" enabled="{=${delivery>/DSubmit}==='YES'?false:true}" type="Emphasized" press="onSave"/>
+                    <Button text="Submit" enabled="{=${delivery>/DSubmit}==='YES'?false:true}" type="Emphasized" press="onSubmit"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <Text text="LRF No. : {objectModel>/Lrf_No}" />
+
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+
+            <forms:SimpleForm editable="false" layout="ColumnLayout">
+                <Label text="Site Delivery Address" required="true" />
+                <Text text="Is address same as PO?"/>
+                <Label />
+        <RadioButtonGroup id="origin_address" editable="{=${delivery>/DSubmit}==='YES'?false:true}" selectedIndex="{= ${delivery>/DAddress_radio}==='Yes'?0:1}"  select="onSelectAdd">
+            <RadioButton text="Yes" />
+            <RadioButton text="No" />
+        </RadioButtonGroup>
+        <Label />
+        <TextArea id="org_add" rows="4" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="false" value="{objectModel>/Origin_address}" visible="{= ${delivery>/DAddress_radio}==='Yes'?true:false}" placeholder="address goes here" />
+        <Label />
+        <TextArea id="org_new_add" rows="4" editable="{=${delivery>/DSubmit}==='YES'?false:true}" liveChange="validate_address" visible="{= ${delivery>/DAddress_radio}==='No'?true:false}" value="{delivery>/Site_Address}" placeholder="address goes here" />
+        
+                <Label text="{i18n>contact_person}" required="true" />
+                <Input id="contact_person" editable="{=${delivery>/DSubmit}==='YES'?false:true}" width="50%" type="Text" value="{delivery>/DContact_Person}" liveChange="validate_new_cpname" />
+                <Label text="{i18n>contact_number}" required="true" />
+                <ComboBox id="c_country_code" editable="{=${delivery>/DSubmit}==='YES'?false:true}" change="validate_new_c_country_code"  selectedKey="{delivery>/DCountry_code}" items="{                                        path: 'mo_list>/mo_nos'                                    }">
+                    <core:Item key="{mo_list>code}" text="({mo_list>dial_code}) {mo_list>name}" />
+                </ComboBox>
+                <Input id="c_mobile_no" editable="{=${delivery>/DSubmit}==='YES'?false:true}" liveChange="validate_new_c_mobile_no" type="Number" maxLength="15" value="{delivery>/DContact_No}"/>
+                <Label text="{i18n>contact_email}" required="true" />
+                <Input id="cemail" type="Email" editable="{=${delivery>/DSubmit}==='YES'?false:true}" width="50%" liveChange="validate_new_cpemail" enabled="true" value="{delivery>/DEmail_ID}"  />
+
+
+                <Label text="{i18n>pol_1}" required="false" />
+                <Input type="Text" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="true" value="{delivery>/Ins_Pol_01}" />
+
+                <Label text="{i18n>pol_no_1}" required="false" />
+                <Input type="Text" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="true" value="{delivery>/Ins_Pol_No1}" />
+
+                <Label text="{i18n>comp1}" required="false" />
+                <Input type="Text" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="true" value="{delivery>/Ins_Company1}" />
+
+                <Label text="{i18n>exp_Date1}" required="false" />
+                <!-- <Input type="Datetime" enabled="false" value="{                                        path: 'delivery>/Pol_Exp_Date1',                                        type: 'sap.ui.model.type.Date',                                        'formatOptions': {                                            'pattern': 'dd-MMM-yyyy'                                        }                                    }" /> -->
+        <DatePicker id="date1" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" dateValue="{delivery>/Pol_Exp_Date1}"  displayFormat="dd-MMM-YYYY" required="false" />
+
+                <Label text="{i18n>pol_2}" />
+                <Input type="Text" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="true" value="{delivery>/Ins_Pol_02}" />
+
+                <Label text="{i18n>pol_no_2}" />
+                <Input type="Text" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="true" value="{delivery>/Ins_Pol_No2}" />
+
+                <Label text="{i18n>comp2}" />
+                <Input type="Text" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="true" value="{delivery>/Ins_Company2}" />
+
+                <Label text="{i18n>exp_Date2}" />
+                <!-- <Input type="Datetime" enabled="false" value="{                                        path: 'delivery>/Pol_Exp_Date2',                                        type: 'sap.ui.model.type.Date',                                        'formatOptions': {                                            'pattern': 'dd-MMM-yyyy'                                        }                                    }" /> -->
+        <DatePicker id="date2" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" dateValue="{delivery>/Pol_Exp_Date2}" displayFormat="dd-MMM-YYYY" />
+
+                <Label text="{i18n>pol_3}" />
+                <Input type="Text" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="true" value="{delivery>/Ins_Pol_03}" />
+
+                <Label text="{i18n>pol_no_3}" />
+                <Input type="Text" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="true" value="{delivery>/Ins_Pol_No3}" />
+
+                <Label text="{i18n>comp3}" />
+                <Input type="Text" width="50%" editable="{=${delivery>/DSubmit}==='YES'?false:true}" enabled="true" value="{delivery>/Ins_Company3}" />
+
+                <Label text="{i18n>exp_Date3}" />
+                <!-- <Input type="Datetime" enabled="false" value="{                                        path: 'delivery>/Pol_Exp_Date3',                                        type: 'sap.ui.model.type.Date',                                        'formatOptions': {                                            'pattern': 'dd-MMM-yyyy'                                        }                                    }" /> -->
+                        <DatePicker id="date3" editable="{=${delivery>/DSubmit}==='YES'?false:true}" width="50%" dateValue="{delivery>/Pol_Exp_Date3}" displayFormat="dd-MMM-YYYY" />
+            </forms:SimpleForm>
+
+        </f:content>
+    </f:DynamicPage>
+
+</mvc:View>

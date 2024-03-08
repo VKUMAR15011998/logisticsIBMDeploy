@@ -1,0 +1,27 @@
+{
+    "pt_nos": [{
+        "Key": "Loose Material",
+        "Name": "Loose Material"
+    }, 
+    {
+        "Key": "Bare",
+        "Name": "Bare"
+    },{
+        "Key": "Gunny Bag",
+        "Name": "Gunny Bag"
+    },{
+        "Key":"Wooden Package",
+        "Name":"Wooden Package"
+    },
+    {
+        "Key":"Pallets",
+        "Name":"Pallets"
+    },{
+        "Key":"Skid",
+        "Name":"Skid"
+    },
+    {
+        "Key":"Drums",
+        "Name":"Drums"
+    }]
+}

@@ -1,0 +1,35 @@
+{
+  "requires": {
+    "[hybrid]": {
+      "db": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.eu10.hana.ondemand.com",
+          "org": "Adani Enterprises Limited_mpl-hana-01-59adgc69",
+          "space": "Development",
+          "instance": "logisticsibmcap",
+          "key": "servicekey",
+          "resolved": false
+        },
+        "kind": "hana-cloud",
+        "vcap": {
+          "name": "db"
+        }
+      },
+      "custom-service:Po_Connect": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.eu10.hana.ondemand.com",
+          "org": "Adani Enterprises Limited_mpl-hana-01-59adgc69",
+          "space": "Development",
+          "instance": "Po_Connect",
+          "key": "key_PO",
+          "resolved": false
+        },
+        "vcap": {
+          "name": "custom-service:Po_Connect"
+        }
+      }
+    }
+  }
+}

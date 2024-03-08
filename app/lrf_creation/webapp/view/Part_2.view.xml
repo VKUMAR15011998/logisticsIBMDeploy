@@ -1,0 +1,121 @@
+<mvc:View controllerName="projectlnc.controller.Part_2"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+    xmlns="sap.m">
+
+    <forms:SimpleForm editable="true" layout="ColumnLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2">
+        <Label text="{i18n>ready_date}" required="true" />
+        <DatePicker id="ready_date" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" dateValue="{lrf>/ready_date}" displayFormat="dd-MMM-YYYY" required="true" change="validate_date" />
+        <Label text="{i18n>origin_address}" required="true" />
+        <Text text="Is address same as PO?"/>
+        <!-- <Label /> -->
+        <RadioButtonGroup id="origin_address" selectedIndex="{= ${lrf>/address}==='Yes'?0:1}" editable="{=${lrf>/submit}==='No'?true:false}" select="onSelectAdd" columns="2">
+            <RadioButton text="Yes" />
+            <RadioButton text="No" />
+        </RadioButtonGroup>
+        <Label />
+        <TextArea id="org_add" rows="4" editable="false" value="{lrf>/org_add}" visible="{= ${lrf>/address}==='Yes'?true:false}" placeholder="address goes here" />
+        <Label />
+        <TextArea id="org_new_add" editable="{=${lrf>/submit}==='No' ?true:false}" liveChange="validate_address" visible="{= ${lrf>/address}==='No'?true:false}" rows="4" value="{lrf>/org_new_add}" placeholder="address goes here" />
+        <Label text="{i18n>country}" required="true" />
+        <ComboBox id="country" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" selectedKey="{lrf>/country}" change="validate_country" items="{                                        path: 'mo_list>/mo_nos'                                    }">
+            <core:Item key="{mo_list>name}" text="{mo_list>name}" />
+        </ComboBox>
+        <Label text="{i18n>pack_type}" />
+        <MultiComboBox id="pack_type" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" selectedKeys="{lrf>/pack_type}" selectionChange="validate_pack_type" items="{                                                    path: 'pt_list>/pt_nos'                                                }">
+            <core:Item key="{pt_list>Key}" text="{pt_list>Name}" />
+        </MultiComboBox>
+        <Label text="{i18n>delivery_terms}" required="true" />
+        <Input id="delivery_terms" width="50%" value="{lrf>/delivery_terms}" type="Text" editable="false" />
+        <Label text="{i18n>inco_terms}" required="true" />
+        <ComboBox id="inco_terms" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" selectedKey="{lrf>/inco_terms}" change="validate_inco" items="{                                        path: 'inco_list>/inco_nos'                                    }">
+            <core:Item key="{inco_list>Key}" text="{inco_list>Name}" />
+        </ComboBox>
+        <Label text="{i18n>load_port_name}" required="true" />
+        <ComboBox id="load_port" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" selectedKey="{lrf>/load_port_name}" change="validate_load_port" items="{                                        path: 'mo_list>/mo_nos'                                    }">
+            <core:Item key="{mo_list>name}" text="{mo_list>name}" />
+        </ComboBox>
+        <Label text="{i18n>discharge_port_name}" required="true" />
+        <ComboBox id="discharge_port_name" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" selectedKey="{lrf>/discharge_port_name}" change="validate_discharge_port" items="{                                        path: 'mo_list>/mo_nos'                                    }">
+            <core:Item key="{mo_list>name}" text="{mo_list>name}" />
+        </ComboBox>
+        <Label text="{i18n>vehicle_load_port}" required="true" />
+        <MultiComboBox id="vhicle_type" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" selectedKeys="{lrf>/vhicle_type}" selectionChange="validate_vh" items="{                                        path: 'vh_list>/vn_nos'                                    }">
+            <core:Item key="{vh_list>Key}" text="{vh_list>Name}" />
+        </MultiComboBox>
+        <Label text="{i18n>shipment_type}" required="true" />
+        <RadioButtonGroup id="shipment_type" editable="{=${lrf>/submit}==='No'?true:false}" select="radio_check_container" columns="2" selectedIndex="{= ${lrf>/containers}==='Containerised'?0:1}">
+            <RadioButton text="Containerised" />
+            <RadioButton text="Non Containerised" />
+        </RadioButtonGroup>
+        <Label id="type" text="Type" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Text id="t20" text="20' Nos" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Text id="t40" text="40' Nos" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Label id="high_cube" text="High Cube" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Input id="h20" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" type="Number" value="{lrf>/h20}" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Input id="h40" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" type="Number" value="{lrf>/h40}" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Label id="flat_rack" text="Flat Rack" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Input id="f20" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" type="Number" value="{lrf>/f20}" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Input id="f40" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" type="Number" value="{lrf>/f40}" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Label id="open_top" text="Open Top" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Input id="o20" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" type="Number" value="{lrf>/o20}" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Input id="o40" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" type="Number" value="{lrf>/o40}" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Label id="general" text="General Purpose" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Input id="g20" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" type="Number" value="{lrf>/g20}" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Input id="g40" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" type="Number" value="{lrf>/g40}" visible="{= ${lrf>/containers}==='Containerised'?true:false}"/>
+        <Label text="Contact Person"/>
+        <Text text="Is same as initiator?"/>
+        <RadioButtonGroup id="contact_person" selectedIndex="{= ${lrf>/contact}==='Yes'?0:1}" editable="{=${lrf>/submit}==='No'?true:false}" select="onSelectAddCP" columns="2">
+            <RadioButton text="Yes" />
+            <RadioButton text="No" />
+        </RadioButtonGroup>
+        <Label text="{i18n>contact_person}" required="true" />
+        <Input id="cpname" type="Text" width="50%" editable="false" visible="{= ${lrf>/contact}==='Yes'?true:false}" value="{lrf>/init_name}" />
+        <Label text="{i18n>contact_person}" required="true" />
+        <Input id="new_cpname" width="50%" editable="{=${lrf>/submit}==='No'}" liveChange="validate_new_cpname" visible="{= ${lrf>/contact}==='No'?true:false}" type="Text" value="{lrf>/new_cpname}" />
+        <Label text="{i18n>contact_number}" required="true" />
+        <ComboBox id="c_country_code" selectedKey="{lrf>/country_code}" visible="{= ${lrf>/contact}==='Yes'?true:false}" editable="false" items="{                                        path: 'mo_list>/mo_nos'                                    }">
+            <core:Item key="{mo_list>dial_code}" text="({mo_list>dial_code}) {mo_list>name}" />
+        </ComboBox>
+
+        <Input id="c_mobile_no" editable="false" visible="{= ${lrf>/contact}==='Yes'?true:false}" type="Number" maxLength="15" value="{lrf>/init_mobile}" />
+        <Label text="{i18n>contact_number}" required="true" />
+        <ComboBox id="new_c_country_code" editable="{=${lrf>/submit}==='No'?true:false}" selectedKey="{lrf>/new_c_country_code}" change="validate_new_c_country_code" visible="{= ${lrf>/contact}==='No'?true:false}" items="{                                        path: 'mo_list>/mo_nos'                                    }">
+            <core:Item key="{mo_list>dial_code}" text="({mo_list>dial_code}) {mo_list>name}" />
+        </ComboBox>
+        <Input id="new_c_mobile_no" editable="{=${lrf>/submit}==='No'}" liveChange="validate_new_c_mobile_no" visible="{= ${lrf>/contact}==='No'?true:false}" type="Number" maxLength="15" value="{lrf>/new_c_mobile_no}" />
+
+        <Label text="{i18n>contact_email}" required="true" />
+        <Input id="cpemail" type="Email" width="50%" editable="false" visible="{= ${lrf>/contact}==='Yes'?true:false}" value="{lrf>/init_email}" />
+        <Label text="{i18n>contact_email}" required="true" />
+        <Input id="new_cpemail" width="50%" editable="{=${lrf>/submit}==='No'?true:false}" liveChange="validate_new_cpemail" visible="{= ${lrf>/contact}==='No'?true:false}" type="Email" value="{lrf>/new_cpemail}" />
+
+    </forms:SimpleForm>
+
+    <Panel class="sapUiSmallMarginTop">
+        <Label class="sapUiSmallMargin" text="{i18n>pack_ref_docs}" required="true" design="Bold"/>
+        <!-- <upload:UploadSet id="ref_pack_photo" uploadeditable="{=${lrf>/submit}==='No'?true:false}" multiple="true" afterItemRemoved="deleteFile" afterItemAdded="afterItemAdded" uploadCompleted="fileUploaded" uploadUrl="Files" items="{path: 'file>/items', templateShareable: false}" mode="None">
+        <upload:items>
+            <upload:UploadSetItem fileName="{file>fileName}" url="{file>url}" mediaType="{file>mediaType}" visibleEdit="false" openPressed="stopDefault" />
+        </upload:items>
+    </upload:UploadSet> -->
+        <upload:UploadSet id="ref_pack_photo" mode="None" instantUpload="false" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/PAdani_Logistics_Packing_Doc/" items="{
+								path: '/PAdani_Logistics_Packing_Doc',								templateShareable: false}">
+            <upload:toolbar>
+            </upload:toolbar>
+            <upload:items>
+                <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}" url="{url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressed" removePressed="onRemovePressed">
+                    <!-- <upload:attributes> <ObjectAttribute title="File Size" text="{Adani_Logistics_LRF_Master_LRF_Master_ID}" active="false" />
+							</upload:attributes> -->
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+    </Panel>
+
+</mvc:View>

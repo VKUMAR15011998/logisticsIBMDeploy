@@ -1,0 +1,165 @@
+<mvc:View controllerName="projectlnc.controller.Part_4"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+    xmlns="sap.m">
+    <forms:SimpleForm layout="ResponsiveGridLayout" labelSpanL="6" labelSpanM="6" labelSpanXL="6" labelSpanS="6" emptySpanL="0" emptySpanM="0" emptySpanS="0" emptySpanXL="0">
+        <Label id="label_1" text="Transportation/ GA drawing In case of over dimensional/ over weight cargo" />
+        <RadioButtonGroup id="radio_1" editable="{=${lrf>/submit}==='No'?true:false}" columns="2" select="radio_check($event,'1')" selectedIndex="{= ${lrf>/check1}==='Yes'?0:1}">
+            <RadioButton text="Yes" />
+            <RadioButton text="No" />
+        </RadioButtonGroup>
+
+ <upload:UploadSet id="check_1" visible="{= ${lrf>/check1}==='Yes'?true:false}"  mode="None" instantUpload="false" afterItemAdded=".onAfterItemAdded($event,'check_1')" uploadCompleted=".onUploadCompleted($event,'check_1')" uploadUrl="/PAdani_Logistics_Check_List/" items="{
+								path: '/PAdani_Logistics_Check_List',								templateShareable: false}">
+            <upload:toolbar>
+            </upload:toolbar>
+            <upload:items>
+                <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}" url="{url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressed" removePressed=".onRemovePressed($event,'check_1')">
+                    <!-- <upload:attributes> <ObjectAttribute title="File Size" text="{Adani_Logistics_LRF_Master_LRF_Master_ID}" active="false" />
+							</upload:attributes> -->
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+        <!-- <upload:UploadSet id="check_1" uploadEnabled="{= ${file>check1_fileName}==='' ?true:false}" visible="{= ${lrf>/check1}==='Yes'?true:false}" multiple="false" afterItemRemoved="deleteIT" afterItemAdded="afterItemAdded" uploadCompleted="fileUploaded" uploadUrl="Files" items="{path: 'file>/items', templateShareable: false}" mode="None"> -->
+        <!-- <upload:UploadSet id="check_1" uploadEnabled="{= ${lrf>/submit}==='No' ?true:false}" visible="{= ${lrf>/check1}==='Yes'?true:false}" multiple="false" afterItemRemoved="deleteIT" afterItemAdded="afterItemAdded" uploadCompleted="fileUploaded" uploadUrl="Files" items="{path: 'file>/items', templateShareable: false}" mode="None">
+
+            <upload:items >
+                <upload:UploadSetItem fileName="{file>check1_fileName}" url="{file>check1_url}" mediaType="{file>check1_mediaType}" visibleEdit="false" openPressed="stopDefault" />
+            </upload:items>
+        </upload:UploadSet> -->
+
+
+        <Label id="label_2" text="Contents are dangerous goods as per IATA DGR / Hazardous as per _____XXXXXX" />
+        <RadioButtonGroup id="radio_2" editable="{=${lrf>/submit}==='No'?true:false}" columns="2" select="radio_check($event,'2')" selectedIndex="{= ${lrf>/check2}==='Yes'?0:1}">
+            <RadioButton text="Yes" />
+            <RadioButton text="No" />
+        </RadioButtonGroup>
+
+
+<upload:UploadSet id="check_2" visible="{= ${lrf>/check2}==='Yes'?true:false}"  mode="None" instantUpload="false" afterItemAdded=".onAfterItemAdded($event,'check_2')" uploadCompleted=".onUploadCompleted($event,'check_2')" uploadUrl="/PAdani_Logistics_Check_List/" items="{
+								path: '/PAdani_Logistics_Check_List',								templateShareable: false}">
+            <upload:toolbar>
+            </upload:toolbar>
+            <upload:items>
+                <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}" url="{url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressed" removePressed=".onRemovePressed($event,'check_2')">
+                    <!-- <upload:attributes> <ObjectAttribute title="File Size" text="{Adani_Logistics_LRF_Master_LRF_Master_ID}" active="false" />
+							</upload:attributes> -->
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+        <!-- <upload:UploadSet id="check_2" uploadEnabled="{= ${lrf>/submit}==='No' ?true:false}" visible="{= ${lrf>/check2}==='Yes'?true:false}" multiple="false" afterItemRemoved="deleteIT" afterItemAdded="afterItemAdded" uploadCompleted="fileUploaded" uploadUrl="Files" items="{path: 'file>/items', templateShareable: false}" mode="None">
+            <upload:items>
+                <upload:UploadSetItem fileName="{file>check2_fileName}" url="{file>check2_url}" mediaType="{file>check2_mediaType}" visibleEdit="false" openPressed="stopDefault" />
+            </upload:items>
+        </upload:UploadSet> -->
+
+
+        <Label id="label_3" text="MSDS sheet in case of DGR/Hazardous cargo" />
+        <RadioButtonGroup id="radio_3" editable="{=${lrf>/submit}==='No'?true:false}"  columns="2" select="radio_check($event,'3')" selectedIndex="{= ${lrf>/check3}==='Yes'?0:1}">
+            <RadioButton text="Yes" />
+            <RadioButton text="No" />
+        </RadioButtonGroup>
+
+<upload:UploadSet id="check_3" visible="{= ${lrf>/check3}==='Yes'?true:false}" mode="None" instantUpload="false" afterItemAdded=".onAfterItemAdded($event,'check_3')" uploadCompleted=".onUploadCompleted($event,'check_3')" uploadUrl="/PAdani_Logistics_Check_List/" items="{
+								path: '/PAdani_Logistics_Check_List',								templateShareable: false}">
+            <upload:toolbar>
+            </upload:toolbar>
+            <upload:items>
+                <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}" url="{url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressed" removePressed=".onRemovePressed($event,'check_3')">
+                    <!-- <upload:attributes> <ObjectAttribute title="File Size" text="{Adani_Logistics_LRF_Master_LRF_Master_ID}" active="false" />
+							</upload:attributes> -->
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+        <!-- <upload:UploadSet id="check_3" uploadEnabled="{= ${lrf>/submit}==='No' ?true:false}" visible="{= ${lrf>/check3}==='Yes'?true:false}" multiple="false" afterItemRemoved="deleteIT" afterItemAdded="afterItemAdded" uploadCompleted="fileUploaded" uploadUrl="Files" items="{path: 'file>/items', templateShareable: false}" mode="None">
+            <upload:items>
+                <upload:UploadSetItem fileName="{file>check3_fileName}" url="{file>check3_url}" mediaType="{file>check3_mediaType}" visibleEdit="false" openPressed="stopDefault" />
+            </upload:items>
+        </upload:UploadSet> -->
+
+
+        <Label id="label_4" text="Transhipment of cargo permissible" />
+        <RadioButtonGroup id="radio_4" editable="{=${lrf>/submit}==='No'?true:false}" columns="2" select="radio_check($event,'4')" selectedIndex="{= ${lrf>/check4}==='Yes'?0:1}">
+            <RadioButton text="Yes" />
+            <RadioButton text="No" />
+        </RadioButtonGroup>
+
+
+        <Label id="label_5" text="Tarpaulin covering required" />
+        <RadioButtonGroup id="radio_5" editable="{=${lrf>/submit}==='No'?true:false}" columns="2" select="radio_check($event,'5')" selectedIndex="{= ${lrf>/check5}==='Yes'?0:1}">
+            <RadioButton text="Yes" />
+            <RadioButton text="No" />
+        </RadioButtonGroup>
+
+
+        <Label id="label_6" text="Cargo can be loaded ON DECK" />
+        <RadioButtonGroup id="radio_6" editable="{=${lrf>/submit}==='No'?true:false}" columns="2" select="radio_check($event,'6')" selectedIndex="{= ${lrf>/check6}==='Yes'?0:1}">
+            <RadioButton text="Yes" />
+            <RadioButton text="No" />
+        </RadioButtonGroup>
+
+
+        <Label text="{i18n>spec_req}" />
+        <Input id="spec" type="Text" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>/req}"/>
+        <Label text="{i18n>over_rema}" />
+        <Input id="overall_remark" editable="{=${lrf>/submit}==='No'?true:false}" type="Text" value="{lrf>/remark}" />
+
+
+
+        <Label text="Draft Documents" />
+        <ComboBox id="draft_po_no"  change="onSelectItem_draft" selectedKey="BL" items="{                                                    path: 'docs_list>/docs_nos'                                                }">
+            <core:Item key="{docs_list>Key}" text="{docs_list>Name}" />
+        </ComboBox>
+        <Input id="other_draft" type="Text" visible="false" liveChange="cEmpty" placeholder="Enter document name"/>
+
+        <Label ></Label>
+         <upload:UploadSet id="dcheck_3" mode="None" instantUpload="false" afterItemAdded=".onAfterItemAdded($event,'dcheck_3')" uploadCompleted=".onUploadCompleted($event,'dcheck_3')" uploadUrl="/PAdani_Logistics_Draft/" items="{
+								path: '/PAdani_Logistics_Draft',								templateShareable: false}">
+            <upload:toolbar>
+            </upload:toolbar>
+            <upload:items>
+                <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}" url="{url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressedDraft" removePressed=".onRemovePressed($event,'dcheck_3')">
+                    <!-- <upload:attributes> <ObjectAttribute title="File Size" text="{Adani_Logistics_LRF_Master_LRF_Master_ID}" active="false" />
+							</upload:attributes> -->
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+        <!-- <upload:UploadSet id="dcheck_3" uploadEnabled="{=${lrf>/submit}==='No'?true:false}" multiple="false" afterItemRemoved="deleteFile" afterItemAdded="afterItemAdded_lable" uploadCompleted="fileUploaded" uploadUrl="Files" items="{path: 'draft_file>/items', templateShareable: false}" mode="None">
+            <upload:items>
+                <upload:UploadSetItem fileName="{draft_file>fileName}" url="{draft_file>url}" mediaType="{draft_file>mediaType}" visibleEdit="false" openPressed="stopDefault" />
+            </upload:items>
+        </upload:UploadSet> -->
+
+        <Label text="Final Documents" />
+        <ComboBox id="final_po_no"  change="onSelectItem_final" selectedKey="BL" items="{                                                    path: 'docs_list>/docs_nos'                                                }">
+            <core:Item key="{docs_list>Key}" text="{docs_list>Name}" />
+        </ComboBox>
+        <Input id="other_final" type="Text" visible="false" liveChange="cEmptyFinal" placeholder="Enter document name"/>
+
+        <Label ></Label>
+         <upload:UploadSet id="fcheck_3" mode="None" instantUpload="false" afterItemAdded=".onAfterItemAdded($event,'fcheck_3')" uploadCompleted=".onUploadCompleted($event,'fcheck_3')" uploadUrl="/PAdani_Logistics_Final/" items="{
+								path: '/PAdani_Logistics_Final',								templateShareable: false}">
+            <upload:toolbar>
+            </upload:toolbar>
+            <upload:items>
+                <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}" url="{url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressed" removePressed=".onRemovePressed($event,'fcheck_3')">
+                    <!-- <upload:attributes> <ObjectAttribute title="File Size" text="{Adani_Logistics_LRF_Master_LRF_Master_ID}" active="false" />
+							</upload:attributes> -->
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+        <!-- <upload:UploadSet id="fcheck_3" uploadEnabled="{=${lrf>/submit}==='No'?true:false}" multiple="false" afterItemRemoved="deleteFile" afterItemAdded="afterItemAdded_lable" uploadCompleted="fileUploaded" uploadUrl="Files" items="{path: 'final_file>/items', templateShareable: false}" mode="None">
+            <upload:items>
+                <upload:UploadSetItem fileName="{final_file>fileName}" url="{final_file>url}" mediaType="{final_file>mediaType}" visibleEdit="false" openPressed="stopDefault" />
+            </upload:items>
+        </upload:UploadSet> -->
+
+    </forms:SimpleForm>
+
+</mvc:View>

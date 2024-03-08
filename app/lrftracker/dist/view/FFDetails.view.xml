@@ -1,0 +1,144 @@
+<mvc:View controllerName="lrftracker.controller.FFDetails"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+    xmlns:t="sap.ui.table"
+    xmlns="sap.m">
+    <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" showFooter="false">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="FF Details"/>
+                </f:heading>
+                <f:actions>
+                    <Button text="Save" enabled="{=${ff>/FFSubmit}==='YES'?false:true}" type="Emphasized" press="onSave"/>
+                    <Button text="Submit" enabled="{=${ff>/FFSubmit}==='YES'?false:true}" type="Emphasized" press="onSubmit"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <Text text="LRF No. : {objectModel>/Lrf_No}" />
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+            <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding" expandable="false">
+                <items>
+                    <IconTabFilter key="one" text="Shipment Details">
+                        <content>
+                            <forms:SimpleForm editable="true" layout="ColumnLayout" columnsL="3">
+                                <Label text="{i18n>ff_name}" required="true" />
+                                <Input type="Text" width="50%" editable="false" value="{ff>/lines_name}" />
+                                 <Label text="{i18n>alloc_date}" /> 
+                                <DatePicker width="50%" dateValue="{ff>/Allocation_Date}" editable="false" displayFormat="dd-MMM-YYYY"/>
+                                
+                                <Label text="{i18n>FA_details}" required="true" />
+                                <Input type="Text" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" enabled="true" value="{ff>/Foriegn_Agent_Details}" />
+                                <Label text="{i18n>Tra_dir}" required="true" />
+                                <RadioButtonGroup columns="2" editable="{=${ff>/FFSubmit}==='YES'?false:true}" selectedIndex="{= ${ff>/Trans_Dir}==='Direct'?1:0}" select="onSelectMode">
+                                    <RadioButton text="Transhipped"></RadioButton>
+                                    <RadioButton text="Direct"></RadioButton>
+                                </RadioButtonGroup>
+                                <Label text="No of containers" required="true"/>
+                                <Input type="Number" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" value="{ff>/No_Containers}"/>
+                                <Label text="{i18n>vessel}" required="true" />
+                                <Input type="Text" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" enabled="true" value="{ff>/Vessel_Name}" />
+                                <Label text="{i18n>mode_ship}" required="true"/>
+                                <MultiComboBox id="pack_type" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" class="sapUiSmallMarginEnd" selectedKeys="{ff>/Ship_Mode}" items="{                                                    path: 'vh_list>/vn_nos'                                                }">
+                                    <core:Item key="{vh_list>Key}" text="{vh_list>Name}" />
+                                </MultiComboBox>
+                                <Label text="{i18n>courier_name}" required="true" />
+                                <Input type="Text" width="50%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" enabled="true" value="{ff>/Courier_Name}" />
+                                <Label text="{i18n>doc_no}" required="true" />
+                                <Input type="Text" width="50%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" enabled="true" value="{ff>/Docket_No}" />
+                                <Label text="{i18n>doc_date}" required="true" />
+                                <DatePicker id="doc_date" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" dateValue="{ff>/Docket_Date}" displayFormat="dd-MMM-YYYY" />
+                               <Label text="{i18n>bl_No}" required="true" />
+                                <Input type="Text" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" enabled="true" value="{ff>/BL_No}"/>
+                                <Label text="{i18n>bl_rele}" required="true" />
+                                <DatePicker id="bl_rele" editable="{=${ff>/FFSubmit}==='YES'?false:true}"  width="50%" dateValue="{ff>/BL_Rel_Date}" displayFormat="dd-MMM-YYYY" />
+                                <Label /><Text />
+                                <Label text="LC Control No"/>
+                                <Input type="Text" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" value="{ff>/LC_Control_No}"/>
+                                <Label text="LC Issuing Bank"/>
+                                <Input type="Text" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" value="{ff>/LC_Issuing_Bank}"/>
+                                <Label text="LC Expiry Date"/>
+                                <DatePicker dateValue="{ff>/LC_Expiry_Date}" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" displayFormat="dd-MMM-yyyy"/>         
+                                <Label text="{i18n>etd_plan}" required="true" />
+                                <DatePicker id="etd_plan" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" dateValue="{ff>/ETD_Plan}" displayFormat="dd-MMM-YYYY" />
+                                <Label text="{i18n>eta_plan}" required="true" />
+                                <DatePicker id="eta_plan" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" dateValue="{ff>/ETA_Plan}" displayFormat="dd-MMM-YYYY" />
+                                <Label text="{i18n>del_date}" />
+                                <DatePicker id="del_date" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" dateValue="{ff>/Delivery_Date}" displayFormat="dd-MMM-YYYY" />
+                                <Label text="{i18n>ari_date}" />
+                                <DatePicker id="ari_date" editable="{=${ff>/FFSubmit}==='YES'?false:true}" width="50%" dateValue="{ff>/Arrival_Date}" displayFormat="dd-MMM-YYYY" />
+                                </forms:SimpleForm>
+                            <!-- <Button text="Next" type="Emphasized" press="go2"/> -->
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter id="two" key="two" text="Shipment Tracking" enabled="true">
+                        <content>
+                            <forms:SimpleForm editable="true" layout="ResponsiveLayout">
+                                <Label text="Date of Empty container pickup from yard"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DEmpty_Container_Pickup}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Date of Empty container handed over to the shipper for loading"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DContainer_Handed_Over_to_Shipper}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Date of Container stuffing"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DContainer_Stuffing}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Date of loaded container movement from the shipper's factory location"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DLoaded_Container_Movement_to_Factory}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Date of Loaded container arrival at terminal"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DLoaded_Container_Arrival_Terminal}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Date of Export clearance"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DExport_Clearance}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Date for Document cut-off"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DDocument_Cutoff}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Date for Gate-in cut-off"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DGatein_Cutoff}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Vessel ETA at origin"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DVessel_ETA_at_Origin}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Date of container loaded on vessel"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DContainer_Loaded_on_Vessel}" displayFormat="dd-MMM-yyyy"/>
+                                <Label text="Date of container offloaded from vessel"/>
+                                <DatePicker width="25%" editable="{=${ff>/FFSubmit}==='YES'?false:true}" dateValue="{ff>/DContainer_Offloaded_from_Vessel}" displayFormat="dd-MMM-yyyy"/>
+
+                            </forms:SimpleForm>
+                            <!-- <Button text="Previous" type="Emphasized" press="go1"/>
+                            <Button text="Next" type="Emphasized" press="go3"/> -->
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter id="three" key="three" text="Document Uploads" enabled="true">
+                        <content>
+
+                            <forms:SimpleForm editable="true" layout="ResponsiveLayout">
+                                <Label text="{i18n>ff_docs}"/>
+                                <ComboBox change="onSelectItem" selectedKey="Freight Certificate" items="{                                                    path: 'ff_docs_list>/ff_docs_nos'                                                }">
+                                    <core:Item key="{ff_docs_list>Key}" text="{ff_docs_list>Name}" />
+                                </ComboBox>
+                                <Input id="other_docs" type="Text" visible="false" liveChange="cEmptyFinal"/>
+                                <Label />
+                                <upload:UploadSet id="ff_docs" mode="None" instantUpload="false" afterItemAdded="onAfterItemAdded" uploadCompleted="onUploadCompleted" uploadUrl="/PAdani_Logistics_FF_Doc_Upload/" items="{
+								path: '/PAdani_Logistics_FF_Doc_Upload',								templateShareable: false}">
+                                    <upload:toolbar>
+                                    </upload:toolbar>
+                                    <upload:items>
+                                        <upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}" url="{url}" enabledEdit="false" visibleEdit="false" openPressed="onOpenPressed" removePressed="onRemovePressed">
+                                        </upload:UploadSetItem>
+                                    </upload:items>
+                                </upload:UploadSet>
+                            </forms:SimpleForm>
+                        </content>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </f:content>
+    </f:DynamicPage>
+
+</mvc:View>

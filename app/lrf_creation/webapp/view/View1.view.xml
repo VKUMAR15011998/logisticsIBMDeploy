@@ -1,0 +1,118 @@
+<mvc:View controllerName="projectlnc.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+    xmlns="sap.m">
+    <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" showFooter="false">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Logistics Requisition Form (LRF)"/>
+                </f:heading>
+                <!-- <f:expandedContent>
+                    <Label text="This is a subheading"/>
+                </f:expandedContent>
+                <f:snappedContent>
+                    <Label text="This is a subheading"/>
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title text="This is a subheading"/>
+                </f:snappedTitleOnMobile> -->
+                <!-- <f:actions>
+						<Button text="Edit" type="Emphasized"/>
+						<Button text="Delete" type="Transparent"/>
+						<Button text="Copy" type="Transparent"/>
+						<Button text="Toggle Footer" type="Transparent" press="onToggleFooter"/>
+						<Button icon="sap-icon://action" type="Transparent"/>
+					</f:actions> -->
+                <!-- <f:navigationActions>
+						<Button icon="sap-icon://full-screen" type="Transparent" />
+						<Button icon="sap-icon://decline" type="Transparent" />
+					</f:navigationActions> -->
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <Text id="lrfno" text="LRF No. : {lrf>/Lrf_No}" />
+                <ToolbarSpacer ></ToolbarSpacer>
+                <Text id="master_id" text="ID : {lrf>/ID}" />
+                <!-- <Input width="200px"/>
+                <Button text="asdfds"/>
+                <Button text="This is long buttoin"/> -->
+
+                <!-- <layout:HorizontalLayout allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="Location" text="Warehouse A"/>
+                        <ObjectAttribute title="Halway" text="23L"/>
+                        <ObjectAttribute title="Rack" text="34"/>
+                    </layout:VerticalLayout>
+
+                    <layout:VerticalLayout>
+							<ObjectAttribute title="Availability"/>
+							<ObjectStatus text="In Stock" state="Success" />
+						</layout:VerticalLayout>
+                </layout:HorizontalLayout> -->
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding" expandable="false" select="checkVal">
+                <items>
+
+                    <IconTabFilter key="one" text="{i18n>step_1_title}">
+                        <content>
+                            <mvc:XMLView id="subView1" viewName="projectlnc.view.Part_1"></mvc:XMLView>
+                            <Button text="Next" type="Emphasized" press="go2" enabled="{= ${lrf>/submit}==='YES'?false:true}"/>
+                        </content>
+
+                    </IconTabFilter>
+                    <IconTabFilter id="two" key="two" text="Shipping Information" enabled="{= ${lrf>/ID}===''?false:true}">
+                        <content>
+                            <mvc:XMLView id="subView2" viewName="projectlnc.view.Part_2"></mvc:XMLView>
+                            <Button text="Previous" type="Emphasized" press="go1" enabled="{= ${lrf>/submit}==='YES'?false:true}"/>
+                            <Button text="Next" type="Emphasized" press="go3" enabled="{= ${lrf>/submit}==='YES'?false:true}"/>
+                        </content>
+                    </IconTabFilter>
+
+                    <IconTabFilter id="three" key="three" text="Description of Material" enabled="{= ${lrf>/p2}==='X'?true:false}">
+                        <content>
+                            <mvc:XMLView id="subView3" viewName="projectlnc.view.Part_3"></mvc:XMLView>
+
+                            <Button text="Previous" type="Emphasized" press="go2" enabled="{= ${lrf>/submit}==='YES'?false:true}"/>
+                            <Button text="Next" type="Emphasized" press="go4" enabled="{= ${lrf>/submit}==='YES'?false:true}"/>
+
+                        </content>
+                    </IconTabFilter>
+                    <IconTabFilter id="four" key="four" text="Checklist and Document Uploads" enabled="{= ${lrf>/p3}==='X'?true:false}">
+                        <content>
+                            <mvc:XMLView id="subView4" viewName="projectlnc.view.Part_4"></mvc:XMLView>
+                            <Button text="Previous" type="Emphasized" press="go3" enabled="{= ${lrf>/submit}==='YES'?false:true}"/>
+                            <Button text="Submit" type="Emphasized" press="onSubmit" enabled="{= ${lrf>/submit}==='YES'?false:true}"/>
+                        </content>
+                    </IconTabFilter>
+                    <!-- <IconTabFilter id="five" key="five" text="Review" enabled="false">
+                        <content>
+                            <mvc:XMLView id="subView5" viewName="projectlnc.view.Review"></mvc:XMLView>
+                            <Button text="Previous" type="Emphasized" press="go4"/>
+                            <Button text="Submit" type="Emphasized" press="onSubmit"/>
+                        </content>
+                    </IconTabFilter> -->
+                </items>
+            </IconTabBar>
+        </f:content>
+        <!-- DynamicPage Footer -->
+        <f:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button type="Accept" text="Accept"/>
+                <Button type="Reject" text="Reject"/>
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

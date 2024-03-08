@@ -52,27 +52,27 @@ module.exports = cds.service.impl( async function(){
 this.before('CREATE', 'PAdani_Logistics_Packing_Doc', req => {
     console.log('Create called')
     console.log(JSON.stringify(req.data))
-    req.data.url = `/odata/v4/logistics-/PAdani_Logistics_Packing_Doc(${req.data.PackingID})/content`
+    req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_Packing_Doc(${req.data.PackingID})/content`
 })
 this.before('CREATE', 'PAdani_Logistics_Draft', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
-  req.data.url = `/odata/v4/logistics-/PAdani_Logistics_Draft(${req.data.Draft_ID})/content`
+  req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_Draft(${req.data.Draft_ID})/content`
 })
 this.before('CREATE', 'PAdani_Logistics_Final', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
-  req.data.url = `/odata/v4/logistics-/PAdani_Logistics_Final(${req.data.Final_ID})/content`
+  req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_Final(${req.data.Final_ID})/content`
 })
 this.before('CREATE', 'PAdani_Logistics_Check_List', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
-  req.data.url = `/odata/v4/logistics-/PAdani_Logistics_Check_List(${req.data.Check_ID})/content`
+  req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_Check_List(${req.data.Check_ID})/content`
 })
 this.before('CREATE', 'PAdani_Logistics_FF_Doc_Upload', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
-  req.data.url = `/odata/v4/logistics-/PAdani_Logistics_FF_Doc_Upload(${req.data.FF_DocUpload_ID})/content`
+  req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_FF_Doc_Upload(${req.data.FF_DocUpload_ID})/content`
 })
       
       

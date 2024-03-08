@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<!-- <SelectDialog noDataText="No Records Found"
+	id="save"
+	title="Select saved LRF"
+	liveChange="_handleValueHelpSearchSave"
+	search="_handleValueHelpSearchSave"
+	confirm="_handleValueHelpConfirmSave"
+		cancel="_handleValueHelpClose" 
+		items="{
+			path: '/Get_Adani_Logistics_LRF_Master',
+			filters : [
+            { path : 'Submit_Flag', operator : 'EQ', value1 : 'No'}
+        ]
+			}"> -->
+			<SelectDialog noDataText="No Records Found"
+	id="save"
+	title="Select saved LRF"
+	liveChange="_handleValueHelpSearchSave"
+	search="_handleValueHelpSearchSave"
+	confirm="_handleValueHelpConfirmSave"
+		cancel="_handleValueHelpClose" 
+		items="{
+			path: '/per_Adani_Logistics_LRF_Master'
+			}">
+		<StandardListItem title="{Lrf_No}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,131 @@
+<mvc:View controllerName="projectlnc.controller.Part_3"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+    xmlns="sap.m">
+    <t:Table id="uitable" rows="{lrf>/material}" selectionMode="None"  >
+        <!-- <t:Table id="uitable" rows="{lrf>/items}" selectionMode="None"> -->
+
+        <t:extension>
+            <OverflowToolbar style="Standard">
+                <Button icon="sap-icon://add" enabled="{=${lrf>/submit}==='No'?true:false}" tooltip="Add Row" text="Add Row" type="Transparent" press="addRow" />
+                <Button icon="sap-icon://download" tooltip="Template" text="Template" type="Transparent" press="templateDWNLD" />
+                <ui:FileUploader id="uploadExcel" enabled="{=${lrf>/submit}==='No'?true:false}" multiple="false" buttonOnly="true" buttonText="Excel" icon="sap-icon://upload" change="uploadExcel" sameFilenameAllowed="true"/>
+                <ToolbarSpacer ></ToolbarSpacer>
+
+            </OverflowToolbar>
+        </t:extension>
+      
+        <t:columns>
+            <t:Column width="5rem">
+                <Label text="{i18n>pack_no}" wrapping="true"/>
+                <t:template>
+                    <!-- <Input type="Number" value="{lrf>PackageNo}" editable="{=${lrf>/submit}==='No'?true:false}" valueState="{= ${lrf>PackageNo} ? 'None' : 'Error'}"/> -->
+                                   <Text  text="{lrf>PackageNo}"/>
+
+                </t:template>
+            </t:Column>
+            <t:Column width="5rem">
+                <Label text="{i18n>hazard}" wrapping="true" />
+                <t:template>
+                    <CheckBox selected="{= ${lrf>HAZ_DG_Cargo}==='Y' ||  ${lrf>HAZ_DG_Cargo}==='y'}" editable="{=${lrf>/submit}==='No'?true:false}" select=".onCheckStack($event,'HAZ_DG_Cargo')"/>
+                </t:template>
+            </t:Column>
+            <t:Column width="10rem">
+                <Label text="{i18n>desc}" />
+                <t:template>
+                    <Input type="Text" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>Description}" valueState="{= ${lrf>Description} ? 'None' : 'Error'}" tooltip="{lrf>Description}"/>
+                </t:template>
+            </t:Column>
+            <t:Column width="6rem">
+                <Label text="{i18n>len}" wrapping="true" />
+                <t:template>
+                    <Input type="Number" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>Length}" valueState="{= ${lrf>Length} ? 'Information' : 'Error'}" valueStateText="Length is {= (${lrf>Length} /25.4 ).toFixed(2)} inch" valueLiveUpdate="true" />
+                </t:template>
+            </t:Column>
+            <t:Column width="6rem">
+                <Label text="{i18n>wid}" wrapping="true" />
+                <t:template>
+                    <Input type="Number" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>Width}" valueState="{= ${lrf>Width} ? 'Information' : 'Error'}" valueStateText="Length is {= (${lrf>Width} /25.4 ).toFixed(2)} inch" valueLiveUpdate="true" />
+                </t:template>
+            </t:Column>
+            <t:Column width="6rem">
+                <Label text="{i18n>hei}" wrapping="true" />
+                <t:template>
+                    <Input type="Number" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>Height}" valueState="{= ${lrf>Height} ? 'Information' : 'Error'}" valueStateText="Length is {= (${lrf>Height} /25.4 ).toFixed(2)} inch" valueLiveUpdate="true" />
+                </t:template>
+            </t:Column>
+            <t:Column width="5rem">
+                <Label text="{i18n>qty}" wrapping="true" />
+                <t:template>
+                    <Input type="Number" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>QtyInNumbers}" valueState="{= ${lrf>QtyInNumbers} ? 'None' : 'Error'}" valueLiveUpdate="true" liveChange="updateTotal" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>net_weight}" wrapping="true" />
+                <t:template>
+                    <Input type="Number" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>PerPackNetWeight}" valueState="{= ${lrf>PerPackNetWeight} ? 'None' : 'Error'}" valueLiveUpdate="true" liveChange="updateTotal" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>gross_weight}" wrapping="true" />
+                <t:template>
+                    <Input type="Number" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>PerPackGrossWeight}" valueState="{= ${lrf>PerPackGrossWeight} ? 'None' : 'Error'}" valueLiveUpdate="true" liveChange="updateTotal" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>per_vol}" wrapping="true" />
+                <t:template>
+                    <Text  text="{= ((${lrf>Length}/1000) * (${lrf>Width}/1000) * (${lrf>Height}/1000)).toFixed(3)  }" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>vol}" wrapping="true" />
+                <t:template>
+                    <Text text="{= (${lrf>QtyInNumbers} * (${lrf>Length}/1000) * (${lrf>Width}/1000) * (${lrf>Height}/1000)).toFixed(3) }" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>frt}" wrapping="true" />
+                <t:template>
+                    <Text text="{= ((${lrf>Length}/1000) * (${lrf>Width}/1000) * (${lrf>Height}/1000)).toFixed(3) > ${lrf>PerPackGrossWeight} ? ((${lrf>Length}/1000) * (${lrf>Width}/1000) * (${lrf>Height}/1000)).toFixed(3) : ${lrf>PerPackGrossWeight}  }" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>pack_type_tab}" />
+                <t:template>
+                    <ComboBox class="sapUiSmallMarginEnd" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>TypeOfPacking}" change="BasicPackTypeValidation" valueState="{= ['Loose Material','Bare','Gunny Bag','Wooden Package','Pallets','Skid','Drums'].includes(${lrf>TypeOfPacking})?'None':'Error'}" items="{                                        path: 'pt_list>/pt_nos'                                    }">
+                        <core:Item key="{pt_list>Key}" text="{pt_list>Name}" />
+                    </ComboBox>
+                </t:template>
+            </t:Column>
+            <t:Column width="5rem">
+                <Label text="{i18n>stack}" />
+                <t:template>
+                    <CheckBox selected="{= ${lrf>Stackable}==='Y' || ${lrf>Stackable}==='y'}" editable="{=${lrf>/submit}==='No'?true:false}" select=".onCheckStack($event,'Stackable')" />
+                </t:template>
+            </t:Column>
+            <t:Column width="8rem">
+                <Label text="{i18n>remark}" />
+                <t:template>
+                    <Input type="Text" editable="{=${lrf>/submit}==='No'?true:false}" value="{lrf>Remarks}" tooltip="{lrf>Remarks}" />
+                </t:template>
+            </t:Column>
+        </t:columns>
+    </t:Table>
+    <forms:SimpleForm editable="false" layout="ColumnLayout" columnsL="3">
+        <Label text="{i18n>total_qty}" />
+        <Text id="total_qty" text="{lrf>/total_qty}" />
+        <Label text="{i18n>total_net}" />
+        <Text id="total_net" text="{=${lrf>/total_net}.toFixed(3)}" />
+        <Label text="{i18n>total_gross}" />
+        <Text id="total_gross" text="{=${lrf>/total_gross}.toFixed(3)}" />
+    </forms:SimpleForm>
+    <!-- <Button text="Previous" type="Emphasized" press="go2"/>
+                        <Button text="Next" type="Emphasized" press="go4"/> -->
+</mvc:View>

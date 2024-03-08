@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <SelectDialog 
+    
+        confirmButtonText="Assign"
+        noDataText="No Records Found"
+        title="Assign MPL Logistics"
+        liveChange="_handleValueHelpSearchMPL"
+        search="_handleValueHelpSearchMPL"
+        confirm="_handleValueHelpConfirmMPL"
+        cancel="_handleValueHelpClose"
+                items="{EmailModel>/Users/}"
+
+    >
+        <StandardListItem
+title="{EmailModel>Email}"            type="Active"
+        />
+        
+    </SelectDialog>
+</core:FragmentDefinition>
+

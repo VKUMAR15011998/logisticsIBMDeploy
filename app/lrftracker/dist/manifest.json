@@ -17,11 +17,11 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "odata/v4/logistics-/",
+                "uri": "v2/odata/v4/logistics-/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
-                    "odataVersion": "4.0"
+                    "odataVersion": "2.0"
                 }
             }
         }
@@ -43,7 +43,7 @@
         }
     },
     "sap.ui5": {
-        "flexEnabled": true,
+        "flexEnabled": false,
         "dependencies": {
             "minUI5Version": "1.120.6",
             "libs": {
@@ -109,6 +109,18 @@
                     "name": "page2",
                     "target": "page2",
                     "controlAggregation": "pages"
+                },
+                {
+                    "pattern": "DeliveryDetails/{LRF_Master_ID}/{Lrf_No}",
+                    "name": "DeliveryDetails",
+                    "target": "page3",
+                    "controlAggregation": "pages"
+                },
+                {
+                    "pattern": "FFDetails/{LRF_Master_ID}/{Lrf_No}",
+                    "name": "FFDetails",
+                    "target": "page4",
+                    "controlAggregation": "pages"
                 }
             ],
             "targets": {
@@ -116,12 +128,20 @@
                     "viewType": "XML",
                     "transition": "slide",
                     "clearControlAggregation": false,
-                    "viewId": "LrfTracker",
-                    "viewName": "LrfTracker"
+                    "viewId": "BLrfTracker",
+                    "viewName": "BLrfTracker"
                 },
                 "page2": {
                     "viewName": "page2",
                     "viewId": "page2"
+                },
+                "page3": {
+                    "viewName": "DeliveryDetails",
+                    "viewId": "page3"
+                },
+                "page4": {
+                    "viewName": "FFDetails",
+                    "viewId": "page4"
                 }
             }
         },

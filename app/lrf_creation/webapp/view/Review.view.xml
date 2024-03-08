@@ -1,0 +1,226 @@
+<mvc:View controllerName="projectlnc.controller.Review"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns:forms="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:ui="sap.ui.unified"
+    xmlns:upload="sap.m.upload"
+    xmlns="sap.m">
+    <Panel class="sapUiSmallMargin" >
+    <headerToolbar>
+    <OverflowToolbar >
+    <Title text="{i18n>step_1_title}" />
+    <ToolbarSpacer />
+    <Button icon="sap-icon://edit" press="go1"/>
+    </OverflowToolbar></headerToolbar>
+        <forms:SimpleForm editable="true" layout="ColumnLayout" columnsL="3">
+            <Label text="{i18n>requision_date}" />
+            <Text text="{lrf_data>/requision_date}"/>
+            <Label text="{i18n>po_no}" />
+            <Text text="{lrf_data>/po_no}"/>
+            <Label text="{i18n>ref_lrf}" />
+            <Text text="{lrf_data>/ref_lrf}"/>
+            <Label text="{i18n>project}" />
+            <Text text="{lrf_data>/project}"/>
+            <Label text="{i18n>vendor_name}" />
+            <Text text="{lrf_data>/vendor_name}"/>
+            <Label text="{i18n>init_name}" />
+            <Text text="{lrf_data>/init_name}"/>
+            <Label text="{i18n>init_mobile}" />
+            <Text text="{lrf_data>/country_code} {lrf_data>/init_mobile}"/>
+            <Label text="{i18n>add_mobile}"/>
+            <Text text="{lrf_data>/add_country_code} {lrf_data>/add_mobile}"/>
+            <Label text="{i18n>init_email}" />
+            <Text text="{lrf_data>/init_email}"/>
+            <Label text="{i18n>extra_email}" />
+            <Text text="{lrf_data>/extra_email}"/>
+        </forms:SimpleForm>
+    </Panel>
+    <Panel class="sapUiSmallMargin">
+    <headerToolbar>
+    <OverflowToolbar >
+    <Title text="{i18n>step_2_title}" />
+    <ToolbarSpacer />
+    <Button icon="sap-icon://edit" press="go2"/>
+    </OverflowToolbar></headerToolbar>
+        <forms:SimpleForm editable="true" layout="ColumnLayout" columnsL="3">
+            <Label text="{i18n>ready_date}" />
+            <Text text="{                                        path: 'lrf_data>/ready_date',                                        type: 'sap.ui.model.type.Date',                                        'formatOptions': {                                            'pattern': 'dd-MMM-yyyy'                                        }                                    }" />
+            <Label text="{i18n>origin_address}" />
+            <Text text="{lrf_data>/org_add}"/>
+            <Label text="{i18n>country}" />
+            <Text text="{lrf_data>/country}"/>
+            <Label text="{i18n>pack_type}" />
+            <Text text="{lrf_data>/pack_type}"/>
+            <Label text="{i18n>delivery_terms}" />
+            <Text text="{lrf_data>/delivery_terms}"/>
+            <Label text="{i18n>inco_terms}" />
+            <Text text="{lrf_data>/inco_terms}"/>
+            <Label text="{i18n>contact_person}" />
+            <Text text="{lrf_data>/cpname}"/>
+            <Label text="{i18n>contact_number}" />
+            <Text text="{lrf_data>/c_country_code} {lrf_data>/c_mobile_no}"/>
+            <Label text="{i18n>contact_email}" />
+            <Text text="{lrf_data>/cpemail}"/>
+            <Label text="{i18n>vehicle_type}" />
+            <Text text="{lrf_data>/vhicle_type}"/>
+            <Label text="{i18n>vehicle_load_port}" />
+            <Text text="{lrf_data>/load_port}"/>
+            <Label text="{i18n>discharge_port_name}" />
+            <Text text="{lrf_data>/discharge_port_name}"/>
+            <Label text="Containers Details" />
+            <Text text="{lrf_data>/containers}"/>
+            <Label text="{i18n>pack_ref_docs}" />
+            <Text text="{lrf_data>/pack_photo_list}"/>
+
+        </forms:SimpleForm>
+    </Panel>
+    <Panel class="sapUiSmallMargin">
+<headerToolbar>
+    <OverflowToolbar >
+    <Title text="{i18n>step_3_title}" />
+    <ToolbarSpacer />
+    <Button icon="sap-icon://edit" press="go3"/>
+    </OverflowToolbar></headerToolbar>
+        <t:Table id="uitable" rows="{materials>/items}" selectionMode="None">
+
+            <t:columns>
+                <t:Column width="5rem">
+                    <Label text="{i18n>pack_no}" wrapping="true" />
+                    <t:template>
+                        <Text text="{materials>Package No}"/>
+                    </t:template>
+                </t:Column>
+                <t:Column width="5rem">
+                    <Label text="{i18n>hazard}" wrapping="true" />
+                    <t:template>
+                        <CheckBox enabled="false" selected="{= ${materials>HAZ or DG Cargo}==='Y' ||  ${materials>HAZ or DG Cargo}==='y'}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="10rem">
+                    <Label text="{i18n>desc}" />
+                    <t:template>
+                        <Text text="{materials>Description}" tooltip="{materials>Description}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="6rem">
+                    <Label text="{i18n>len}" wrapping="true" />
+                    <t:template>
+                        <Text text="{materials>Length (mm)}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="6rem">
+                    <Label text="{i18n>wid}" wrapping="true" />
+                    <t:template>
+                        <Text text="{materials>Width (mm)}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="6rem">
+                    <Label text="{i18n>hei}" wrapping="true" />
+                    <t:template>
+                        <Text text="{materials>Height (mm)}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="5rem">
+                    <Label text="{i18n>qty}" wrapping="true" />
+                    <t:template>
+                        <Text text="{materials>Qty in Numbers}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="6rem">
+                    <Label text="{i18n>net_weight}" wrapping="true" />
+                    <t:template>
+                        <Text text="{materials>Per Package Net Weight in (MT)}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="7rem">
+                    <Label text="{i18n>gross_weight}" wrapping="true" />
+                    <t:template>
+                        <Text text="{materials>Per Package Gross Weight in (MT)}" />
+
+                    </t:template>
+                </t:Column>
+                <t:Column width="6rem">
+                    <Label text="{i18n>per_vol}" wrapping="true" />
+                    <t:template>
+                        <Text id="per_vol" text="{= ((${materials>Length (mm)}/1000) * (${materials>Width (mm)}/1000) * (${materials>Height (mm)}/1000)).toFixed(3)  }" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="6rem">
+                    <Label text="{i18n>vol}" wrapping="true" />
+                    <t:template>
+                        <Text id="vol" text="{= (${materials>Qty in Numbers} * (${materials>Length (mm)}/1000) * (${materials>Width (mm)}/1000) * (${materials>Height (mm)}/1000)).toFixed(3) }" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="4rem">
+                    <Label text="{i18n>frt}" wrapping="true" />
+                    <t:template>
+                        <Text id="frt" text="{= ((${materials>Length (mm)}/1000) * (${materials>Width (mm)}/1000) * (${materials>Height (mm)}/1000)).toFixed(3) > ${materials>Per Package Gross Weight in (MT)} ? ((${materials>Length (mm)}/1000) * (${materials>Width (mm)}/1000) * (${materials>Height (mm)}/1000)).toFixed(3) : ${materials>Per Package Gross Weight in (MT)}  }" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="8rem">
+                    <Label text="{i18n>pack_type_tab}" />
+                    <t:template>
+                        <Text text="{materials>Type of packing}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="5rem">
+                    <Label text="{i18n>stack}" />
+                    <t:template>
+                        <CheckBox enabled="false" selected="{= ${materials>Stackable}==='Y' || ${materials>Stackable}==='y'}" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="5rem">
+                    <Label text="{i18n>remark}" />
+                    <t:template>
+                        <Text text="{materials>Remarks}" tooltip="{materials>Remarks}" />
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+        <forms:SimpleForm layout="ColumnLayout" columnsL="3">
+            <Label text="{i18n>total_qty}" />
+            <Text text="{lrf_data>/qty}" />
+            <Label text="{i18n>total_net}" />
+            <Text text="{lrf_data>/net}" />
+            <Label text="{i18n>total_gross}" />
+            <Text text="{lrf_data>/gross}" />
+        </forms:SimpleForm>
+    </Panel>
+    <Panel class="sapUiSmallMargin">
+    <headerToolbar>
+    <OverflowToolbar >
+    <Title text="{i18n>step_4_title}" />
+    <ToolbarSpacer />
+    <Button icon="sap-icon://edit" press="go4"/>
+    </OverflowToolbar></headerToolbar>
+        <forms:SimpleForm id="SimpleFormDisplay354wide" editable="false" layout="ResponsiveLayout">
+
+            <Label text="{lrf_data>/label_1}" />
+            <Text  text="{lrf_data>/radio_1}    {lrf_data>/check_1}" renderWhitespace="true" />
+            <Label text="{lrf_data>/label_2}" />
+            <Text text="{lrf_data>/radio_2}     {lrf_data>/check_2}" renderWhitespace="true" />
+            <Label text="{lrf_data>/label_3}" />
+            <Text text="{lrf_data>/radio_3}     {lrf_data>/check_3}" renderWhitespace="true" />
+
+            <Label text="{lrf_data>/label_4}" />
+            <Text text="{lrf_data>/radio_4}" />
+            <Label text="{lrf_data>/label_5}" />
+            <Text text="{lrf_data>/radio_5}" />
+            <Label text="{lrf_data>/label_6}" />
+            <Text text="{lrf_data>/radio_6}" />
+            <Label text="{i18n>over_rema}" />
+            <Text text="{lrf_data>/overall_remark}" />
+            <Label text="{i18n>spec_req}" />
+            <Text text="{lrf_data>/spec}" />
+             <Label text="Draft Documents" />
+            <Text text="{lrf_data>/draft_list}" />
+            <Label text="Final Documents" />
+            <Text text="{lrf_data>/final_list}" />
+        </forms:SimpleForm>
+
+    </Panel>
+
+</mvc:View>

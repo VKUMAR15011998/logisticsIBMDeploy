@@ -1,31 +1,87 @@
 {
   "xsappname": "logisticsxsapp",
   "tenant-mode": "dedicated",
+  "description": "Role design of HANA DB application",
   "scopes": [
     {
-      "name": "$XSAPPNAME.LRFMasterRole",
-      "description": "LRFMasterRole"
+      "name": "uaa.user",
+      "description": "UAA",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.read",
+      "description": "read",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.write",
+      "description": "write",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.delete",
+      "description": "delete",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.global-admin",
+      "description": "Global Admin"
     }
+    
   ],
-  "attributes": [],
   "role-templates": [
     {
-      "name": "LRFMasterRole",
-      "description": "generated",
+      "name": "Token_Exchange",
+      "description": "UAA",
       "scope-references": [
-        "$XSAPPNAME.LRFMasterRole"
+        "uaa.user"
+      ]
+    },
+    {
+      "name": "logisticsibmcap-read",
+      "description": "HANA DB Read",
+      "scope-references": [
+        "$XSAPPNAME.read"
       ],
       "attribute-references": []
-    }
+    },
+    {
+      "name": "logisticsibmcap-write",
+      "description": "HANA DB Write",
+      "scope-references": [
+        "$XSAPPNAME.read",
+        "$XSAPPNAME.write",
+        "$XSAPPNAME.delete"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "global-admin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.global-admin"
+      ],
+      "attribute-references": []
+    }       
+ 
   ],
-  "oauth2-configuration": {
-    "credential-types": [
-      "binding-secret",
-      "x509"
-    ],
-    "redirect-uris": [
-      "https://**api.cf.ap11.hana.ondemand.com/**",
-      "http://localhost:4004/**"
-    ]
+  "role-collections": [
+    {
+      "name": "Logistic03-Viewer",
+      "description": "logisticsibmcap Viewer Role Collection",
+      "role-template-references": [
+        "$XSAPPNAME.logisticsibmcap-read"
+      ]
+    }
+  ] 
   }
-}
+        
+      

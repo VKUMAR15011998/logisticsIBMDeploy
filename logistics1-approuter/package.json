@@ -1,18 +1,37 @@
-
 {
-	"name": "approuter",
-	"description": "Node.js based application router service for html5-apps",
-	"engines": {
-		"node": "^16.0.0 || ^18.0.0"
-	},
-	"dependencies": {
-		"@sap/approuter": "14.4.2"
-	},
-	"devDependencies": {
-		"@sap/html5-repo-mock": "2.1.5"
-	},
-	"scripts": {
-		"start": "node node_modules/@sap/approuter/approuter.js",
-		"start-local": "node node_modules/@sap/html5-repo-mock/index.js"
-	}
+"name": "logistics1-approuter",
+"version": "0.0.2",
+"description": "",
+"main": "index.js",
+"dependencies": {
+  "@sap/approuter": "^14.3.3",
+  "@sap/xsenv": "^4.0.0",
+  "@sap/xssec": "^3.2.1",
+  "@sap/cds": "^5"
+},
+"engines": {
+  "node": "^18.0.0"
+},
+"scripts": {
+  "start": "node index.js"
+},
+"cds": {
+  "requires": {
+      "IAS": {
+          "kind": "rest",
+          "model": "/service/scim/Users"
+      },
+      "PODetails": {
+        "kind": "odata",
+        "model": "srv/external/PODetails",
+        "credentials": {
+          "destination": "MPL_P00_ODATA_CLONING",
+          "path": "/sap/opu/odata/sap/ZMM_BTP_PO_DET_SRV"
+        }
+      }
+  }
 }
+}
+
+
+

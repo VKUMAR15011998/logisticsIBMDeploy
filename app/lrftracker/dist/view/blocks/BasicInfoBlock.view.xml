@@ -1,87 +1,66 @@
-<mvc:View
-		xmlns:mvc="sap.ui.core.mvc"
-		xmlns:forms="sap.ui.layout.form"
-		xmlns="sap.m">
-
-	<forms:Form width="100%">
-		<forms:layout>
-			<forms:ColumnLayout/>
-		</forms:layout>
-		<forms:formContainers>
-
-			<forms:FormContainer id="addressInfo" >
-				<forms:formElements>
-
-					<forms:FormElement label="Requisition Date">
-						<forms:fields>
-							<Text text="{objectModel>/Requ_Date}"/>
-						</forms:fields>
-					</forms:FormElement>
-
-					<forms:FormElement label="PO No">
-						<forms:fields>
-							<Text text="{objectModel>/PO_Number}"/>
-						</forms:fields>
-					</forms:FormElement>
-
-					<forms:FormElement label="Reference LRF No">
-						<forms:fields>
-							<Text text="{objectModel>/Ref_Lrf_No}"/>
-						</forms:fields>
-					</forms:FormElement>
-
-					<forms:FormElement label="Project">
-						<forms:fields>
-							<Text text="{objectModel>/Project_ID}"/>
-						</forms:fields>
-					</forms:FormElement>
-					<forms:FormElement label="Vendor Name">
-						<forms:fields>
-							<Text text="{objectModel>/Vendor_Name}"/>
-						</forms:fields>
-					</forms:FormElement>
-					
-
-				</forms:formElements>
-			</forms:FormContainer>
-
-
-			<forms:FormContainer id="socialInfo" >
-				<forms:formElements>
-
-					<forms:FormElement label="Name of Initiator">
-						<forms:fields>
-							<Text text="{objectModel>/Initiator_Name}"/>
-						</forms:fields>
-					</forms:FormElement>
-
-					<forms:FormElement label="Mobile">
-						<forms:fields>
-							<Text text="{objectModel>/Country_code} {objectModel>/Mobile_No}"/>
-						</forms:fields>
-					</forms:FormElement>
-
-					<forms:FormElement label="Additional Mobile">
-						<forms:fields>
-							<Text text="{objectModel>/Add_Country_code} {objectModel>/Additional_Mob}"/>
-						</forms:fields>
-					</forms:FormElement>
-					<forms:FormElement label="Email ID">
-						<forms:fields>
-							<Text text="{objectModel>/Email_Id}"/>
-						</forms:fields>
-					</forms:FormElement>
-					<forms:FormElement label="Additional Email ID">
-						<forms:fields>
-							<Text text="{objectModel>/Additional_MailID/0}"/>
-						</forms:fields>
-					</forms:FormElement>
-
-				</forms:formElements>
-			</forms:FormContainer>
-
-		</forms:formContainers>
-
-	</forms:Form>
-
-</mvc:View>
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormDisplay480_Trial"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			
+			labelSpanXL="4"
+			labelSpanL="4"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false" >
+			<f:content>
+				<core:Title />
+				
+				<Label text="Requisition Date" />
+				<Text text="{path:'Requ_Date',
+                            type: 'sap.ui.model.type.Date',
+				                     formatOptions: {
+				                        pattern: 'dd-MMM-yyyy'
+				                     }}" />
+				<Label text="PO Number" />
+				<Text text="{PO_Number}" />
+				<Label text="Reference LRF No" />
+				
+				<Text text="{Ref_Lrf_No}" />
+				<Label text="Project" />
+				<Text text="{Project_ID}" />
+				<Label text="Vendor Name" />
+				<Text text="{Vendor_Name}" />
+				<Label text="Name of Initiator" />
+				<Text text="{Initiator_Name}" />
+				
+				
+				
+				<core:Title />
+				<Label text="Mobile" />
+				<Text text="{Country_code} {Mobile_No}" />
+				<Label text="Additional Mobile" />
+				<Text text="{Add_Country_code} {Additional_Mob}" />
+				<Label text="Email ID" />
+				<Text text="{Email_Id}" />
+				<Label text="Additional Email ID"></Label>
+								
+									<!-- <VBox id="dynamicFieldsContainer" items="{Additional_MailID}">
+										<items > -->
+											<Text text="{Additional_MailID}" />
+											
+										<!-- </items>
+									</VBox> -->
+				
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>
