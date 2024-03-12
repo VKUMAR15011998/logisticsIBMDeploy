@@ -1,5 +1,6 @@
 namespace app.logistics;
 using { PODetails } from '../srv/external/PODetails';
+using { db.customLogistics } from './customsLogistics';
 using {
     managed,
     cuid,
@@ -75,6 +76,16 @@ entity per_Adani_Logistics_LRF_Master : managed {
         LogisticsMPL_Allocation_Date :      Date default CURRENT_DATE @(title: 'LogisticsMPL Allocation Date');
         FF_Allocation_Date           :      Date default CURRENT_DATE @(title: 'FF Allocation Date');
         CHA_Allocation_Date          :      Date default CURRENT_DATE @(title: 'CHA Allocation Date');
+        Importer                     : String;
+        Supplier                     : String ;
+        BL_No                        : String @(title: 'BL No.');
+        BL_Date                      : Date @(title: 'BL Date');
+        Vessel_No                    : String @(title: 'Vessel No');
+        FF_Name                      : String @(title: 'FF Name');
+        To                           : String @(title: 'To');
+        From_Vessel                  : String @(title: 'From');
+        Shipment_Ref                 : String @(title: 'Shipment Ref');
+        Cargo_Description            : String @(title: 'Cargo Description');
 
         To_PackingDoc                :      Composition of many PAdani_Logistics_Packing_Doc
                                                 on To_PackingDoc.per_Adani_Logistics_LRF_Master = $self;
@@ -98,6 +109,11 @@ entity per_Adani_Logistics_LRF_Master : managed {
                                                 on To_FF_Shipment.per_Adani_Logistics_LRF_Master = $self;
         To_FF_Documents              :      Composition of many PAdani_Logistics_FF_Doc_Upload
                                                 on To_FF_Documents.per_Adani_Logistics_LRF_Master = $self;
+        To_Customs_Advice              :      Composition of one customLogistics.Customs_Duty_Advice
+                                                on To_Customs_Advice.per_Adani_Logistics_LRF_Master = $self;
+        
+        To_Terminal_Changes             :   Composition of one customLogistics.Terminal_handler_charges
+                                                on To_Terminal_Changes.per_Adani_Logistics_LRF_Master = $self;
 }
 
 entity PAdani_Logistics_Packing_Doc {

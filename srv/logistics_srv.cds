@@ -3,12 +3,10 @@ using { PODetails } from './external/PODetails.csn';
 using app.CdsViews from '../db/CDSViews';
 
 service Logistics_Service  
-   
+  
    {
-      
-     
-    
-    entity per_Adani_Logistics_LRF_Master as projection on CdsViews.per_Adani_Logistics_LRF_Master;
+    entity per_Adani_Logistics_LRF_Master 
+      as projection on CdsViews.per_Adani_Logistics_LRF_Master;
      entity PAdani_Logistics_Packing_Doc as projection on CdsViews.PAdani_Logistics_Packing_Doc;
      entity PAdani_Logistics_Material_Desc as projection on CdsViews.PAdani_Logistics_Material_Desc;
      entity PAdani_Logistics_Check_List as projection on CdsViews.PAdani_Logistics_Check_List;
@@ -18,7 +16,9 @@ service Logistics_Service
      entity PAdani_Logistics_Delivery_Details as projection on CdsViews.PAdani_Logistics_Delivery_Details;
      entity PAdani_Logistics_FF_Ship_Details as projection on CdsViews.PAdani_Logistics_FF_Ship_Details;
      entity PAdani_Logistics_FF_Doc_Upload as projection on CdsViews.PAdani_Logistics_FF_Doc_Upload;
-    
+    //Customs Service
+    entity Customs_Duty_Advice as projection on CdsViews.Customs_Duty_Advice;
+    entity Terminal_handler_charges as projection on CdsViews.Terminal_handler_charges;
    
     entity PODetailsSercive as select from PODetails.PODetailsSet{
         Ponumber,

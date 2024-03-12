@@ -210,4 +210,9 @@ Content-Type: application/json
     "FF_Status": "Accept"
 }
 ###
-DELETE   http://localhost:4004/v2/odata/v4/logistics-/PAdani_Logistics_Check_List
+PATCH  http://localhost:4004/v2/odata/v4/logistics-/Terminal_handler_charges/15dc214f-03b2-4955-88e4-84b68ec27fd6
+Content-Type: application/json
+
+{
+    "per_Adani_Logistics_LRF_Master_LRF_Master_ID":"06798f15-e96a-4f49-a028-621f207e9c7a"
+}

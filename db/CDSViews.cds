@@ -1,5 +1,6 @@
 namespace app.CdsViews;
 using app.logistics from '../db/logistics1';
+using  db.customLogistics  from './customsLogistics';
 
 define view![per_Adani_Logistics_LRF_Master] as 
     select * from logistics.per_Adani_Logistics_LRF_Master;
@@ -19,3 +20,7 @@ define view![PAdani_Logistics_FF_Doc_Upload] as
     select * from logistics.PAdani_Logistics_FF_Doc_Upload;
 define view![PAdani_Logistics_Check_List] as 
     select * from logistics.PAdani_Logistics_Check_List;
+define view![Customs_Duty_Advice] as 
+    select * from customLogistics.Customs_Duty_Advice;
+define view![Terminal_handler_charges] as 
+    select * from customLogistics.Terminal_handler_charges;
