@@ -41,9 +41,11 @@ module.exports = cds.service.impl( async function(){
   });
   this.before("CREATE", "per_Adani_Logistics_LRF_Master", async (req, res) => {
     let { maxID } =await SELECT.one `count(*) as maxID` .from (per_Adani_Logistics_LRF_Master).where `PO_Number=${req.data.PO_Number}`;
+
      if(maxID !==undefined){
         maxID++;
-        const Temp_LRF_Number = "Temp-"+req.data.Project_ID+"-LRF-"+req.data.PO_Number+"-"+maxID;
+        //let paddedNumber = number.toString().padStart(3, '0');
+        const Temp_LRF_Number = "Temp-"+req.data.Project_ID+"-LRF-"+req.data.PO_Number+"-"+maxID.toString().padStart(3, '0');
         req.data.Lrf_No = Temp_LRF_Number;
         
       }  
@@ -68,6 +70,11 @@ this.before('CREATE', 'PAdani_Logistics_Check_List', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
   req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_Check_List(${req.data.Check_ID})/content`
+})
+this.before('CREATE', 'PAdani_CHA_Document_upload', req => {
+  console.log('Create called')
+  console.log(JSON.stringify(req.data))
+  req.data.url = `/v2/odata/v4/logistics-/PAdani_CHA_Document_upload(${req.data.CHA_Doc_Upload_ID})/content`
 })
 this.before('CREATE', 'PAdani_Logistics_FF_Doc_Upload', req => {
   console.log('Create called')

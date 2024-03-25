@@ -1,20 +1,12 @@
 ###CREATE LRF
 
-POST http://localhost:4004/odata/v4/logistics-/Get_Adani_Logistics_LRF_Master
+POST http://localhost:4004/odata/v4/logistics-/per_Adani_Logistics_LRF_Master
 Content-Type: application/json
 
-{ 
-  "Lrf_No":"",
-  "PO_Number": "1111",
-  "Requ_Date":  "2024-11-24",
-  "Project_ID": "ADANI",
-  "Vendor_Name": "Vishal",
-  "Initiator_Name": "Vishal",
-  "Mobile_No": "+9172465238765",
-  "Additional_Mob": "+918736487523",
-  "Email_Id": "vis1@dgp",
-  "Additional_MailID": ["vis1@dgp","vis2@dgp"]
+{
+
 }
+###{"Submit_Flag":"No","PO_Number":"4500330864","Ref_Lrf_No":"None","Project_ID":"PROJECT2","Additional_MailID":[],"Requ_Date":"2024-03-18","Vendor_Name":"VAMA SAFETY","Initiator_Name":"Default User","Mobile_No":"1233454577","Country_code":"+358","Add_Country_code":"","Additional_Mob":"","Email_Id":"dummy@ibm.com","Origin_address":"JIVDAYA LANE NR. JAIN TEMPLE,GHATKOPAR (W),B-67 GIRDHAR NAGAR,MUMBAI,MAHARASHTRA-400086","Importer":"MUNDRA PETROCHEM LTD"}
 ###
 PATCH  http://localhost:4004/odata/v4/logistics-/Get_Adani_Logistics_LRF_Master/4eda18ac-084c-4340-8596-453b2bc73065
 Content-Type: application/json 
@@ -169,12 +161,13 @@ Content-Type: application/json
       }
 }
 ###
-POST http://localhost:4004/odata/v4/logistics-/MyAction
+POST http://localhost:4004/odata/v4/logistics-/CHA_List
 Content-Type: application/json
-
+   
 {
-  
+    "CHA_List_Location":"P Velji-Mumbai-AIR"
 }
+
 ###
 GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Packing_Doc
 ###
@@ -193,7 +186,7 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4004/odata/v4/logistics-/Get_Adani_Logistics_LRF_Master/1ce8f2ed-d6a4-483f-9696-c4743cde79d0
 ###
-GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Packing_Doc
+GET http://localhost:4004/odata/v4/logistics-/per_Adani_Logistics_LRF_Master
 ###
 POST http://localhost:41341/odata/v4/logistics-/per_Adani_Logistics_LRF_Master
 Content-Type: application/json
@@ -210,9 +203,38 @@ Content-Type: application/json
     "FF_Status": "Accept"
 }
 ###
-PATCH  http://localhost:4004/v2/odata/v4/logistics-/Terminal_handler_charges/15dc214f-03b2-4955-88e4-84b68ec27fd6
+POST   http://localhost:4004/v2/odata/v4/logistics-/Users
 Content-Type: application/json
 
 {
-    "per_Adani_Logistics_LRF_Master_LRF_Master_ID":"06798f15-e96a-4f49-a028-621f207e9c7a"
+    "UserId": "abc3@gmail.com",
+    "FirstName": "CDS",
+    "LastName": "ABC",
+    "MiddleName": null,
+    "UserName": "CDS  ABC",
+    "Email": "ab3@gmail.com",
+    "Address": "AAAAAa",
+    "State": "MH",
+    "Country": "IN",
+    "PinCode": "400000",
+    "PhoneNumber": "999999999",
+    "MobileNumber": "999999999",
+    "AlternatePhoneNumber": "999999999",
+    "isPortalUser": true
+}
+###
+POST   http://localhost:4004/v2/odata/v4/logistics-/UserRoleSet
+Content-Type: application/json
+
+{
+    "userid":"abc3@gmail.com",
+    "role":"CH Agent"
+}
+###
+POST  http://localhost:4004/v2/odata/v4/logistics-/DocumentsType
+Content-Type: application/json
+
+{
+   
+    "DocumentsName":"Others"
 }

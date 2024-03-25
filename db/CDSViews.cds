@@ -10,6 +10,8 @@ define view![PAdani_Logistics_Material_Desc] as
     select * from logistics.PAdani_Logistics_Material_Desc;
 define view![PAdani_Logistics_Draft] as 
     select * from logistics.PAdani_Logistics_Draft;
+define view![PAdani_CHA_Document_upload] as 
+    select * from logistics.PAdani_CHA_Document_upload;
 define view![PAdani_Logistics_Final] as 
     select * from logistics.PAdani_Logistics_Final;
 define view![PAdani_Logistics_Delivery_Details] as 
@@ -24,3 +26,116 @@ define view![Customs_Duty_Advice] as
     select * from customLogistics.Customs_Duty_Advice;
 define view![Terminal_handler_charges] as 
     select * from customLogistics.Terminal_handler_charges;
+define view![Project] as 
+    select * from customLogistics.Project;
+define view![PortList] as 
+    select * from customLogistics.PortList;
+define view![MobileCountryList] as 
+    select * from customLogistics.MobileCountryList;
+define view![CHA_List] as 
+    select * from customLogistics.CHA_List;
+define view![Email_List] as 
+    select * from customLogistics.Email_List;
+define view![VehicleTypeName] as 
+    select * from customLogistics.VehicleTypeName;
+define view![IncoTerms] as 
+    select * from customLogistics.IncoTerms;
+define view![DocumentsType] as 
+    select * from customLogistics.DocumentsType;
+ define view Users as
+        select from customLogistics.UserSet as u {
+            key u.userid       as UserId,
+                u.firstName    as FirstName,
+                u.lastName     as LastName,
+                u.middleName   as MiddleName,
+                CONCAT(
+                    concat(
+                        COALESCE(
+                            u.firstName, ''
+                        ), concat(
+                            ' ', COALESCE(
+                                u.middleName, ''
+                            )
+                        )
+                    ), CONCAT(
+                        ' ', COALESCE(
+                            u.lastName, ''
+                        )
+                    )
+                )              as UserName : String,
+                u.email        as Email,
+                u.address      as Address,
+                u.state        as State,
+                u.country      as Country,
+                u.pinCode      as PinCode,
+                u.phNumber     as PhoneNumber,
+                u.mobNumber    as MobileNumber,
+                u.altPhNumber  as AlternatePhoneNumber,
+                u.isPortalUser as isPortalUser,
+                u.linkToRole   as LinkToRole
+        };
+define view ![MPLLogisticsUsers] as
+        select from Users as u {
+            key u.UserId               as UserId,
+                u.FirstName            as FirstName,
+                u.LastName             as LastName,
+                u.MiddleName           as MiddleName,
+                u.UserName             as UserName : String,
+                u.Email                as Email,
+                u.Address              as Address,
+                u.State                as State,
+                u.Country              as Country,
+                u.PinCode              as PinCode,
+                u.PhoneNumber          as PhoneNumber,
+                u.MobileNumber         as MobileNumber,
+                u.AlternatePhoneNumber as AlternatePhoneNumber,
+                u.LinkToRole           as LinkToRole
+        }
+        where
+            u.LinkToRole.role = 'MPL Logistics';
+define view ![FrightForwaderUsers] as
+        select from Users as u {
+            key u.UserId               as UserId,
+                u.FirstName            as FirstName,
+                u.LastName             as LastName,
+                u.MiddleName           as MiddleName,
+                u.UserName             as UserName : String,
+                u.Email                as Email,
+                u.Address              as Address,
+                u.State                as State,
+                u.Country              as Country,
+                u.PinCode              as PinCode,
+                u.PhoneNumber          as PhoneNumber,
+                u.MobileNumber         as MobileNumber,
+                u.AlternatePhoneNumber as AlternatePhoneNumber,
+                u.LinkToRole           as LinkToRole
+        }
+        where
+            u.LinkToRole.role = 'Freight Forwador';
+define view ![CHAgentUsers] as
+        select from Users as u {
+            key u.UserId               as UserId,
+                u.FirstName            as FirstName,
+                u.LastName             as LastName,
+                u.MiddleName           as MiddleName,
+                u.UserName             as UserName : String,
+                u.Email                as Email,
+                u.Address              as Address,
+                u.State                as State,
+                u.Country              as Country,
+                u.PinCode              as PinCode,
+                u.PhoneNumber          as PhoneNumber,
+                u.MobileNumber         as MobileNumber,
+                u.AlternatePhoneNumber as AlternatePhoneNumber,
+                u.LinkToRole           as LinkToRole
+        }
+        where
+            u.LinkToRole.role = 'CH Agent';
+view Configuration as
+        select from customLogistics.Configuration as u {
+            key u.configElement as ConfigElement,
+                u.configValue1  as ConfigValue1,
+                u.configValue2  as ConfigValue2,
+                u.configValue3  as ConfigValue3,
+                u.configValue4  as ConfigValue4
+        };

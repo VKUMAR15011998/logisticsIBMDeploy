@@ -11,7 +11,7 @@ using {
 
 entity per_Adani_Logistics_LRF_Master : managed {
     key LRF_Master_ID                :      UUID  @Core.Computed;
-        Lrf_No                       :      SText @(title: 'LRF No');
+        Lrf_No                       :      String(50) @(title: 'LRF No');
         PO_Number                    :      SText @(title: 'PO No');
         Ref_Lrf_No                   :      SText @(title: 'Reference LRF No');
         Requ_Date                    :      Date @(title: 'Requisition Date') default CURRENT_DATE;
@@ -67,7 +67,7 @@ entity per_Adani_Logistics_LRF_Master : managed {
         LogisticsMPL_Comments        :      String default null @(title: 'LogisticsMPL Comments');
         FF_Comments                  :      String default null @(title: 'FF Comments');
         CHA_Comments                 :      String default null @(title: 'CHA Comments');
-        LogisticsMPL_Status          :      String default null @(title: 'LogisticsMPL Status');
+        LogisticsMPL_Status          :      String default null @(title: 'LRF Status');
         FF_Status                    :      String default null @(title: 'FF Status');
         CHA_Status                   :      String default null @(title: 'CHA Status');
         LogisticsMPL_AssignEmail_Id  :      String @(title: 'LogisticsMPL Email ID');
@@ -100,6 +100,8 @@ entity per_Adani_Logistics_LRF_Master : managed {
         Remarks                      :      String;
         To_Draft                     :      Composition of many PAdani_Logistics_Draft
                                                 on To_Draft.per_Adani_Logistics_LRF_Master = $self;
+        To_CHA_Doc_Upload            :      Composition of many PAdani_CHA_Document_upload
+                                                on To_CHA_Doc_Upload.per_Adani_Logistics_LRF_Master = $self;
         To_Final                     :      Composition of many PAdani_Logistics_Final
                                                 on To_Final.per_Adani_Logistics_LRF_Master = $self;
        
@@ -159,6 +161,23 @@ entity PAdani_Logistics_Check_List {
         mediaType                      : String;
         fileName                       : String;
         url                            : String;
+        per_Adani_Logistics_LRF_Master : Association to one per_Adani_Logistics_LRF_Master;
+}
+entity PAdani_CHA_Document_upload {
+    key CHA_Doc_Upload_ID  :   UUID @Core.Computed;
+        @Core.MediaType  : mediaType
+        content                        : LargeBinary;
+
+        @Core.IsMediaType: true
+        mediaType                      : String;
+        fileName                       : String;
+        url                            : String;
+        MPL_Remark                      :String;
+        CHA_Remark                      :String;
+        Effective_Date                  :Date;
+        BL_No                           :String;
+        Approval                    :String;
+        Activity                    :String;
         per_Adani_Logistics_LRF_Master : Association to one per_Adani_Logistics_LRF_Master;
 }
 
