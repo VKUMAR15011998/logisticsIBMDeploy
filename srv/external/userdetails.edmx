@@ -1,0 +1,158 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+</edmx:Reference>
+<edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+</edmx:Reference>
+<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+</edmx:Reference>
+<edmx:DataServices>
+<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="HanaDBService">
+<EntityContainer Name="EntityContainer">
+<EntitySet Name="Configuration" EntityType="HanaDBService.Configuration"/>
+<EntitySet Name="Users" EntityType="HanaDBService.Users"/>
+<EntitySet Name="LoginUser" EntityType="HanaDBService.LoginUser"/>
+<FunctionImport Name="getIASUsers" Function="HanaDBService.getIASUsers"/>
+<FunctionImport Name="getIASGroups" Function="HanaDBService.getIASGroups"/>
+<FunctionImport Name="searchIASUsers" Function="HanaDBService.searchIASUsers"/>
+<ActionImport Name="postIASUser" Action="HanaDBService.postIASUser"/>
+<ActionImport Name="updateIASUser" Action="HanaDBService.updateIASUser"/>
+<FunctionImport Name="getNonPortalUsers" Function="HanaDBService.getNonPortalUsers"/>
+<FunctionImport Name="searchNonPortalUsers" Function="HanaDBService.searchNonPortalUsers"/>
+<FunctionImport Name="getWBSApprover" Function="HanaDBService.getWBSApprover"/>
+<FunctionImport Name="getWBS" Function="HanaDBService.getWBS"/>
+<ActionImport Name="updateWBSUser" Action="HanaDBService.updateWBSUser"/>
+</EntityContainer>
+<EntityType Name="Configuration">
+<Key>
+<PropertyRef Name="ConfigElement"/>
+</Key>
+<Property Name="ConfigElement" Type="Edm.String" Nullable="false"/>
+<Property Name="ConfigValue1" Type="Edm.String"/>
+<Property Name="ConfigValue2" Type="Edm.String"/>
+<Property Name="ConfigValue3" Type="Edm.String"/>
+<Property Name="ConfigValue4" Type="Edm.String"/>
+</EntityType>
+<EntityType Name="Users">
+<Key>
+<PropertyRef Name="UserId"/>
+</Key>
+<Property Name="UserId" Type="Edm.String" Nullable="false"/>
+<Property Name="FirstName" Type="Edm.String"/>
+<Property Name="LastName" Type="Edm.String"/>
+<Property Name="MiddleName" Type="Edm.String"/>
+<Property Name="UserName" Type="Edm.String"/>
+<Property Name="Email" Type="Edm.String"/>
+<Property Name="Address" Type="Edm.String"/>
+<Property Name="State" Type="Edm.String"/>
+<Property Name="Country" Type="Edm.String"/>
+<Property Name="PinCode" Type="Edm.String"/>
+<Property Name="PhoneNumber" Type="Edm.String"/>
+<Property Name="MobileNumber" Type="Edm.String"/>
+<Property Name="AlternatePhoneNumber" Type="Edm.String"/>
+<Property Name="isPortalUser" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="LoginUser">
+<Property Name="userName" Type="Edm.String"/>
+<Property Name="email" Type="Edm.String"/>
+<Property Name="firstName" Type="Edm.String"/>
+<Property Name="lastName" Type="Edm.String"/>
+<Property Name="vendorCode" Type="Edm.String"/>
+<Property Name="middleName" Type="Edm.String"/>
+<Property Name="address" Type="Edm.String"/>
+<Property Name="state" Type="Edm.String"/>
+<Property Name="country" Type="Edm.String"/>
+<Property Name="pinCode" Type="Edm.String"/>
+<Property Name="phNumber" Type="Edm.String"/>
+<Property Name="mobNumber" Type="Edm.String"/>
+<Property Name="altPhNumber" Type="Edm.String"/>
+<Property Name="servicerole" Type="Edm.String"/>
+<Property Name="dbrole" Type="Edm.String"/>
+</EntityType>
+<Function Name="getIASUsers" IsBound="false" IsComposable="false">
+<ReturnType Type="Edm.String"/>
+</Function>
+<Function Name="getIASGroups" IsBound="false" IsComposable="false">
+<ReturnType Type="Edm.String"/>
+</Function>
+<Function Name="searchIASUsers" IsBound="false" IsComposable="false">
+<Parameter Name="userName" Type="Edm.String"/>
+<Parameter Name="email" Type="Edm.String"/>
+<Parameter Name="userType" Type="Edm.String"/>
+<ReturnType Type="Edm.String"/>
+</Function>
+<Action Name="postIASUser" IsBound="false">
+<Parameter Name="data" Type="Edm.String"/>
+<Parameter Name="isPortalUser" Type="Edm.Boolean"/>
+<Parameter Name="userid" Type="Edm.String"/>
+<ReturnType Type="Edm.String"/>
+</Action>
+<Action Name="updateIASUser" IsBound="false">
+<Parameter Name="data" Type="Edm.String"/>
+<Parameter Name="userid" Type="Edm.String"/>
+<Parameter Name="email" Type="Edm.String"/>
+<Parameter Name="flag" Type="Edm.Boolean"/>
+<ReturnType Type="Edm.String"/>
+</Action>
+<Function Name="getNonPortalUsers" IsBound="false" IsComposable="false">
+<ReturnType Type="Edm.String"/>
+</Function>
+<Function Name="searchNonPortalUsers" IsBound="false" IsComposable="false">
+<Parameter Name="userName" Type="Edm.String"/>
+<Parameter Name="email" Type="Edm.String"/>
+<ReturnType Type="Edm.String"/>
+</Function>
+<Function Name="getWBSApprover" IsBound="false" IsComposable="false">
+<Parameter Name="email" Type="Edm.String"/>
+<ReturnType Type="Edm.String"/>
+</Function>
+<Function Name="getWBS" IsBound="false" IsComposable="false">
+<ReturnType Type="Edm.String"/>
+</Function>
+<Action Name="updateWBSUser" IsBound="false">
+<Parameter Name="data" Type="Edm.String"/>
+<Parameter Name="email" Type="Edm.String"/>
+<ReturnType Type="Edm.String"/>
+</Action>
+<Annotations Target="HanaDBService.EntityContainer/Configuration">
+<Annotation Term="Capabilities.InsertRestrictions">
+<Record Type="Capabilities.InsertRestrictionsType">
+<PropertyValue Property="Insertable" Bool="false"/>
+</Record>
+</Annotation>
+<Annotation Term="Capabilities.UpdateRestrictions">
+<Record Type="Capabilities.UpdateRestrictionsType">
+<PropertyValue Property="Updatable" Bool="false"/>
+</Record>
+</Annotation>
+<Annotation Term="Capabilities.DeleteRestrictions">
+<Record Type="Capabilities.DeleteRestrictionsType">
+<PropertyValue Property="Deletable" Bool="false"/>
+</Record>
+</Annotation>
+</Annotations>
+<Annotations Target="HanaDBService.Users/UserName">
+<Annotation Term="Core.Computed" Bool="true"/>
+</Annotations>
+<Annotations Target="HanaDBService.EntityContainer/LoginUser">
+<Annotation Term="Capabilities.InsertRestrictions">
+<Record Type="Capabilities.InsertRestrictionsType">
+<PropertyValue Property="Insertable" Bool="false"/>
+</Record>
+</Annotation>
+<Annotation Term="Capabilities.UpdateRestrictions">
+<Record Type="Capabilities.UpdateRestrictionsType">
+<PropertyValue Property="Updatable" Bool="false"/>
+</Record>
+</Annotation>
+<Annotation Term="Capabilities.DeleteRestrictions">
+<Record Type="Capabilities.DeleteRestrictionsType">
+<PropertyValue Property="Deletable" Bool="false"/>
+</Record>
+</Annotation>
+</Annotations>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

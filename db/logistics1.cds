@@ -20,6 +20,7 @@ entity per_Adani_Logistics_LRF_Master : managed {
         Submit_Flag                  :      String(10) @(title: 'Submit Falg');
         Initiator_Name               :      SText @(title: 'Name of Initiator');
         Country_code                 :      SText @(title: 'Country Code');
+        CHADocCheckSubmit            :      String;
         Add_Country_code             :      SText @(title: 'Additional Mobile Country Code');
         Mobile_No                    :      SText @(title: 'Mobile');
         Additional_Mob               :      SText @(title: 'Additional Mobile');
@@ -50,8 +51,8 @@ entity per_Adani_Logistics_LRF_Master : managed {
         PO_Inco_Terms                :      SText @(title: 'PO INCOTERMS');
         Act_Incoterms                :      SText @(title: 'Actual INCOTERMS');
         TypeOfVehicle                : many SText @(title: 'Type of Vehicle');
-        TypeOfLoadPort               :      SText @(title: 'Type of Load Port');
-        NameOfDisPort                :      SText @(title: 'Name of Discharge Port');
+        TypeOfLoadPort               :      String(100) @(title: 'Type of Load Port');
+        NameOfDisPort                :      String(100) @(title: 'Name of Discharge Port');
         Ship_Cont_Name               :      SText @(title: 'Contact Name');
         Ship_Cont_No                 :      SText @(title: 'Contact Number');
         Ship_Country_code            :      SText @(title: 'Country Code');
@@ -111,11 +112,15 @@ entity per_Adani_Logistics_LRF_Master : managed {
                                                 on To_FF_Shipment.per_Adani_Logistics_LRF_Master = $self;
         To_FF_Documents              :      Composition of many PAdani_Logistics_FF_Doc_Upload
                                                 on To_FF_Documents.per_Adani_Logistics_LRF_Master = $self;
-        To_Customs_Advice              :      Composition of one customLogistics.Customs_Duty_Advice
+        To_Customs_Advice              :      Composition of many customLogistics.Customs_Duty_Advice
                                                 on To_Customs_Advice.per_Adani_Logistics_LRF_Master = $self;
         
-        To_Terminal_Changes             :   Composition of one customLogistics.Terminal_handler_charges
+        To_Terminal_Changes             :   Composition of many customLogistics.Terminal_handler_charges
                                                 on To_Terminal_Changes.per_Adani_Logistics_LRF_Master = $self;
+        To_Insurance_Policy             :   Composition of many customLogistics.InsurancePolicy
+                                                on To_Insurance_Policy.per_Adani_Logistics_LRF_Master = $self;
+        To_Transport_Details             :   Composition of one customLogistics.TransporterDetails
+                                                on To_Transport_Details.per_Adani_Logistics_LRF_Master = $self;
 }
 
 entity PAdani_Logistics_Packing_Doc {
@@ -207,20 +212,6 @@ entity PAdani_Logistics_Final {
         per_Adani_Logistics_LRF_Master : Association to one per_Adani_Logistics_LRF_Master;
 }
 
-// entity PAdani_Logistics_Approval {
-//     key Approval_ID                    : UUID
-//         @Core.Computed;
-//         FF_Email                       : SText;
-//         CHA_Email                      : SText;
-//         Logistics_Email                : SText;
-//         FF_Status                      : SText;
-//         CHA_Status                     : SText;
-//         logistics_Status               : SText;
-//         FF_Comments                    : SText;
-//         CHA_Comments                   : SText;
-//         Logistics_Comments             : SText;
-//         per_Adani_Logistics_LRF_Master : Association to one per_Adani_Logistics_LRF_Master;
-// }
 
 entity PAdani_Logistics_Delivery_Details {
     key Delivery_ID                    : UUID

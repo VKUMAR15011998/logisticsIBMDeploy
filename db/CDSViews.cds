@@ -24,8 +24,43 @@ define view![PAdani_Logistics_Check_List] as
     select * from logistics.PAdani_Logistics_Check_List;
 define view![Customs_Duty_Advice] as 
     select * from customLogistics.Customs_Duty_Advice;
+define view![Customs_Duty_Advice_Join] as 
+    select  
+        CDA.*, 
+        LRF.Lrf_No, 
+        LRF.Supplier, 
+        LRF.BL_No, 
+        LRF.BL_Date, 
+        LRF.Vessel_No, 
+        LRF.FF_Name, 
+        LRF.To, 
+        LRF.From_Vessel, 
+        LRF.Shipment_Ref,
+        LRF.Cargo_Description,
+        LRF.Importer
+    from 
+        customLogistics.Customs_Duty_Advice as CDA
+    left outer join 
+        per_Adani_Logistics_LRF_Master as LRF 
+    on 
+        CDA.per_Adani_Logistics_LRF_Master.LRF_Master_ID = LRF.LRF_Master_ID;
 define view![Terminal_handler_charges] as 
     select * from customLogistics.Terminal_handler_charges;
+define view![Terminal_handler_charges_Join] as 
+    select THC.*,LRF.Lrf_No,LRF.Supplier,LRF.BL_No,LRF.BL_Date,LRF.Vessel_No,LRF.FF_Name,LRF.To,LRF.From_Vessel,LRF.Shipment_Ref,
+    LRF.Cargo_Description,LRF.Importer
+     from customLogistics.Terminal_handler_charges
+    as THC left outer join per_Adani_Logistics_LRF_Master  as LRF on
+    THC.per_Adani_Logistics_LRF_Master.LRF_Master_ID=LRF.LRF_Master_ID;
+define view![Transporter_Details_Join] as 
+    select TD.*,FFS.BL_No,LRF.Lrf_No,LRF.PO_Number,LRF.Vendor_Name
+     //from logistics.PAdani_Logistics_FF_Ship_Details
+     from customLogistics.TransporterDetails
+    as TD left outer join per_Adani_Logistics_LRF_Master  as LRF on
+    TD.per_Adani_Logistics_LRF_Master.LRF_Master_ID=LRF.LRF_Master_ID 
+    left outer join logistics.PAdani_Logistics_FF_Ship_Details as FFS on
+    FFS.per_Adani_Logistics_LRF_Master.LRF_Master_ID=LRF.LRF_Master_ID
+;
 define view![Project] as 
     select * from customLogistics.Project;
 define view![PortList] as 
@@ -40,8 +75,15 @@ define view![VehicleTypeName] as
     select * from customLogistics.VehicleTypeName;
 define view![IncoTerms] as 
     select * from customLogistics.IncoTerms;
+define view![InsurancePolicy] as 
+    select * from customLogistics.InsurancePolicy;
 define view![DocumentsType] as 
     select * from customLogistics.DocumentsType;
+define view![TransporterDetails] as 
+    select * from customLogistics.TransporterDetails;
+
+define view![DocumentsConfig] as 
+    select * from customLogistics.DocumentsConfig;
  define view Users as
         select from customLogistics.UserSet as u {
             key u.userid       as UserId,

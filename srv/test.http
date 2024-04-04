@@ -196,11 +196,11 @@ Content-Type: application/json
 }
 
 ###
-PATCH  http://localhost:4004/odata/v4/logistics-/per_Adani_Logistics_LRF_Master(091a9507-b6aa-4f0d-b417-5071f1442f5d)
+PATCH  http://localhost:4004/odata/v4/logistics-/Customs_Duty_Advice/226ce1f9-c75c-434e-ab5e-b0fd6a02af39
 Content-Type: application/json
 
 {
-    "FF_Status": "Accept"
+   "BCD": 6999.23
 }
 ###
 POST   http://localhost:4004/v2/odata/v4/logistics-/Users
@@ -223,18 +223,13 @@ Content-Type: application/json
     "isPortalUser": true
 }
 ###
-POST   http://localhost:4004/v2/odata/v4/logistics-/UserRoleSet
+POST   http://localhost:4004/odata/v4/logistics-/DocumentsConfig
 Content-Type: application/json
 
 {
-    "userid":"abc3@gmail.com",
-    "role":"CH Agent"
+    "SrNo":"1",
+    "DocType":"Checklist (ICEGATE/SEZ ONLINE)",
+    "App_Need":false
 }
 ###
-POST  http://localhost:4004/v2/odata/v4/logistics-/DocumentsType
-Content-Type: application/json
-
-{
-   
-    "DocumentsName":"Others"
-}
+DELETE   http://localhost:4004/odata/v4/logistics-/DocumentsConfig/1

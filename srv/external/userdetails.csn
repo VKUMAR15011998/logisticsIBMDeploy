@@ -1,0 +1,273 @@
+{
+ "meta": {
+  "creator": "cds-dk 7.7.0"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "userdetails.getIASUsers": {
+   "kind": "function",
+   "@cds.external": true,
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.getIASGroups": {
+   "kind": "function",
+   "@cds.external": true,
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.searchIASUsers": {
+   "kind": "function",
+   "@cds.external": true,
+   "params": {
+    "userName": {
+     "type": "cds.LargeString"
+    },
+    "email": {
+     "type": "cds.LargeString"
+    },
+    "userType": {
+     "type": "cds.LargeString"
+    }
+   },
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.getNonPortalUsers": {
+   "kind": "function",
+   "@cds.external": true,
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.searchNonPortalUsers": {
+   "kind": "function",
+   "@cds.external": true,
+   "params": {
+    "userName": {
+     "type": "cds.LargeString"
+    },
+    "email": {
+     "type": "cds.LargeString"
+    }
+   },
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.getWBSApprover": {
+   "kind": "function",
+   "@cds.external": true,
+   "params": {
+    "email": {
+     "type": "cds.LargeString"
+    }
+   },
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.getWBS": {
+   "kind": "function",
+   "@cds.external": true,
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.postIASUser": {
+   "kind": "action",
+   "@cds.external": true,
+   "params": {
+    "data": {
+     "type": "cds.LargeString"
+    },
+    "isPortalUser": {
+     "type": "cds.Boolean"
+    },
+    "userid": {
+     "type": "cds.LargeString"
+    }
+   },
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.updateIASUser": {
+   "kind": "action",
+   "@cds.external": true,
+   "params": {
+    "data": {
+     "type": "cds.LargeString"
+    },
+    "userid": {
+     "type": "cds.LargeString"
+    },
+    "email": {
+     "type": "cds.LargeString"
+    },
+    "flag": {
+     "type": "cds.Boolean"
+    }
+   },
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.updateWBSUser": {
+   "kind": "action",
+   "@cds.external": true,
+   "params": {
+    "data": {
+     "type": "cds.LargeString"
+    },
+    "email": {
+     "type": "cds.LargeString"
+    }
+   },
+   "returns": {
+    "type": "cds.LargeString"
+   }
+  },
+  "userdetails.Configuration": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "ConfigElement": {
+     "key": true,
+     "type": "cds.LargeString",
+     "notNull": true
+    },
+    "ConfigValue1": {
+     "type": "cds.LargeString"
+    },
+    "ConfigValue2": {
+     "type": "cds.LargeString"
+    },
+    "ConfigValue3": {
+     "type": "cds.LargeString"
+    },
+    "ConfigValue4": {
+     "type": "cds.LargeString"
+    }
+   },
+   "@Capabilities.InsertRestrictions.Insertable": false,
+   "@Capabilities.UpdateRestrictions.Updatable": false,
+   "@Capabilities.DeleteRestrictions.Deletable": false
+  },
+  "userdetails.Users": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "UserId": {
+     "key": true,
+     "type": "cds.LargeString",
+     "notNull": true
+    },
+    "FirstName": {
+     "type": "cds.LargeString"
+    },
+    "LastName": {
+     "type": "cds.LargeString"
+    },
+    "MiddleName": {
+     "type": "cds.LargeString"
+    },
+    "UserName": {
+     "type": "cds.LargeString",
+     "@Core.Computed": true
+    },
+    "Email": {
+     "type": "cds.LargeString"
+    },
+    "Address": {
+     "type": "cds.LargeString"
+    },
+    "State": {
+     "type": "cds.LargeString"
+    },
+    "Country": {
+     "type": "cds.LargeString"
+    },
+    "PinCode": {
+     "type": "cds.LargeString"
+    },
+    "PhoneNumber": {
+     "type": "cds.LargeString"
+    },
+    "MobileNumber": {
+     "type": "cds.LargeString"
+    },
+    "AlternatePhoneNumber": {
+     "type": "cds.LargeString"
+    },
+    "isPortalUser": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "userdetails.LoginUser": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "userName": {
+     "type": "cds.LargeString"
+    },
+    "email": {
+     "type": "cds.LargeString"
+    },
+    "firstName": {
+     "type": "cds.LargeString"
+    },
+    "lastName": {
+     "type": "cds.LargeString"
+    },
+    "vendorCode": {
+     "type": "cds.LargeString"
+    },
+    "middleName": {
+     "type": "cds.LargeString"
+    },
+    "address": {
+     "type": "cds.LargeString"
+    },
+    "state": {
+     "type": "cds.LargeString"
+    },
+    "country": {
+     "type": "cds.LargeString"
+    },
+    "pinCode": {
+     "type": "cds.LargeString"
+    },
+    "phNumber": {
+     "type": "cds.LargeString"
+    },
+    "mobNumber": {
+     "type": "cds.LargeString"
+    },
+    "altPhNumber": {
+     "type": "cds.LargeString"
+    },
+    "servicerole": {
+     "type": "cds.LargeString"
+    },
+    "dbrole": {
+     "type": "cds.LargeString"
+    }
+   },
+   "@Capabilities.InsertRestrictions.Insertable": false,
+   "@Capabilities.UpdateRestrictions.Updatable": false,
+   "@Capabilities.DeleteRestrictions.Deletable": false
+  },
+  "userdetails": {
+   "kind": "service",
+   "@cds.external": true
+  }
+ }
+}

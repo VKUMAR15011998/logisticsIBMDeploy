@@ -29,6 +29,21 @@
         "vcap": {
           "name": "custom-service:Po_Connect"
         }
+      },
+      "destinations": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.eu10.hana.ondemand.com",
+          "org": "Adani Enterprises Limited_mpl-hana-01-59adgc69",
+          "space": "Development",
+          "instance": "dest_PoDetails",
+          "key": "key_PO",
+          "resolved": false
+        },
+        "kind": "destinations",
+        "vcap": {
+          "name": "destinations"
+        }
       }
     }
   }

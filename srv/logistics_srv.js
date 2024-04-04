@@ -2,7 +2,7 @@ const cds = require("@sap/cds");
 const { NOTFOUND } = require("dns");
 const { run } = require("node:test");
 
-const { ConnectBackend } = require('./lib/ConnectionHandler')
+const { ConnectBackend,ConnectUserHanaDB } = require('./lib/ConnectionHandler')
 
 module.exports = cds.service.impl( async function(){
   const { Adani_Logistics_LRF_Master,
@@ -17,10 +17,21 @@ module.exports = cds.service.impl( async function(){
     Adani_Logistics_FF_Doc_Upload,
     Get_Adani_Logistics_LRF_Master,
     per_Adani_Logistics_LRF_Master,
+    Customs_Duty_Advice_Join,
+    Terminal_handler_charges,
     PODetailsSercive,
+    LoginUsers,
+    USERS,
+    Configuration,
     LrfTracker1
   } = this.entities;
   this.on('READ',PODetailsSercive,ConnectBackend)
+  this.on('READ',LoginUsers,ConnectUserHanaDB)
+  this.on('READ',USERS,ConnectUserHanaDB)
+  this.on('READ',Configuration,ConnectUserHanaDB)
+  //this.on('getIASUsers',ConnectUserHanaDB.getIASUsers)
+  
+  
   // this.on('READ', "PODetailsService", async (req) => {
   //   try {
   //     const backendconnect = await cds.connect.to('PODetails');
@@ -51,6 +62,7 @@ module.exports = cds.service.impl( async function(){
       }  
       
   });
+
 this.before('CREATE', 'PAdani_Logistics_Packing_Doc', req => {
     console.log('Create called')
     console.log(JSON.stringify(req.data))
@@ -81,6 +93,33 @@ this.before('CREATE', 'PAdani_Logistics_FF_Doc_Upload', req => {
   console.log(JSON.stringify(req.data))
   req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_FF_Doc_Upload(${req.data.FF_DocUpload_ID})/content`
 })
-      
-      
+this.on('getIASUsers', async req => {
+  const backendconnect = await cds.connect.to('userdetails');
+  const result = await backendconnect.getIASUsers();
+  return result;
+});
+     
+this.on('getIASGroups', async req => {
+  const backendconnect = await cds.connect.to('userdetails');
+  const result =  backendconnect.getIASGroups();
+  console.log("****************",result)
+  return result;
+});
+this.on('getUserRoles', async req => {
+    try {
+      // Connect to the database
+      const db = await cds.connect.to('db');
+
+      // Define your SQL query to fetch data from the other schema's table
+      const query = 'SELECT * FROM 2B96DA15B609489984845E8277C41707.ZHANADB_USERROLESET';
+
+      // Execute the SQL query
+      const results = await db.run(query);
+
+      return results;
+  } catch (error) {
+      console.error('Error fetching data from other schema:', error);
+      throw error;
+  }
+});
 });
