@@ -240,7 +240,7 @@ entity PAdani_Logistics_Delivery_Details {
 entity PAdani_Logistics_FF_Ship_Details {
     key FF_Ship_ID                            :      UUID @Core.Computed;
         lines_name                            :      String;
-        Foriegn_Agent_Details                 :      String;
+        Foriegn_Agent_Details                 :      String(200);
         No_Containers                         :      String;
         Trans_Dir                             :      String;
         Vessel_Name                           :      String;

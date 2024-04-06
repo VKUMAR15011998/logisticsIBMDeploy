@@ -157,9 +157,9 @@ service Logistics_Service
 
      entity Users as projection on CdsViews.Users;
      entity UserRoleSet as projection on customLogistics.UserRoleSet;
-     entity MPLLogisticsUsers as projection on CdsViews.MPLLogisticsUsers;
-     entity FrightForwaderUsers as projection on CdsViews.FrightForwaderUsers;
-     entity CHAgentUsers as projection on CdsViews.CHAgentUsers;
+    // entity MPLLogisticsUsers as projection on CdsViews.MPLLogisticsUsers;
+    // entity FrightForwaderUsers as projection on CdsViews.FrightForwaderUsers;
+     //entity CHAgentUsers as projection on CdsViews.CHAgentUsers;
     //  entity Configuration @(Capabilities: {
     //     InsertRestrictions: {Insertable: false},
     //     UpdateRestrictions: {Updatable: false},
@@ -205,9 +205,14 @@ service Logistics_Service
         PhoneNumber,
         MobileNumber,
         AlternatePhoneNumber,
-        isPortalUser
+        isPortalUser,
+        LinkToRole
      }
+     entity CHAgentUsers as projection on  userdetails.UserRoleSet;
+     @cds.redirection.target
+     entity MPLLogisticsUsers as projection on  userdetails.UserRoleSet;
+     entity FrightForwaderUsers as projection on  userdetails.UserRoleSet;
      function getIASUsers() returns  String;
      function getIASGroups() returns String;
-     function getUserRoles() returns String;
+     //function getUserRoles(Role:String) returns String;
 }

@@ -2,7 +2,7 @@ const cds = require("@sap/cds");
 const { NOTFOUND } = require("dns");
 const { run } = require("node:test");
 
-const { ConnectBackend,ConnectUserHanaDB } = require('./lib/ConnectionHandler')
+const { ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectFreightUserRole } = require('./lib/ConnectionHandler')
 
 module.exports = cds.service.impl( async function(){
   const { Adani_Logistics_LRF_Master,
@@ -23,13 +23,20 @@ module.exports = cds.service.impl( async function(){
     LoginUsers,
     USERS,
     Configuration,
+    UserRoles,
+    CHAgentUsers,
+    MPLLogisticsUsers,
+    FrightForwaderUsers,
     LrfTracker1
   } = this.entities;
   this.on('READ',PODetailsSercive,ConnectBackend)
   this.on('READ',LoginUsers,ConnectUserHanaDB)
   this.on('READ',USERS,ConnectUserHanaDB)
   this.on('READ',Configuration,ConnectUserHanaDB)
-  //this.on('getIASUsers',ConnectUserHanaDB.getIASUsers)
+  this.on('READ',CHAgentUsers,ConnectCHAUserRole)
+  this.on('READ',MPLLogisticsUsers,ConnectMPLogUserRole)
+  this.on('READ',FrightForwaderUsers,ConnectFreightUserRole)
+  
   
   
   // this.on('READ', "PODetailsService", async (req) => {
@@ -105,21 +112,7 @@ this.on('getIASGroups', async req => {
   console.log("****************",result)
   return result;
 });
-this.on('getUserRoles', async req => {
-    try {
-      // Connect to the database
-      const db = await cds.connect.to('db');
 
-      // Define your SQL query to fetch data from the other schema's table
-      const query = 'SELECT * FROM 2B96DA15B609489984845E8277C41707.ZHANADB_USERROLESET';
 
-      // Execute the SQL query
-      const results = await db.run(query);
 
-      return results;
-  } catch (error) {
-      console.error('Error fetching data from other schema:', error);
-      throw error;
-  }
-});
 });

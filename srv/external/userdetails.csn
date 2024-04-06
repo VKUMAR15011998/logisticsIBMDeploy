@@ -207,6 +207,79 @@
     },
     "isPortalUser": {
      "type": "cds.Boolean"
+    },
+    "LinkToRole": {
+     "type": "cds.Association",
+     "@cds.ambiguous": "missing on condition?",
+     "target": "userdetails.UserRoleSet",
+     "cardinality": {
+      "max": 1
+     },
+     "on": [
+      {
+       "ref": [
+        "LinkToRole",
+        "userid"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "UserId"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "userdetails.UserRoleSet": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "createdAt": {
+     "type": "cds.Timestamp",
+     "@odata.Precision": 7,
+     "@odata.Type": "Edm.DateTimeOffset",
+     "@UI.HiddenFilter": true,
+     "@Core.Immutable": true,
+     "@Core.Computed": true,
+     "@Common.Label": "Created On"
+    },
+    "createdBy": {
+     "type": "cds.String",
+     "length": 255,
+     "@UI.HiddenFilter": true,
+     "@Core.Immutable": true,
+     "@Core.Computed": true,
+     "doc": "User's unique ID",
+     "@Common.Label": "Created By"
+    },
+    "modifiedAt": {
+     "type": "cds.Timestamp",
+     "@odata.Precision": 7,
+     "@odata.Type": "Edm.DateTimeOffset",
+     "@UI.HiddenFilter": true,
+     "@Core.Computed": true,
+     "@Common.Label": "Changed On"
+    },
+    "modifiedBy": {
+     "type": "cds.String",
+     "length": 255,
+     "@UI.HiddenFilter": true,
+     "@Core.Computed": true,
+     "doc": "User's unique ID",
+     "@Common.Label": "Changed By"
+    },
+    "userid": {
+     "key": true,
+     "type": "cds.LargeString",
+     "notNull": true
+    },
+    "role": {
+     "key": true,
+     "type": "cds.LargeString",
+     "notNull": true
     }
    }
   },
