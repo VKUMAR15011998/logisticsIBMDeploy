@@ -1,10 +1,10 @@
 ###CREATE LRF
 
-POST http://localhost:4004/odata/v4/logistics-/per_Adani_Logistics_LRF_Master
+POST http://localhost:4004/logistics/CHA_List
 Content-Type: application/json
 
 {
-
+    "CHA_List_Location":"Velji-Mumbai-AIR"
 }
 ###{"Submit_Flag":"No","PO_Number":"4500330864","Ref_Lrf_No":"None","Project_ID":"PROJECT2","Additional_MailID":[],"Requ_Date":"2024-03-18","Vendor_Name":"VAMA SAFETY","Initiator_Name":"Default User","Mobile_No":"1233454577","Country_code":"+358","Add_Country_code":"","Additional_Mob":"","Email_Id":"dummy@ibm.com","Origin_address":"JIVDAYA LANE NR. JAIN TEMPLE,GHATKOPAR (W),B-67 GIRDHAR NAGAR,MUMBAI,MAHARASHTRA-400086","Importer":"MUNDRA PETROCHEM LTD"}
 ###
@@ -161,11 +161,11 @@ Content-Type: application/json
       }
 }
 ###
-POST http://localhost:4004/odata/v4/logistics-/CHA_List
+DELETE  http://localhost:4004/logistics/VehicleTypeName/68b1d770-0a8e-400d-af1c-b9f6b3101d73
 Content-Type: application/json
    
 {
-    "CHA_List_Location":"P Velji-Mumbai-AIR"
+    "VehicleType": "Closed Truck"
 }
 
 ###
@@ -176,7 +176,7 @@ GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_Material_Desc
 GET http://localhost:4004/odata/v4/logistics-/Adani_Logistics_LRF_Master
 ###
 
-POST http://localhost:4004/odata/v4/logistics-/PAdani_Logistics_Packing_Doc
+POST http://localhost:4004/logistics/PAdani_Logistics_Packing_Doc
 Content-Type: application/json
 
 {
@@ -203,7 +203,7 @@ Content-Type: application/json
    "BCD": 6999.23
 }
 ###
-POST   http://localhost:4004/v2/odata/v4/logistics-/Users
+POST   http://localhost:4004/v2/logistics/Users
 Content-Type: application/json
 
 {
@@ -223,13 +223,13 @@ Content-Type: application/json
     "isPortalUser": true
 }
 ###
-POST   http://localhost:4004/odata/v4/logistics-/DocumentsConfig
+PATCH http://localhost:4004/logistics/per_Adani_Logistics_LRF_Master/7e5fdc22-bddd-48af-8e5e-ae614c441ecd
 Content-Type: application/json
 
 {
-    "SrNo":"1",
-    "DocType":"Checklist (ICEGATE/SEZ ONLINE)",
-    "App_Need":false
+    "LogisticsMPL_AssignEmail_Id": null,
+    "FF_AssignEmail_Id": "rushi.raval@ibm.com",
+    "CHA_AssignEmail_Id": "nishchaiy.patel@ibm.com "
 }
 ###
 DELETE   http://localhost:4004/odata/v4/logistics-/DocumentsConfig/1

@@ -44,6 +44,21 @@
         "vcap": {
           "name": "destinations"
         }
+      },
+      "auth": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.eu10.hana.ondemand.com",
+          "org": "Adani Enterprises Limited_mpl-hana-01-59adgc69",
+          "space": "Development",
+          "instance": "Logisticss-uaa",
+          "key": "Logisticss-uaa-key",
+          "resolved": false
+        },
+        "kind": "xsuaa-auth",
+        "vcap": {
+          "name": "auth"
+        }
       }
     }
   }

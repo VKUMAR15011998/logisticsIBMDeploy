@@ -2,7 +2,7 @@ const cds = require("@sap/cds");
 const { NOTFOUND } = require("dns");
 const { run } = require("node:test");
 
-const { ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectFreightUserRole } = require('./lib/ConnectionHandler')
+const { ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectFreightUserRole,ConnectBackendValueHelp } = require('./lib/ConnectionHandler')
 
 module.exports = cds.service.impl( async function(){
   const { Adani_Logistics_LRF_Master,
@@ -20,6 +20,7 @@ module.exports = cds.service.impl( async function(){
     Customs_Duty_Advice_Join,
     Terminal_handler_charges,
     PODetailsSercive,
+    DPR_Data_SRV,
     LoginUsers,
     USERS,
     Configuration,
@@ -27,9 +28,12 @@ module.exports = cds.service.impl( async function(){
     CHAgentUsers,
     MPLLogisticsUsers,
     FrightForwaderUsers,
+    VendorHelp,
     LrfTracker1
   } = this.entities;
   this.on('READ',PODetailsSercive,ConnectBackend)
+  this.on('READ',DPR_Data_SRV,ConnectBackend)
+  this.on('READ',VendorHelp,ConnectBackendValueHelp)
   this.on('READ',LoginUsers,ConnectUserHanaDB)
   this.on('READ',USERS,ConnectUserHanaDB)
   this.on('READ',Configuration,ConnectUserHanaDB)
@@ -73,32 +77,35 @@ module.exports = cds.service.impl( async function(){
 this.before('CREATE', 'PAdani_Logistics_Packing_Doc', req => {
     console.log('Create called')
     console.log(JSON.stringify(req.data))
-    req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_Packing_Doc(${req.data.PackingID})/content`
+    req.data.url = `/v2/logistics/PAdani_Logistics_Packing_Doc(${req.data.PackingID})/content`
+})
+this.after('CREATE', 'PAdani_Logistics_Packing_Doc', res => {
+  console.log(res);
 })
 this.before('CREATE', 'PAdani_Logistics_Draft', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
-  req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_Draft(${req.data.Draft_ID})/content`
+  req.data.url = `/v2/logistics/PAdani_Logistics_Draft(${req.data.Draft_ID})/content`
 })
 this.before('CREATE', 'PAdani_Logistics_Final', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
-  req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_Final(${req.data.Final_ID})/content`
+  req.data.url = `/v2/logistics/PAdani_Logistics_Final(${req.data.Final_ID})/content`
 })
 this.before('CREATE', 'PAdani_Logistics_Check_List', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
-  req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_Check_List(${req.data.Check_ID})/content`
+  req.data.url = `/v2/logistics/PAdani_Logistics_Check_List(${req.data.Check_ID})/content`
 })
 this.before('CREATE', 'PAdani_CHA_Document_upload', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
-  req.data.url = `/v2/odata/v4/logistics-/PAdani_CHA_Document_upload(${req.data.CHA_Doc_Upload_ID})/content`
+  req.data.url = `/v2/logistics/PAdani_CHA_Document_upload(${req.data.CHA_Doc_Upload_ID})/content`
 })
 this.before('CREATE', 'PAdani_Logistics_FF_Doc_Upload', req => {
   console.log('Create called')
   console.log(JSON.stringify(req.data))
-  req.data.url = `/v2/odata/v4/logistics-/PAdani_Logistics_FF_Doc_Upload(${req.data.FF_DocUpload_ID})/content`
+  req.data.url = `/v2/logistics/PAdani_Logistics_FF_Doc_Upload(${req.data.FF_DocUpload_ID})/content`
 })
 this.on('getIASUsers', async req => {
   const backendconnect = await cds.connect.to('userdetails');

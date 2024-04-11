@@ -3,12 +3,18 @@ using { PODetails } from './external/PODetails.csn';
 using { userdetails } from './external/userdetails.csn';
 using app.CdsViews from '../db/CDSViews';
 using db.customLogistics from '../db/customsLogistics';
+using {ZMM_CDS_C_PO_VH_CDS_SRV as external} from './external/ZMM_CDS_C_PO_VH_CDS_SRV.csn';
 
-service Logistics_Service  
+service Logistics_Service  @(path:'/logistics')
   
-   {
-    entity per_Adani_Logistics_LRF_Master 
-      as projection on CdsViews.per_Adani_Logistics_LRF_Master;
+   {    
+    //   @(restrict: [        
+    //    { grant: '*',to: 'MPL-LOGISTICS', where: 'LogisticsMPL_AssignEmail_Id = $user' },
+    //    { grant: '*',to: 'FREIGHT-FORWADOR', where: 'FF_AssignEmail_Id = $user' },
+    //     { grant: '*',to: 'CH-AGENT', where: 'CHA_AssignEmail_Id = $user' },
+    //     { grant: '*',to: 'LOGISTICS-SUPER'}
+    // ])
+    entity per_Adani_Logistics_LRF_Master as projection on CdsViews.per_Adani_Logistics_LRF_Master;
      entity PAdani_Logistics_Packing_Doc as projection on CdsViews.PAdani_Logistics_Packing_Doc;
      entity PAdani_Logistics_Material_Desc as projection on CdsViews.PAdani_Logistics_Material_Desc;
      entity PAdani_Logistics_Check_List as projection on CdsViews.PAdani_Logistics_Check_List;
@@ -29,16 +35,7 @@ service Logistics_Service
     entity Customs_Duty_Advice_Join as projection on CdsViews.Customs_Duty_Advice_Join {
       key  LRF_Customs_ID,
         Request_No ,
-        BOE_No
-        BOE_Date,
-        OBL_Dispatch,
-        OBL_Received_MPL,
-        OBL_CourierCHA,
-        OBL_Receipt_CHA,
-        Custom_Out_Charge,
-        DO_received_Shipping,
-        Container_Mvmt_No,
-        Checklist_Approval_Status,
+        
         DPR_Request_Date,
         BCD,
         Importer,
@@ -141,6 +138,27 @@ service Logistics_Service
         Importer,
         Vendorcountry
      };
+     entity DPR_Data_SRV as select from PODetails.DPRDataSet{
+        Dprnumber,
+        Dprdate,
+        Paymentclearingdate,
+        Paymentclearingdoc,
+        Fiscalyear,
+         Reference,
+         Utramount,
+         Utrdate,
+         Utrno, 
+     };
+      @cds.persistence.skip
+    @cds.Search: {Vendorcode}
+    entity VendorHelp                                             as
+        projection on external.VendorHelpSet {
+            @title                      : 'Vendor Code'
+            @Search.defaultSearchElement: true
+            Vendorcode,
+            @title                      : 'Vendor Name'
+            Vendorname
+        };
      
      entity CountryList as projection on CdsViews.MobileCountryList;
      entity Project as projection on CdsViews.Project;
@@ -155,11 +173,11 @@ service Logistics_Service
 
      //Role Service
 
-     entity Users as projection on CdsViews.Users;
-     entity UserRoleSet as projection on customLogistics.UserRoleSet;
+     //entity Users as projection on CdsViews.Users;
+     //entity UserRoleSet as projection on customLogistics.UserRoleSet;
     // entity MPLLogisticsUsers as projection on CdsViews.MPLLogisticsUsers;
     // entity FrightForwaderUsers as projection on CdsViews.FrightForwaderUsers;
-     //entity CHAgentUsers as projection on CdsViews.CHAgentUsers;
+    //  entity CHAgentUsers as projection on CdsViews.CHAgentUsers;
     //  entity Configuration @(Capabilities: {
     //     InsertRestrictions: {Insertable: false},
     //     UpdateRestrictions: {Updatable: false},

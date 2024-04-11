@@ -7,19 +7,10 @@ using {
     User
 } from '@sap/cds/common';
 
-entity  Customs_Duty_Advice{
+entity  Customs_Duty_Advice:managed{
     key LRF_Customs_ID     :      UUID @Core.Computed;
     Request_No:String @(title: 'Request Number');
-    BOE_No : String @(title: 'BOE No');
-    BOE_Date : Date @(title: 'BOE Date');
-    OBL_Dispatch: Date @(title: 'OBL Dispatch Date  (Shipper/FF)');
-    OBL_Received_MPL: Date @(title: 'OBL Received by MPL Date');
-    OBL_CourierCHA: Date @(title: 'OBL Courier-to-CHA Date');
-    OBL_Receipt_CHA: Date @(title: 'OBL Receipt by CHA Date:');
-    Custom_Out_Charge: Date @(title: 'Custom Out of Charge Date');
-    DO_received_Shipping: Date @(title: 'Date of DO received from Shipping Line');
-    Container_Mvmt_No: String @(title: 'Container Mvmt Bond No');
-    Checklist_Approval_Status: String @(title: 'Checklist Approval Status (by MPL)');
+    
     DPR_Request_Date : Date @(title: 'DPR Request Date');
     BCD: Decimal(10, 2) @(title: 'Basic Custom Duty (BCD)');
     SWS: Decimal(10, 2) @(title: 'Social Welfare Surcharge (SWS)');
@@ -41,7 +32,7 @@ entity  Customs_Duty_Advice{
     per_Adani_Logistics_LRF_Master : Association to one logistics.per_Adani_Logistics_LRF_Master;
 }
 
-entity  Terminal_handler_charges{
+entity  Terminal_handler_charges:managed{
     key LRF_Customs_ID     :      UUID @Core.Computed;
     Request_No:String @(title: 'Request Number');
     FI_THC: Decimal(10,2) @(title: 'Forwarders Invoice THC and DO Charges');
@@ -80,7 +71,7 @@ entity PortList{
     UN_LOCODE:String(10);
 }
 entity MobileCountryList{
-    key name:String(40) @(title: 'Country Name');
+    key name:String(200) @(title: 'Country Name');
     dial_code:String(40) @(title: 'Dial Code');
     code:String(10);
 }
@@ -93,7 +84,8 @@ entity Email_List{
     name:String(20);
 }
 entity VehicleTypeName{
-    key VehicleType:String(30);
+    key vehicle_ID:UUID @Core.Computed;
+     VehicleType:String(30);
 }
 entity IncoTerms{
     key IncoName:String(100);

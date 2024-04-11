@@ -1,0 +1,84 @@
+{
+ "meta": {
+  "creator": "cds-dk 7.7.0"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "PODetails": {
+   "kind": "service",
+   "@cds.external": true,
+   "@m.IsDefaultEntityContainer": "true",
+   "@sap.supported.formats": "atom json xlsx"
+  },
+  "PODetails.PODetailsSet": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.creatable": "false",
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.pageable": "false",
+   "@sap.content.version": "1",
+   "elements": {
+    "Ponumber": {
+     "key": true,
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Purchasing Doc.",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "Vendorname": {
+     "type": "cds.String",
+     "length": 35,
+     "@sap.unicode": "false",
+     "@sap.label": "Name",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "Vendormail": {
+     "type": "cds.String",
+     "length": 241,
+     "@sap.unicode": "false",
+     "@sap.label": "E-Mail Address",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "Vendoraddress": {
+     "type": "cds.String",
+     "length": 100,
+     "@sap.unicode": "false",
+     "@sap.label": "Address",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "Vendorcountry": {
+     "type": "cds.String",
+     "length": 15,
+     "@sap.unicode": "false",
+     "@sap.label": "Name",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "Poinco": {
+     "type": "cds.String",
+     "length": 3,
+     "@sap.unicode": "false",
+     "@sap.label": "Incoterms",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
+    "Importer": {
+     "type": "cds.String",
+     "length": 25,
+     "@sap.unicode": "false",
+     "@sap.label": "Importer Name",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    }
+   }
+  }
+ }
+}

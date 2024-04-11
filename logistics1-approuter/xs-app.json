@@ -11,7 +11,7 @@
           "target": "$1",
           "authenticationType": "xsuaa",
           "scope": [
-              "uaa.user","$XSAPPNAME.read"
+              "uaa.user","$XSAPPNAME.read","$XSAPPNAME.super_logistics","$XSAPPNAME.mpl_logistics"
           ],
           "destination": "srv_api"
       }

@@ -1,30 +1,28 @@
 
-
 {
-   "[development]": {
-   "auth": {
-      "passport": {
-          "strategy": "mock",
-          "users": {
-              "vendor@tester.sap.com": {
-              "password": "initial",
-              "ID": "Vendor",
-              "userAttributes": {
-              "email": "vendor@tester.sap.com"
-          },
-          "roles": ["Vendor"]
-          },
-              "ProcurementManager@tester.sap.com": {
-              "password": "initial",
-              "ID": "ProcurementManager",
-              "userAttributes": {
-              "email": "ProcurementManager@tester.sap.com"
-          },
-          "roles": ["ProcurementManager"]
-              }
-            }  
-           }
-          }
+    "[development]": {
+      "auth": {
+       "passport": {
+        "strategy": "mock",
+        "users": {
+          "risk.viewer@tester.sap.com": {
+           "password": "initial",
+           "ID": "FREIGHT-FORWADOR",
+           "userAttributes": {
+             "email": "risk.viewer@tester.sap.com"
+           },
+           "roles": ["FREIGHT-FORWADOR"]
+         },
+          "risk.manager@tester.sap.com": {
+           "password": "initial",
+           "ID": "CH-AGENT",
+           "userAttributes": {
+             "email": "risk.manager@tester.sap.com"
+           },
+           "roles": ["CH-AGENT"]
+         }
+        }
+       }
       }
-   }
-
+     }
+    }

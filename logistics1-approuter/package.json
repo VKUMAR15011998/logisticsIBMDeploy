@@ -1,25 +1,25 @@
 {
-"name": "logistics1-approuter",
-"version": "0.0.2",
-"description": "",
-"main": "index.js",
-"dependencies": {
-  "@sap/approuter": "^14.3.3",
-  "@sap/xsenv": "^4.0.0",
-  "@sap/xssec": "^3.2.1",
-  "@sap/cds": "^5"
-},
-"engines": {
-  "node": "^18.0.0"
-},
-"scripts": {
-  "start": "node index.js"
-},
-"cds": {
-  "requires": {
+  "name": "logistics1-approuter",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@sap/approuter": "^14.4.3",
+    "@sap/cds": "^5",
+    "@sap/xsenv": "^4.0.0",
+    "@sap/xssec": "^3.2.1"
+  },
+  "engines": {
+    "node": "^18.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "cds": {
+    "requires": {
       "IAS": {
-          "kind": "rest",
-          "model": "/service/scim/Users"
+        "kind": "rest",
+        "model": "/service/scim/Users"
       },
       "PODetails": {
         "kind": "odata",
@@ -29,9 +29,6 @@
           "path": "/sap/opu/odata/sap/ZMM_BTP_PO_DET_SRV"
         }
       }
+    }
   }
 }
-}
-
-
-

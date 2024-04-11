@@ -1,5 +1,5 @@
 {
-  "xsappname": "logisticsxsapp",
+  "xsappname": "logisticsxsapp4",
   "tenant-mode": "dedicated",
   "description": "Role design of HANA DB application",
   "scopes": [
@@ -11,29 +11,32 @@
       ]
     },
     {
-      "name": "$XSAPPNAME.read",
-      "description": "read",
+      "name": "$XSAPPNAME.super_logistics",
+      "description": "All LRF Tracker",
       "grant-as-authority-to-apps": [
         "$XSAPPNAME(application, xsappforclientapp)"
       ]
     },
     {
-      "name": "$XSAPPNAME.write",
-      "description": "write",
+      "name": "$XSAPPNAME.mpl_logistics",
+      "description": "MPL Assigned Specific LRF",
       "grant-as-authority-to-apps": [
         "$XSAPPNAME(application, xsappforclientapp)"
       ]
     },
     {
-      "name": "$XSAPPNAME.delete",
-      "description": "delete",
+      "name": "$XSAPPNAME.ff_logistics",
+      "description": "FF Assigned",
       "grant-as-authority-to-apps": [
         "$XSAPPNAME(application, xsappforclientapp)"
       ]
     },
     {
-      "name": "$XSAPPNAME.global-admin",
-      "description": "Global Admin"
+      "name": "$XSAPPNAME.ch_logistics",
+      "description": "CH Assigned",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
     }
     
   ],
@@ -44,41 +47,45 @@
       "scope-references": [
         "uaa.user"
       ]
+    }, 
+    {
+      "name": "LOGISTICS-SUPER",
+      "description": "All LRF Tracker",
+      "scope-references": [
+        "$XSAPPNAME.super_logistics"
+      ]
     },
     {
-      "name": "logisticsibmcap-read",
-      "description": "HANA DB Read",
+      "name": "MPL-LOGISTICS",
+      "description": "MPL Assigned Specific LRF",
       "scope-references": [
-        "$XSAPPNAME.read"
-      ],
-      "attribute-references": []
+        "$XSAPPNAME.mpl_logistics"
+      ]
     },
     {
-      "name": "logisticsibmcap-write",
-      "description": "HANA DB Write",
+      "name": "FREIGHT-FORWADOR",
+      "description": "FF Assigned",
       "scope-references": [
-        "$XSAPPNAME.read",
-        "$XSAPPNAME.write",
-        "$XSAPPNAME.delete"
-      ],
-      "attribute-references": []
+        "$XSAPPNAME.ff_logistics"
+      ]
     },
     {
-      "name": "global-admin",
-      "description": "generated",
+      "name": "CH-AGENT",
+      "description": "CH Assigned",
       "scope-references": [
-        "$XSAPPNAME.global-admin"
-      ],
-      "attribute-references": []
-    }       
+        "$XSAPPNAME.ch_logistics"
+      ]
+    }    
  
   ],
+  
+  
   "role-collections": [
     {
-      "name": "Logistic03-Viewer",
+      "name": "Logistic04-Viewer",
       "description": "logisticsibmcap Viewer Role Collection",
       "role-template-references": [
-        "$XSAPPNAME.logisticsibmcap-read"
+        "$XSAPPNAME.super_logistics"
       ]
     }
   ] 

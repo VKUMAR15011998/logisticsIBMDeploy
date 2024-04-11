@@ -6,6 +6,12 @@ async function ConnectBackend(req) {
     const tx = backendconnect.tx(req);
     return tx.run(req.query);
 }
+async function ConnectBackendValueHelp(req) {
+    // if(req.path=="Logistics_Service.PODetailsSercive"){
+    const backendconnect = await cds.connect.to('ZMM_CDS_C_PO_VH_CDS_SRV');
+    const tx = backendconnect.tx(req);
+    return tx.run(req.query);
+}
 async function ConnectUserHanaDB(req) {
     const backendconnect = await cds.connect.to('userdetails');
     const tx = backendconnect.tx(req);
@@ -14,42 +20,42 @@ async function ConnectUserHanaDB(req) {
 async function ConnectCHAUserRole(req) {
     const backendconnect = await cds.connect.to('userdetails');
     const tx = backendconnect.tx(req);
-    const response = await tx.run(req.query);
+    const response = await tx.run(
+        SELECT.from('Logistics_Service.CHAgentUsers')
+            .where({ role: 'CH-AGENT%20' })
+            
+    );
 
-    // Filter emails based on role
-    const filteredEmails = response.filter(entry => entry.role === "CH Agent");
-
-    // Extract email addresses from filtered entries
-    //const emails = filteredEmails.map(entry => entry.userid);
-
-    return filteredEmails;
+    return response;
 }
 async function ConnectMPLogUserRole(req) {
     const backendconnect = await cds.connect.to('userdetails');
-    const tx = backendconnect.tx(req);
-    const response = await tx.run(req.query);
-
-    // Filter emails based on role
-    const filteredEmails = response.filter(entry => entry.role === "MPL-Logistics");
-
-    // Extract email addresses from filtered entries
-    //const emails = filteredEmails.map(entry => entry.userid);
-
-    return filteredEmails;
+    const tx = await backendconnect.tx(req);
+    
+    const response = await tx.run(
+        SELECT.from('Logistics_Service.MPLLogisticsUsers')
+            .where({ role: 'MPL-LOGISTICS' })
+            
+    );
+    return response;
 }
 async function ConnectFreightUserRole(req) {
     const backendconnect = await cds.connect.to('userdetails');
     const tx = backendconnect.tx(req);
-    const response = await tx.run(req.query);
+    //const response = await tx.run(req.query);
 
     // Filter emails based on role
-    const filteredEmails = response.filter(entry => entry.role === "Freight-Forwador");
+    //const filteredEmails = await response.filter(entry => entry.role === "FREIGHT-FORWADOR");
 
-    // Extract email addresses from filtered entries
-    //const emails = filteredEmails.map(entry => entry.userid);
+    const response = await tx.run(
+        SELECT.from('Logistics_Service.FrightForwaderUsers')
+            .where({ role: 'FREIGHT-FORWADOR' })
+            
+    );
+    
 
-    return filteredEmails;
+    return response;
 }
 module.exports = {
-    ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectFreightUserRole
+    ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectFreightUserRole,ConnectBackendValueHelp
 }

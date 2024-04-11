@@ -146,7 +146,7 @@ resources:
     parameters:
       config:
         tenant-mode: dedicated
-        xsappname: logisticsxsapp
+        xsappname: logisticsxsapp4
       path: ./xs-security.json
       service: xsuaa
       service-plan: application

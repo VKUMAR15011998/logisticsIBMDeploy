@@ -12,6 +12,7 @@
     "@sap/cds-hana": "^2",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
     "@sap/hana-client": "^2.19.21",
+    "@sap/xssec": "^3.6.1",
     "express": "^4",
     "passport": "^0.7.0"
   },
@@ -56,18 +57,7 @@
         }
       },
       "auth": {
-        "[production]": {
-          "strategy": "mock"
-        },
-        "[development]": {
-          "strategy": "mock"
-        },
-        "data": {
-          "kind": "odata",
-          "credentials": {
-            "destination": "IAS"
-          }
-        }
+        "kind": "xsuaa"
       },
       "hana": {
         "deploy-format": "hdbtable"
@@ -77,12 +67,12 @@
         "model": "srv/external/userdetails",
         "credentials": {
           "destination": "MPL_001_Service",
-          "path":"/hanadb"
+          "path": "/hanadb"
         },
         "[production]": {
           "credentials": {
             "destination": "MPL_001_Service",
-            "path":"/hanadb"
+            "path": "/hanadb"
           }
         }
       },
@@ -92,11 +82,22 @@
           "destination": "IAS",
           "requestTimeout": 30000
         }
+      },
+      "ZMM_CDS_C_PO_VH_CDS_SRV": {
+        "kind": "odata",
+        "model": "srv/external/ZMM_CDS_C_PO_VH_CDS_SRV",
+        "credentials": {
+          "destination": "MPL_P00_ODATA"
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "MPL_P00_ODATA"
+          }
+        }
       }
     },
     "sapux": [
       "app/ui"
-    ],
-    "main": "index.js"
+    ]
   }
 }
