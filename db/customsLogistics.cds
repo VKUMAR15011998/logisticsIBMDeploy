@@ -10,7 +10,8 @@ using {
 entity  Customs_Duty_Advice:managed{
     key LRF_Customs_ID     :      UUID @Core.Computed;
     Request_No:String @(title: 'Request Number');
-    
+    PaymentClearDoc:String(40);
+    PaymentClearDate:Date;
     DPR_Request_Date : Date @(title: 'DPR Request Date');
     BCD: Decimal(10, 2) @(title: 'Basic Custom Duty (BCD)');
     SWS: Decimal(10, 2) @(title: 'Social Welfare Surcharge (SWS)');
@@ -38,6 +39,8 @@ entity  Terminal_handler_charges:managed{
     FI_THC: Decimal(10,2) @(title: 'Forwarders Invoice THC and DO Charges');
     CFS_Charges: Decimal(10,2) @(title: 'CFS Charge');
     LIFT_OFF_CHARGES: Decimal(10,2)  @(title: 'LIFT OFF CHARGES');
+    PaymentClearDoc:String(40);
+    PaymentClearDate:Date;
     Others1: Decimal(10,2)  ;
     Others2: Decimal(10,2)  ;
     Others3: Decimal(10,2) ;

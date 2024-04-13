@@ -4,13 +4,13 @@
  },
  "$version": "2.0",
  "definitions": {
-  "PODetails": {
+  "PODetails1": {
    "kind": "service",
    "@cds.external": true,
    "@m.IsDefaultEntityContainer": "true",
    "@sap.supported.formats": "atom json xlsx"
   },
-  "PODetails.PODetailsSet": {
+  "PODetails1.PODetailsSet": {
    "kind": "entity",
    "@cds.external": true,
    "@cds.persistence.skip": true,

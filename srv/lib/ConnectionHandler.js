@@ -56,6 +56,23 @@ async function ConnectFreightUserRole(req) {
 
     return response;
 }
+// async function ConnectVendorLogUserRole(req) {
+//     const backendconnect = await cds.connect.to('userdetails');
+//     const tx = backendconnect.tx(req);
+//     //const response = await tx.run(req.query);
+
+//     // Filter emails based on role
+//     //const filteredEmails = await response.filter(entry => entry.role === "FREIGHT-FORWADOR");
+
+//     const response = await tx.run(
+//         SELECT.from('Logistics_Service.FrightForwaderUsers')
+//             .where({ role: 'FREIGHT-FORWADOR' })
+            
+//     );
+    
+
+//     return response;
+// }
 module.exports = {
     ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectFreightUserRole,ConnectBackendValueHelp
 }

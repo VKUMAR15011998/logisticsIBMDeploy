@@ -35,7 +35,8 @@ service Logistics_Service  @(path:'/logistics')
     entity Customs_Duty_Advice_Join as projection on CdsViews.Customs_Duty_Advice_Join {
       key  LRF_Customs_ID,
         Request_No ,
-        
+        PaymentClearDoc,
+        PaymentClearDate,
         DPR_Request_Date,
         BCD,
         Importer,
@@ -73,6 +74,8 @@ service Logistics_Service  @(path:'/logistics')
         FI_THC,
         CFS_Charges,
         LIFT_OFF_CHARGES,
+        PaymentClearDoc,
+        PaymentClearDate,
         Others1,
         Others2,
         Others3,
@@ -157,7 +160,7 @@ service Logistics_Service  @(path:'/logistics')
             @Search.defaultSearchElement: true
             Vendorcode,
             @title                      : 'Vendor Name'
-            Vendorname
+           Vendorname
         };
      
      entity CountryList as projection on CdsViews.MobileCountryList;

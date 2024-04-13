@@ -13,6 +13,7 @@ modules:
       - name: Logistics-connectivity-service
       - name: dest_PoDetails
       - name: Po_Connect
+      - name: sap_processautomation
     provides:
       - name: srv_api
         properties:
@@ -35,6 +36,10 @@ modules:
         properties:
           key: ServiceName_1
           service: ~{the-service-name}
+      - name: sap_processautomation
+        parameters:
+          service-key:
+            name: hanadb-sap-processautomation-service-key
     parameters:
       buildpack: nodejs_buildpack
   - name: logistics1-approuter
@@ -166,6 +171,11 @@ resources:
     parameters:
       service: html5-apps-repo
       service-plan: app-host
+  - name: sap_processautomation
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: process-automation-service
+      service-plan: standard      
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
