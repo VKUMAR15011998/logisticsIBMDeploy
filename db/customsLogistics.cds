@@ -10,9 +10,12 @@ using {
 entity  Customs_Duty_Advice:managed{
     key LRF_Customs_ID     :      UUID @Core.Computed;
     Request_No:String @(title: 'Request Number');
-    PaymentClearDoc:String(40);
-    PaymentClearDate:Date;
+    PaymentClearDoc:String(40) @(title: 'Payment Clearing Doc');
+    PaymentClearDate:Date @(title: 'Payment Clearing Date');
+    ChallanNo:String(40) @(title: 'Challan No');
+    ChallanDate:Date @(title: 'ChallanN Date');
     DPR_Request_Date : Date @(title: 'DPR Request Date');
+    Assessable_value: Decimal(10, 2) @(title: 'Assessable Value');
     BCD: Decimal(10, 2) @(title: 'Basic Custom Duty (BCD)');
     SWS: Decimal(10, 2) @(title: 'Social Welfare Surcharge (SWS)');
     IGST: Decimal(10, 2) @(title: 'Integrated Goods and Services Tax (IGST)');
@@ -36,11 +39,15 @@ entity  Customs_Duty_Advice:managed{
 entity  Terminal_handler_charges:managed{
     key LRF_Customs_ID     :      UUID @Core.Computed;
     Request_No:String @(title: 'Request Number');
-    FI_THC: Decimal(10,2) @(title: 'Forwarders Invoice THC and DO Charges');
-    CFS_Charges: Decimal(10,2) @(title: 'CFS Charge');
-    LIFT_OFF_CHARGES: Decimal(10,2)  @(title: 'LIFT OFF CHARGES');
-    PaymentClearDoc:String(40);
-    PaymentClearDate:Date;
+    DSL: Decimal(10,2) @(title: 'Destination Shipping Line Charges');
+    DPD: Decimal(10,2) @(title: 'DPD Charges');
+    EXIM: Decimal(10,2)  @(title: 'EXIM Yard Charges');
+    Detention_Charge: Decimal(10,2)  @(title: 'Detention Charges');
+    Ground_Rent: Decimal(10,2)  @(title: 'Ground Rent / Storage Charges');
+    Container_DMG: Decimal(10,2)  @(title: 'Container Damage Charges');
+    Insurance_Charge: Decimal(10,2)  @(title: 'Insurance Charges');
+    PaymentClearDoc:String(40) @(title: 'Payment Clearing Doc');
+    PaymentClearDate:Date @(title: 'Payment Clearing Date');
     Others1: Decimal(10,2)  ;
     Others2: Decimal(10,2)  ;
     Others3: Decimal(10,2) ;
