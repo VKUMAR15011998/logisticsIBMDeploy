@@ -39,6 +39,17 @@ async function ConnectMPLogUserRole(req) {
     );
     return response;
 }
+async function ConnectMPLCustomUserRole(req) {
+    const backendconnect = await cds.connect.to('userdetails');
+    const tx = await backendconnect.tx(req);
+    
+    const response = await tx.run(
+        SELECT.from('Logistics_Service.MPLCustomsUsers')
+            .where({ role: 'MPL-CUSTOMS' })
+            
+    );
+    return response;
+}
 async function ConnectFreightUserRole(req) {
     const backendconnect = await cds.connect.to('userdetails');
     const tx = backendconnect.tx(req);
@@ -74,5 +85,5 @@ async function ConnectFreightUserRole(req) {
 //     return response;
 // }
 module.exports = {
-    ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectFreightUserRole,ConnectBackendValueHelp
+    ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLCustomUserRole,ConnectMPLogUserRole,ConnectFreightUserRole,ConnectBackendValueHelp
 }

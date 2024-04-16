@@ -239,6 +239,7 @@ service Logistics_Service  @(path:'/logistics')
      entity CHAgentUsers as projection on  userdetails.UserRoleSet;
      @cds.redirection.target
      entity MPLLogisticsUsers as projection on  userdetails.UserRoleSet;
+    entity MPLCustomsUsers as projection on  userdetails.UserRoleSet;
      entity FrightForwaderUsers as projection on  userdetails.UserRoleSet;
      function getIASUsers() returns  String;
      function getIASGroups() returns String;
