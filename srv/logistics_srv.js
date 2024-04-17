@@ -2,7 +2,7 @@ const cds = require("@sap/cds");
 const { NOTFOUND } = require("dns");
 const { run } = require("node:test");
 
-const { ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectFreightUserRole,ConnectBackendValueHelp } = require('./lib/ConnectionHandler')
+const { ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectMPLCustomUserRole,ConnectFreightUserRole,ConnectBackendValueHelp } = require('./lib/ConnectionHandler')
 
 module.exports = cds.service.impl( async function(){
   const { Adani_Logistics_LRF_Master,
@@ -27,6 +27,7 @@ module.exports = cds.service.impl( async function(){
     UserRoles,
     CHAgentUsers,
     MPLLogisticsUsers,
+    MPLCustomsUsers,
     FrightForwaderUsers,
     VendorHelp,
     LrfTracker1
@@ -39,6 +40,7 @@ module.exports = cds.service.impl( async function(){
   this.on('READ',Configuration,ConnectUserHanaDB)
   this.on('READ',CHAgentUsers,ConnectCHAUserRole)
   this.on('READ',MPLLogisticsUsers,ConnectMPLogUserRole)
+  this.on('READ',MPLCustomsUsers,ConnectMPLCustomUserRole)
   this.on('READ',FrightForwaderUsers,ConnectFreightUserRole)
   
   

@@ -135,6 +135,26 @@ define view ![MPLLogisticsUsers] as
         }
         where
             u.LinkToRole.role = 'MPL Logistics';
+
+define view ![MPLCustomsUsers] as
+        select from Users as u {
+            key u.UserId               as UserId,
+                u.FirstName            as FirstName,
+                u.LastName             as LastName,
+                u.MiddleName           as MiddleName,
+                u.UserName             as UserName : String,
+                u.Email                as Email,
+                u.Address              as Address,
+                u.State                as State,
+                u.Country              as Country,
+                u.PinCode              as PinCode,
+                u.PhoneNumber          as PhoneNumber,
+                u.MobileNumber         as MobileNumber,
+                u.AlternatePhoneNumber as AlternatePhoneNumber,
+                u.LinkToRole           as LinkToRole
+        }
+        where
+            u.LinkToRole.role = 'MPL Customs';
 define view ![FrightForwaderUsers] as
         select from Users as u {
             key u.UserId               as UserId,

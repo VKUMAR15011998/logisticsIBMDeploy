@@ -19,7 +19,14 @@
     },
     {
       "name": "$XSAPPNAME.mpl_logistics",
-      "description": "MPL Assigned Specific LRF",
+      "description": "MPL Logistic Assigned Specific LRF",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.mpl_customs",
+      "description": "MPL Custom Assigned Specific LRF",
       "grant-as-authority-to-apps": [
         "$XSAPPNAME(application, xsappforclientapp)"
       ]
@@ -57,9 +64,16 @@
     },
     {
       "name": "MPL-LOGISTICS",
-      "description": "MPL Assigned Specific LRF",
+      "description": "MPL Logistics Assigned Specific LRF",
       "scope-references": [
         "$XSAPPNAME.mpl_logistics"
+      ]
+    },
+    {
+      "name": "MPL-CUSTOMS",
+      "description": "MPL Customs Assigned Specific LRF",
+      "scope-references": [
+        "$XSAPPNAME.mpl_customs"
       ]
     },
     {
