@@ -136,6 +136,9 @@ entity per_Adani_Logistics_LRF_Master : managed {
                                                 on To_Insurance_Policy.per_Adani_Logistics_LRF_Master = $self;
         To_Transport_Details             :   Composition of one customLogistics.TransporterDetails
                                                 on To_Transport_Details.per_Adani_Logistics_LRF_Master = $self;
+        lrfStatus                       : String;
+        lrfDisplayStatus                : String;
+        workflowTaskInstanceId          : String;
 }
 
 entity PAdani_Logistics_Packing_Doc {

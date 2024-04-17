@@ -8,13 +8,14 @@ using {ZMM_CDS_C_PO_VH_CDS_SRV as external} from './external/ZMM_CDS_C_PO_VH_CDS
 service Logistics_Service  @(path:'/logistics')
   
    {    
-    //   @(restrict: [        
-    //    { grant: '*',to: 'MPL-LOGISTICS', where: 'LogisticsMPL_AssignEmail_Id = $user' },
-    //    { grant: '*',to: 'FREIGHT-FORWADOR', where: 'FF_AssignEmail_Id = $user' },
-    //     { grant: '*',to: 'CH-AGENT', where: 'CHA_AssignEmail_Id = $user' },
-    //     { grant: '*',to: 'LOGISTICS-SUPER'}
-    // ])
-    entity per_Adani_Logistics_LRF_Master as projection on CdsViews.per_Adani_Logistics_LRF_Master;
+    entity per_Adani_Logistics_LRF_Master @(restrict: [        
+       { grant: '*',to: 'MPL-LOGISTICS', where: 'LogisticsMPL_AssignEmail_Id = $user' },
+       { grant: '*',to: 'FREIGHT-FORWADOR', where: 'FF_AssignEmail_Id = $user' },
+        { grant: '*',to: 'CH-AGENT', where: 'CHA_AssignEmail_Id = $user' },
+        { grant: '*',to: 'LOGISTICS-SUPER'}
+    ]) as projection on CdsViews.per_Adani_Logistics_LRF_Master;
+
+      //entity per_Adani_Logistics_LRF_Master as projection on CdsViews.per_Adani_Logistics_LRF_Master;
      entity PAdani_Logistics_Packing_Doc as projection on CdsViews.PAdani_Logistics_Packing_Doc;
      entity PAdani_Logistics_Material_Desc as projection on CdsViews.PAdani_Logistics_Material_Desc;
      entity PAdani_Logistics_Check_List as projection on CdsViews.PAdani_Logistics_Check_List;
