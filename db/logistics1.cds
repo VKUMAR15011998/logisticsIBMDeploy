@@ -138,7 +138,7 @@ entity per_Adani_Logistics_LRF_Master : managed {
                                                 on To_Terminal_Changes.per_Adani_Logistics_LRF_Master = $self;
         To_Insurance_Policy             :   Composition of many customLogistics.InsurancePolicy
                                                 on To_Insurance_Policy.per_Adani_Logistics_LRF_Master = $self;
-        To_Transport_Details             :   Composition of one customLogistics.TransporterDetails
+        To_Transport_Details             :   Composition of many customLogistics.TransporterAssign
                                                 on To_Transport_Details.per_Adani_Logistics_LRF_Master = $self;
 }
 

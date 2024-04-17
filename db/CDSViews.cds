@@ -53,13 +53,35 @@ define view![Terminal_handler_charges_Join] as
     as THC left outer join per_Adani_Logistics_LRF_Master  as LRF on
     THC.per_Adani_Logistics_LRF_Master.LRF_Master_ID=LRF.LRF_Master_ID;
 define view![Transporter_Details_Join] as 
-    select TD.*,FFS.BL_No,LRF.Lrf_No,LRF.PO_Number,LRF.Vendor_Name
-     //from logistics.PAdani_Logistics_FF_Ship_Details
-     from customLogistics.TransporterDetails
+    select TD.Transporter_Name,TD.Transporter_Code,FFS.BL_No,LRF.Lrf_No,LRF.LRF_Master_ID,LRF.BOE_No,DSR.SrNo,DSR.Invoice_No,
+          DSR.Loading_Point,
+          DSR.Delivery_Point,
+         DSR.Material,
+          DSR.CONT_Cargo_Weight,
+         DSR.Container_No,
+          DSR.Vehicle_No,
+          DSR.Eway_Bill_No,
+          DSR.Sales_Order_No,
+          DSR.DO_Number,
+          DSR.DO_Expiry_date,
+          DSR.DO_Date,
+          DSR.Free_D_End_Date,
+          DSR.Date_Dispatch_date,
+          DSR.Receipt_at_Site,
+          DSR.Date_unloading,
+          DSR.Container_Ret_date,
+          DSR.Status,
+          DSR.Remark_LR
+
+     from customLogistics.TransporterAssign
     as TD left outer join per_Adani_Logistics_LRF_Master  as LRF on
-    TD.per_Adani_Logistics_LRF_Master.LRF_Master_ID=LRF.LRF_Master_ID 
+    TD.per_Adani_Logistics_LRF_Master.LRF_Master_ID =LRF.LRF_Master_ID 
     left outer join logistics.PAdani_Logistics_FF_Ship_Details as FFS on
-    FFS.per_Adani_Logistics_LRF_Master.LRF_Master_ID=LRF.LRF_Master_ID
+    FFS.per_Adani_Logistics_LRF_Master.LRF_Master_ID =LRF.LRF_Master_ID
+    left outer join customLogistics.TransporterDetails as DSR on
+    DSR.LRF_Master_ID =TD.per_Adani_Logistics_LRF_Master.LRF_Master_ID 
+    and DSR.Transporter_Code=TD.Transporter_Code
+
 ;
 define view![Project] as 
     select * from customLogistics.Project;
@@ -82,6 +104,8 @@ define view![DocumentsType] as
 define view![TransporterDetails] as 
     select * from customLogistics.TransporterDetails;
 
+define view![TransporterAssign] as 
+    select * from customLogistics.TransporterAssign;
 define view![DocumentsConfig] as 
     select * from customLogistics.DocumentsConfig;
  define view Users as

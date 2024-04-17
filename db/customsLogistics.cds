@@ -146,9 +146,10 @@ entity InsurancePolicy:managed{
     per_Adani_Logistics_LRF_Master : Association to one logistics.per_Adani_Logistics_LRF_Master;
 }
 entity TransporterDetails:managed{
-  key  TransporterID  :UUID @Core.Computed;
+key  SrNo: String @(title: 'Sr No.');
+key  Transporter_Code: String @(title: 'Transporter Code');
+key  LRF_Master_ID: UUID;  
   TSubmit:String;
-Transporter_Name : String @(title: 'Transporter Name');
 Invoice_No: String @(title: 'Invoice No.');
 Loading_Point: String@(title: 'Loading Point');
 Delivery_Point : String@(title: 'Delivery Point ');
@@ -168,11 +169,17 @@ Date_unloading: Date@(title: 'Date of unloading ');
 Container_Ret_date : Date@(title: 'Container returned on');
 Status : String@(title: 'Status');
 Remark_LR: String@(title: 'Remark / LR No.');
- per_Adani_Logistics_LRF_Master : Association to one logistics.per_Adani_Logistics_LRF_Master;
 }
 entity DocumentsConfig{
     key DocID:UUID @Core.Computed;
     SrNo:String ;
     DocType:String ;
     App_Need:Boolean @(title: 'Approval_needed');
+}
+
+entity TransporterAssign{
+    key TransID: UUID @Core.Computed;
+    Transporter_Name: String;
+    Transporter_Code: String;
+    per_Adani_Logistics_LRF_Master : Association to one logistics.per_Adani_Logistics_LRF_Master;
 }
