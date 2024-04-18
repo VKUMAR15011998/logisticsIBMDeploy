@@ -22,7 +22,7 @@ async function ConnectCHAUserRole(req) {
     const tx = backendconnect.tx(req);
     const response = await tx.run(
         SELECT.from('Logistics_Service.CHAgentUsers')
-            .where({ role: 'CH-AGENT%20' })
+            .where({ role: 'CH-AGENT' })
             
     );
 
