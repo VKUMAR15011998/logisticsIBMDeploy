@@ -118,6 +118,9 @@ entity per_Adani_Logistics_LRF_Master : managed {
                                                 on To_CkeckList.per_Adani_Logistics_LRF_Master = $self;
         Sp_Req                       :      SText;
         Remarks                      :      String;
+        lrfStatus                       : String;
+        lrfDisplayStatus                : String;
+        workflowTaskInstanceId          : String;
         To_Draft                     :      Composition of many PAdani_Logistics_Draft
                                                 on To_Draft.per_Adani_Logistics_LRF_Master = $self;
         To_CHA_Doc_Upload            :      Composition of many PAdani_CHA_Document_upload
