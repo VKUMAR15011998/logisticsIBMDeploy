@@ -80,9 +80,7 @@ define view![Transporter_Details_Join] as
     FFS.per_Adani_Logistics_LRF_Master.LRF_Master_ID =LRF.LRF_Master_ID
     left outer join customLogistics.TransporterDetails as DSR on
     DSR.LRF_Master_ID =TD.per_Adani_Logistics_LRF_Master.LRF_Master_ID 
-    and DSR.Transporter_Code=TD.Transporter_Code
-
-;
+    and DSR.Transporter_Code=TD.Transporter_Code;
 define view![Project] as 
     select * from customLogistics.Project;
 define view![PortList] as 

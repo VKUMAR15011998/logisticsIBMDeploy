@@ -1,9 +1,9 @@
 using app.logistics from '../db/logistics1';
-using {PODetails} from './external/PODetails.csn';
-using {userdetails} from './external/userdetails.csn';
+using {PODetails} from './external/PODetails';
+using {userdetails} from './external/userdetails';
 using app.CdsViews from '../db/CDSViews';
 using db.customLogistics from '../db/customsLogistics';
-using {ZMM_CDS_C_PO_VH_CDS_SRV as external} from './external/ZMM_CDS_C_PO_VH_CDS_SRV.csn';
+using {ZMM_CDS_C_PO_VH_CDS_SRV as external} from './external/ZMM_CDS_C_PO_VH_CDS_SRV';
 
 service Logistics_Service @(path: '/logistics')
 
@@ -142,7 +142,7 @@ service Logistics_Service @(path: '/logistics')
     }
 
   entity PODetailsSercive                  as
-    select from PODetails.PODetailsSet {
+    projection on PODetails.PODetailsSet {
       Ponumber,
       Vendormail,
       Vendoraddress,
@@ -151,6 +151,10 @@ service Logistics_Service @(path: '/logistics')
       Importer,
       Vendorcountry
     };
+entity BillTrackSet                                           as
+        projection on PODetails.PODetailsSet {
+            *
+        };
 
   entity DPR_Data_SRV                      as
     select from PODetails.DPRDataSet {

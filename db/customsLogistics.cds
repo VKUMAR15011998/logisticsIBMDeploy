@@ -148,7 +148,7 @@ entity InsurancePolicy:managed{
 entity TransporterDetails:managed{
 key  SrNo: String @(title: 'Sr No.');
 key  Transporter_Code: String @(title: 'Transporter Code');
-key  LRF_Master_ID: UUID;  
+key  LRF_Master_ID: String;  
   TSubmit:String;
 Invoice_No: String @(title: 'Invoice No.');
 Loading_Point: String@(title: 'Loading Point');

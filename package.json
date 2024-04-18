@@ -45,8 +45,9 @@
         "restrict_all_services": false
       },
       "PODetails": {
-        "kind": "odata",
+        "kind": "odata-v2",
         "model": "srv/external/PODetails",
+        "path": "/sap/opu/odata/sap/ZMM_BTP_PO_DET_SRV",
         "credentials": {
           "destination": "MPL_P00_ODATA_CLONING"
         },
@@ -84,7 +85,7 @@
         }
       },
       "ZMM_CDS_C_PO_VH_CDS_SRV": {
-        "kind": "odata",
+        "kind": "odata-v2",
         "model": "srv/external/ZMM_CDS_C_PO_VH_CDS_SRV",
         "credentials": {
           "destination": "MPL_P00_ODATA"
