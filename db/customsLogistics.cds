@@ -146,18 +146,17 @@ entity InsurancePolicy:managed{
     per_Adani_Logistics_LRF_Master : Association to one logistics.per_Adani_Logistics_LRF_Master;
 }
 entity TransporterDetails:managed{
-key  SrNo: String @(title: 'Sr No.');
-key  Transporter_Code: String @(title: 'Transporter Code');
-key  LRF_Master_ID: String;  
-  TSubmit:String;
+key Transporter_Code: String @(title: 'Transporter Code');
+key TransBL_No: String @(title: 'BL No.');
+TransBOE_No: String @(title: 'BOE No.');
 Invoice_No: String @(title: 'Invoice No.');
 Loading_Point: String@(title: 'Loading Point');
 Delivery_Point : String@(title: 'Delivery Point ');
 Material: String@(title: 'Material');
 CONT_Cargo_Weight: String@(title: 'CONT SIZE/ Cargo Weight');
 Container_No: String@(title: 'Container No. ');
-Vehicle_No : String@(title: 'Vehicle No.');
-Eway_Bill_No : String@(title: 'Eway Bill No. ');
+key Vehicle_No : String@(title: 'Vehicle No.');
+key Eway_Bill_No : String@(title: 'Eway Bill No. ');
 Sales_Order_No: String@(title: 'Sales order no ');
 DO_Number : String@(title: 'DO Number');
 DO_Expiry_date:Date@(title: 'DO Expiry date');
@@ -178,8 +177,8 @@ entity DocumentsConfig{
 }
 
 entity TransporterAssign{
-    key TransID: UUID @Core.Computed;
+    TransID: UUID @Core.Computed;
     Transporter_Name: String;
-    Transporter_Code: String;
-    per_Adani_Logistics_LRF_Master : Association to one logistics.per_Adani_Logistics_LRF_Master;
+    key Transporter_Code: String;
+    key LRF_ID : Association to one logistics.per_Adani_Logistics_LRF_Master;
 }

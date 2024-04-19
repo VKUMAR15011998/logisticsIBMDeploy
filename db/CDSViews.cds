@@ -52,8 +52,10 @@ define view![Terminal_handler_charges_Join] as
      from customLogistics.Terminal_handler_charges
     as THC left outer join per_Adani_Logistics_LRF_Master  as LRF on
     THC.per_Adani_Logistics_LRF_Master.LRF_Master_ID=LRF.LRF_Master_ID;
+
+
 define view![Transporter_Details_Join] as 
-    select TD.Transporter_Name,TD.Transporter_Code,FFS.BL_No,LRF.Lrf_No,LRF.LRF_Master_ID,LRF.BOE_No,DSR.SrNo,DSR.Invoice_No,
+    select TD.Transporter_Name,TD.Transporter_Code,LRF.BL_No,LRF.LRF_Master_ID,LRF.Lrf_No,LRF.BOE_No,DSR.Invoice_No,
           DSR.Loading_Point,
           DSR.Delivery_Point,
          DSR.Material,
@@ -75,12 +77,11 @@ define view![Transporter_Details_Join] as
 
      from customLogistics.TransporterAssign
     as TD left outer join per_Adani_Logistics_LRF_Master  as LRF on
-    TD.per_Adani_Logistics_LRF_Master.LRF_Master_ID =LRF.LRF_Master_ID 
-    left outer join logistics.PAdani_Logistics_FF_Ship_Details as FFS on
-    FFS.per_Adani_Logistics_LRF_Master.LRF_Master_ID =LRF.LRF_Master_ID
-    left outer join customLogistics.TransporterDetails as DSR on
-    DSR.LRF_Master_ID =TD.per_Adani_Logistics_LRF_Master.LRF_Master_ID 
-    and DSR.Transporter_Code=TD.Transporter_Code;
+    TD.LRF_ID.LRF_Master_ID =LRF.LRF_Master_ID 
+    left outer join customLogistics.TransporterDetails as DSR on 
+    DSR.Transporter_Code=TD.Transporter_Code
+    and DSR.TransBL_No=LRF.BL_No;
+
 define view![Project] as 
     select * from customLogistics.Project;
 define view![PortList] as 

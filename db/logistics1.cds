@@ -101,6 +101,7 @@ entity per_Adani_Logistics_LRF_Master : managed {
         BL_No                        : String @(title: 'BL No.');
         BL_Date                      : Date @(title: 'BL Date');
         Vessel_No                    : String @(title: 'Vessel No');
+        Tranpsorter_list: String @(title: 'Transporter List');
         FF_Name                      : String @(title: 'FF Name');
         To                           : String @(title: 'To');
         From_Vessel                  : String @(title: 'From');
@@ -142,7 +143,7 @@ entity per_Adani_Logistics_LRF_Master : managed {
         To_Insurance_Policy             :   Composition of many customLogistics.InsurancePolicy
                                                 on To_Insurance_Policy.per_Adani_Logistics_LRF_Master = $self;
         To_Transport_Details             :   Composition of many customLogistics.TransporterAssign
-                                                on To_Transport_Details.per_Adani_Logistics_LRF_Master = $self;
+                                                on To_Transport_Details.LRF_ID = $self;
 }
 
 entity PAdani_Logistics_Packing_Doc {
