@@ -58,6 +58,7 @@ define view![Transporter_Details_Join] as
     select TD.Transporter_Name,TD.Transporter_Code,LRF.BL_No,LRF.LRF_Master_ID,LRF.Lrf_No,LRF.BOE_No,DSR.Invoice_No,
           DSR.Loading_Point,
           DSR.Delivery_Point,
+          DSR.LR_No,
          DSR.Material,
           DSR.CONT_Cargo_Weight,
          DSR.Container_No,

@@ -127,6 +127,7 @@ service Logistics_Service @(path: '/logistics')
           Container_No,
       key    Vehicle_No,
       key    Eway_Bill_No,
+      key LR_No,
           Sales_Order_No,
           DO_Number,
           DO_Expiry_date,

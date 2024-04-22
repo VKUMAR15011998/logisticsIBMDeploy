@@ -157,6 +157,7 @@ CONT_Cargo_Weight: String@(title: 'CONT SIZE/ Cargo Weight');
 Container_No: String@(title: 'Container No. ');
 key Vehicle_No : String@(title: 'Vehicle No.');
 key Eway_Bill_No : String@(title: 'Eway Bill No. ');
+key LR_No : String@(title: 'LR No. ');
 Sales_Order_No: String@(title: 'Sales order no ');
 DO_Number : String@(title: 'DO Number');
 DO_Expiry_date:Date@(title: 'DO Expiry date');
@@ -167,7 +168,7 @@ Receipt_at_Site: Date@(title: 'Receipt at Site ');
 Date_unloading: Date@(title: 'Date of unloading ');
 Container_Ret_date : Date@(title: 'Container returned on');
 Status : String@(title: 'Status');
-Remark_LR: String@(title: 'Remark / LR No.');
+Remark_LR: String@(title: 'Remark');
 }
 entity DocumentsConfig{
     key DocID:UUID @Core.Computed;
