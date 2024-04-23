@@ -35,7 +35,7 @@ module.exports = cds.service.impl( async function(){
   this.on('READ',PODetailsSercive,ConnectBackend)
   this.on('READ',DPR_Data_SRV,ConnectBackend)
   this.on('READ',VendorHelp,ConnectBackendValueHelp)
-  this.on('READ',LoginUsers,ConnectUserHanaDB)
+  //this.on('READ',LoginUsers,ConnectUserHanaDB)
   this.on('READ',USERS,ConnectUserHanaDB)
   this.on('READ',Configuration,ConnectUserHanaDB)
   this.on('READ',CHAgentUsers,ConnectCHAUserRole)
@@ -43,6 +43,22 @@ module.exports = cds.service.impl( async function(){
   this.on('READ',MPLCustomsUsers,ConnectMPLCustomUserRole)
   this.on('READ',FrightForwaderUsers,ConnectFreightUserRole)
   
+
+  this.on('READ',LoginUsers, async req => {
+    const backendconnect = await cds.connect.to('userdetails');
+    const tx = backendconnect.tx(req);
+    const servicerole = {
+      "super_logistics" : req.user.is("super_logistics"),
+      "mpl_logistics" : req.user.is("mpl_logistics"),
+      "mpl_customs": req.user.is("mpl_customs"),
+      "ff_logistics":req.user.is("ff_logistics"),
+      "ch_logistics": req.user.is("ch_logistics")
+    }
+    let res_login = await tx.run(req.query);
+    res_login[0].servicerole = servicerole;
+    console.log('res'+ JSON.stringify(res_login));
+    return res_login;
+  });
   
   
   // this.on('READ', "PODetailsService", async (req) => {
