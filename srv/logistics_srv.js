@@ -52,7 +52,11 @@ module.exports = cds.service.impl( async function(){
       "mpl_logistics" : req.user.is("mpl_logistics"),
       "mpl_customs": req.user.is("mpl_customs"),
       "ff_logistics":req.user.is("ff_logistics"),
-      "ch_logistics": req.user.is("ch_logistics")
+      "ch_logistics": req.user.is("ch_logistics"),
+      "logistic_vendor" : req.user.is("logistic_vendor"),
+      "logistic_expeditor" : req.user.is("logistic_expeditor"),
+      "insurance" : req.user.is("insurance"),
+      "transporter" : req.user.is("transporter")
     }
     let res_login = await tx.run(req.query);
     res_login[0].servicerole = servicerole;
@@ -128,6 +132,7 @@ this.before('CREATE', 'PAdani_Logistics_FF_Doc_Upload', req => {
 this.on('getIASUsers', async req => {
   const backendconnect = await cds.connect.to('userdetails');
   const result = await backendconnect.getIASUsers();
+  console.log("result" + result.resources[0])
   return result;
 });
      

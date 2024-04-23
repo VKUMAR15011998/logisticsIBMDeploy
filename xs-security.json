@@ -44,6 +44,34 @@
       "grant-as-authority-to-apps": [
         "$XSAPPNAME(application, xsappforclientapp)"
       ]
+    },
+    {
+      "name": "$XSAPPNAME.logistic_vendor",
+      "description": "logistic vendor",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.logistic_expeditor",
+      "description": "logistic expeditor",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.insurance",
+      "description": "insurance",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.transporter",
+      "description": "transporter",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
     }
     
   ],
@@ -89,7 +117,35 @@
       "scope-references": [
         "$XSAPPNAME.ch_logistics"
       ]
-    }    
+    },
+    {
+      "name": "LOGISTICS-VENDOR",
+      "description": "logistic Vendor",
+      "scope-references": [
+        "$XSAPPNAME.logistic_vendor"
+      ]
+    },
+    {
+      "name": "LOGISTICS-EXPIDETOR",
+      "description": "logistic expeditor",
+      "scope-references": [
+        "$XSAPPNAME.logistic_expeditor"
+      ]
+    },
+    {
+      "name": "INSURANCE",
+      "description": "insurance",
+      "scope-references": [
+        "$XSAPPNAME.insurance"
+      ]
+    },
+    {
+      "name": "TRANSPORTER",
+      "description": "transporter",
+      "scope-references": [
+        "$XSAPPNAME.transporter"
+      ]
+    }  
  
   ],
   
