@@ -132,8 +132,18 @@ this.before('CREATE', 'PAdani_Logistics_FF_Doc_Upload', req => {
 this.on('getIASUsers', async req => {
   const backendconnect = await cds.connect.to('userdetails');
   const result = await backendconnect.getIASUsers();
-  console.log("result" + result.resources[0])
-  return result;
+  var result1 ;
+  var result2 = [];
+
+await result.Resources.forEach(a => {
+  if (a['urn:sap:cloud:scim:schemas:extension:custom:2.0:User'] == null || a['urn:sap:cloud:scim:schemas:extension:custom:2.0:User'] == 'undefined'){
+    result1 = {"emailid" :a.userName , "vendorCode":""};
+  }else{
+    result1 = {"emailid" :a.userName,"vendorCode" :a['urn:sap:cloud:scim:schemas:extension:custom:2.0:User'].attributes[0].value};
+  }
+  result2.push(result1)
+})
+return [{json: JSON.parse(JSON.stringify(result2))}];
 });
      
 this.on('getIASGroups', async req => {
@@ -142,7 +152,5 @@ this.on('getIASGroups', async req => {
   console.log("****************",result)
   return result;
 });
-
-
 
 });
