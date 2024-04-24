@@ -101,7 +101,8 @@ entity IncoTerms{
     key IncoName:String(100);
 }
 entity DocumentsType{
-    key DocumentsName:String(100);
+    key ID: Int16;
+    DocumentsName:String(100);
 }
 //USER ROLES
 entity Configuration : managed {
