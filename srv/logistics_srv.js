@@ -56,6 +56,7 @@ module.exports = cds.service.impl( async function(){
       "logistic_vendor" : req.user.is("logistic_vendor"),
       "logistic_expeditor" : req.user.is("logistic_expeditor"),
       "insurance" : req.user.is("insurance"),
+      "importer" : req.user.is("importer"),
       "transporter" : req.user.is("transporter")
     }
     let res_login = await tx.run(req.query);
