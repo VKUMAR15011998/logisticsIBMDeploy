@@ -37,7 +37,8 @@ define view![Customs_Duty_Advice_Join] as
         LRF.From_Vessel, 
         LRF.Shipment_Ref,
         LRF.Cargo_Description,
-        LRF.Importer
+        LRF.Importer,
+        LRF.CHA_AssignEmail_Id 
     from 
         customLogistics.Customs_Duty_Advice as CDA
     left outer join 
@@ -48,7 +49,7 @@ define view![Terminal_handler_charges] as
     select * from customLogistics.Terminal_handler_charges;
 define view![Terminal_handler_charges_Join] as 
     select THC.*,LRF.Lrf_No,LRF.Supplier,LRF.BL_No,LRF.BL_Date,LRF.Vessel_No,LRF.FF_Name,LRF.To,LRF.From_Vessel,LRF.Shipment_Ref,
-    LRF.Cargo_Description,LRF.Importer
+    LRF.Cargo_Description,LRF.Importer,LRF.CHA_AssignEmail_Id
      from customLogistics.Terminal_handler_charges
     as THC left outer join per_Adani_Logistics_LRF_Master  as LRF on
     THC.per_Adani_Logistics_LRF_Master.LRF_Master_ID=LRF.LRF_Master_ID;

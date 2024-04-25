@@ -182,22 +182,35 @@ module.exports = cds.service.impl( async function(){
   }
   });
 
-  // this.before("READ", "Terminal_handler_charges_Join", async (req, res) => {
+  this.before("READ", "Terminal_handler_charges_Join", async (req, res) => {
  
-  //   if (!req.query && !req.query.SELECT) {
-  //       req.query.SELECT = {};
-  //   }
-  //   if (req.query.SELECT.where) {
-  //     req.query.SELECT.where.push('and');
-  //     req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
-  // }
-  //   else if (!req.query.SELECT.where) {
-  //       req.query.SELECT.where = [];
-  //       req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: 'rushi.raval@ibm.com' });
-  //   }
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
+  }
+    else if (!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
+    }
+  });
 
-  //   console.log(req.query.SELECT);
-  // });
+  this.before("READ", "Customs_Duty_Advice_Join", async (req, res) => {
+ 
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
+  }
+    else if (!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
+    }
+  });
 
 this.before('CREATE', 'PAdani_Logistics_Packing_Doc', req => {
     console.log('Create called')

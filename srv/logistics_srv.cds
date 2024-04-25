@@ -68,7 +68,8 @@ service Logistics_Service @(path: '/logistics')
           To,
           From_Vessel,
           Shipment_Ref,
-          Cargo_Description
+          Cargo_Description,
+          CHA_AssignEmail_Id 
     };
 
   entity Terminal_handler_charges_Join     as
@@ -108,7 +109,8 @@ service Logistics_Service @(path: '/logistics')
           To,
           From_Vessel,
           Shipment_Ref,
-          Cargo_Description
+          Cargo_Description,
+          CHA_AssignEmail_Id
     };
 
   entity Transporter_Details_Join          as
