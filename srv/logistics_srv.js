@@ -30,7 +30,8 @@ module.exports = cds.service.impl( async function(){
     MPLCustomsUsers,
     FrightForwaderUsers,
     VendorHelp,
-    LrfTracker1
+    LrfTracker1,
+    Terminal_handler_charges_Join  
   } = this.entities;
   this.on('READ',PODetailsSercive,ConnectBackend)
   this.on('READ',DPR_Data_SRV,ConnectBackend)
@@ -96,6 +97,107 @@ module.exports = cds.service.impl( async function(){
       }  
       
   });
+
+  this.before("READ", "per_Adani_Logistics_LRF_Master", async (req, res) => {
+    
+    if(req.user.is("logistic_vendor")){
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['Email_Id'] }, '=', { val: req.user.id });
+    }else if(!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['Email_Id'] }, '=', { val: req.user.id });
+    }
+    }
+    
+    if(req.user.is("mpl_logistics")){
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['LogisticsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+    }else if (!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['LogisticsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+    }
+   
+  }
+  if(req.user.is("logistic_expeditor")){
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['Email_Id'] }, '=', { val: req.user.id });
+    } else if (!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['Email_Id'] }, '=', { val: req.user.id });
+    }
+  }
+  if(req.user.is("ff_logistics")){
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['FF_AssignEmail_Id'] }, '=', { val: req.user.id });
+  }
+    else if (!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['FF_AssignEmail_Id'] }, '=', { val: req.user.id });
+    }
+    
+  }
+  if(req.user.is("mpl_customs")){
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+  }
+    else if (!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+    }
+    
+  }
+  if(req.user.is("ch_logistics")){
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
+  }
+    else if (!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
+    }
+    
+  }
+  });
+
+  // this.before("READ", "Terminal_handler_charges_Join", async (req, res) => {
+ 
+  //   if (!req.query && !req.query.SELECT) {
+  //       req.query.SELECT = {};
+  //   }
+  //   if (req.query.SELECT.where) {
+  //     req.query.SELECT.where.push('and');
+  //     req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
+  // }
+  //   else if (!req.query.SELECT.where) {
+  //       req.query.SELECT.where = [];
+  //       req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: 'rushi.raval@ibm.com' });
+  //   }
+
+  //   console.log(req.query.SELECT);
+  // });
 
 this.before('CREATE', 'PAdani_Logistics_Packing_Doc', req => {
     console.log('Create called')
