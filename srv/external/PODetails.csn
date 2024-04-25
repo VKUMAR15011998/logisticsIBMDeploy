@@ -38,6 +38,14 @@
      "@sap.creatable": "false",
      "@sap.updatable": "false"
     },
+    "Vendorcode": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.unicode": "false",
+     "@sap.label": "Vendor",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false"
+    },
     "Vendormail": {
      "type": "cds.String",
      "length": 241,

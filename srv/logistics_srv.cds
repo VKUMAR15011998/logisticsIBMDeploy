@@ -147,6 +147,7 @@ service Logistics_Service @(path: '/logistics')
       Vendormail,
       Vendoraddress,
       Vendorname,
+      Vendorcode,
       Poinco,
       Importer,
       Vendorcountry
