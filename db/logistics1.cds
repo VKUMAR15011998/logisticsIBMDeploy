@@ -107,7 +107,7 @@ entity per_Adani_Logistics_LRF_Master : managed {
         From_Vessel                  : String @(title: 'From');
         Shipment_Ref                 : String @(title: 'Shipment Ref');
         Cargo_Description            : String @(title: 'Cargo Description');
-
+        Final_Status                 :String default 'Open';
         To_PackingDoc                :      Composition of many PAdani_Logistics_Packing_Doc
                                                 on To_PackingDoc.per_Adani_Logistics_LRF_Master = $self;
         To_MaterialDesc              :      Composition of many PAdani_Logistics_Material_Desc

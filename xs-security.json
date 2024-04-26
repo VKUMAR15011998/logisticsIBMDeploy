@@ -18,6 +18,20 @@
       ]
     },
     {
+      "name": "$XSAPPNAME.logistics_manager",
+      "description": "All LRF Tracker",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
+      "name": "$XSAPPNAME.customs_manager",
+      "description": "All LRF Tracker",
+      "grant-as-authority-to-apps": [
+        "$XSAPPNAME(application, xsappforclientapp)"
+      ]
+    },
+    {
       "name": "$XSAPPNAME.mpl_logistics",
       "description": "MPL Logistic Assigned Specific LRF",
       "grant-as-authority-to-apps": [
@@ -95,6 +109,20 @@
       "description": "All LRF Tracker",
       "scope-references": [
         "$XSAPPNAME.super_logistics"
+      ]
+    },
+    {
+      "name": "LOGISTICS-MANAGER",
+      "description": "All LRF Tracker",
+      "scope-references": [
+        "$XSAPPNAME.logistics_manager"
+      ]
+    },
+    {
+      "name": "CUSTOMS-MANAGER",
+      "description": "All LRF Tracker",
+      "scope-references": [
+        "$XSAPPNAME.customs_manager"
       ]
     },
     {
