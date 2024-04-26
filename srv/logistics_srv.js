@@ -31,7 +31,8 @@ module.exports = cds.service.impl( async function(){
     FrightForwaderUsers,
     VendorHelp,
     LrfTracker1,
-    Terminal_handler_charges_Join  
+    Terminal_handler_charges_Join ,
+    Transporter_Details_Join  
   } = this.entities;
   this.on('READ',PODetailsSercive, async req=>{ 
     const backendconnect = await cds.connect.to('PODetails');
@@ -53,6 +54,26 @@ module.exports = cds.service.impl( async function(){
     }
            return tx.run(req.query) ;
     })
+
+    this.before("READ", "Transporter_Details_Join", async (req, res) => {
+ 
+      const user = await cds.connect.to('userdetails');
+      const tran = user.tx(req);
+      const response = await tran.run(
+          SELECT.from('Logistics_Service.LoginUser')
+              .where({ email: req.user.id }));
+      if (!req.query && !req.query.SELECT) {
+          req.query.SELECT = {};
+      }
+      if (req.query.SELECT.where) {
+        req.query.SELECT.where.push('and');
+        req.query.SELECT.where.push({ ref: ['Transporter_Code'] }, '=', { val: response[0].vendorCode });
+      }else if(!req.query.SELECT.where) {
+          req.query.SELECT.where = [];
+          req.query.SELECT.where.push({ ref: ['Transporter_Code'] }, '=', { val: response[0].vendorCode});
+      }
+    })
+    
   this.on('READ',DPR_Data_SRV,ConnectBackend)
   this.on('READ',VendorHelp,ConnectBackendValueHelp)
   //this.on('READ',LoginUsers,ConnectUserHanaDB)
