@@ -42,6 +42,8 @@ module.exports = cds.service.impl( async function(){
     const response = await tran.run(
         SELECT.from('Logistics_Service.LoginUser')
             .where({ email: req.user.id }));
+    
+    if(req.user.is("logistic_vendor")){
     if (!req.query && !req.query.SELECT) {
         req.query.SELECT = {};
     }
@@ -52,6 +54,7 @@ module.exports = cds.service.impl( async function(){
         req.query.SELECT.where = [];
         req.query.SELECT.where.push({ ref: ['Vendorcode'] }, '=', { val: response[0].vendorCode});
     }
+  }
            return tx.run(req.query) ;
     })
 
