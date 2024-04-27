@@ -38,7 +38,8 @@ define view![Customs_Duty_Advice_Join] as
         LRF.Shipment_Ref,
         LRF.Cargo_Description,
         LRF.Importer,
-        LRF.CHA_AssignEmail_Id 
+        LRF.CHA_AssignEmail_Id,
+        LRF.CustomsMPL_AssignEmail_Id 
     from 
         customLogistics.Customs_Duty_Advice as CDA
     left outer join 
@@ -49,7 +50,7 @@ define view![Terminal_handler_charges] as
     select * from customLogistics.Terminal_handler_charges;
 define view![Terminal_handler_charges_Join] as 
     select THC.*,LRF.Lrf_No,LRF.Supplier,LRF.BL_No,LRF.BL_Date,LRF.Vessel_No,LRF.FF_Name,LRF.To,LRF.From_Vessel,LRF.Shipment_Ref,
-    LRF.Cargo_Description,LRF.Importer,LRF.CHA_AssignEmail_Id
+    LRF.Cargo_Description,LRF.Importer,LRF.CHA_AssignEmail_Id,LRF.CustomsMPL_AssignEmail_Id
      from customLogistics.Terminal_handler_charges
     as THC left outer join per_Adani_Logistics_LRF_Master  as LRF on
     THC.per_Adani_Logistics_LRF_Master.LRF_Master_ID=LRF.LRF_Master_ID;
@@ -109,115 +110,115 @@ define view![TransporterAssign] as
     select * from customLogistics.TransporterAssign;
 define view![DocumentsConfig] as 
     select * from customLogistics.DocumentsConfig;
- define view Users as
-        select from customLogistics.UserSet as u {
-            key u.userid       as UserId,
-                u.firstName    as FirstName,
-                u.lastName     as LastName,
-                u.middleName   as MiddleName,
-                CONCAT(
-                    concat(
-                        COALESCE(
-                            u.firstName, ''
-                        ), concat(
-                            ' ', COALESCE(
-                                u.middleName, ''
-                            )
-                        )
-                    ), CONCAT(
-                        ' ', COALESCE(
-                            u.lastName, ''
-                        )
-                    )
-                )              as UserName : String,
-                u.email        as Email,
-                u.address      as Address,
-                u.state        as State,
-                u.country      as Country,
-                u.pinCode      as PinCode,
-                u.phNumber     as PhoneNumber,
-                u.mobNumber    as MobileNumber,
-                u.altPhNumber  as AlternatePhoneNumber,
-                u.isPortalUser as isPortalUser,
-                u.linkToRole   as LinkToRole
-        };
-define view ![MPLLogisticsUsers] as
-        select from Users as u {
-            key u.UserId               as UserId,
-                u.FirstName            as FirstName,
-                u.LastName             as LastName,
-                u.MiddleName           as MiddleName,
-                u.UserName             as UserName : String,
-                u.Email                as Email,
-                u.Address              as Address,
-                u.State                as State,
-                u.Country              as Country,
-                u.PinCode              as PinCode,
-                u.PhoneNumber          as PhoneNumber,
-                u.MobileNumber         as MobileNumber,
-                u.AlternatePhoneNumber as AlternatePhoneNumber,
-                u.LinkToRole           as LinkToRole
-        }
-        where
-            u.LinkToRole.role = 'MPL Logistics';
+//  define view Users as
+//         select from customLogistics.UserSet as u {
+//             key u.userid       as UserId,
+//                 u.firstName    as FirstName,
+//                 u.lastName     as LastName,
+//                 u.middleName   as MiddleName,
+//                 CONCAT(
+//                     concat(
+//                         COALESCE(
+//                             u.firstName, ''
+//                         ), concat(
+//                             ' ', COALESCE(
+//                                 u.middleName, ''
+//                             )
+//                         )
+//                     ), CONCAT(
+//                         ' ', COALESCE(
+//                             u.lastName, ''
+//                         )
+//                     )
+//                 )              as UserName : String,
+//                 u.email        as Email,
+//                 u.address      as Address,
+//                 u.state        as State,
+//                 u.country      as Country,
+//                 u.pinCode      as PinCode,
+//                 u.phNumber     as PhoneNumber,
+//                 u.mobNumber    as MobileNumber,
+//                 u.altPhNumber  as AlternatePhoneNumber,
+//                 u.isPortalUser as isPortalUser,
+//                 u.linkToRole   as LinkToRole
+//         };
+// // define view ![MPLLogisticsUsers] as
+//         select from Users as u {
+//             key u.UserId               as UserId,
+//                 u.FirstName            as FirstName,
+//                 u.LastName             as LastName,
+//                 u.MiddleName           as MiddleName,
+//                 u.UserName             as UserName : String,
+//                 u.Email                as Email,
+//                 u.Address              as Address,
+//                 u.State                as State,
+//                 u.Country              as Country,
+//                 u.PinCode              as PinCode,
+//                 u.PhoneNumber          as PhoneNumber,
+//                 u.MobileNumber         as MobileNumber,
+//                 u.AlternatePhoneNumber as AlternatePhoneNumber,
+//                 u.LinkToRole           as LinkToRole
+//         }
+//         where
+//             u.LinkToRole.role = 'MPL Logistics';
 
-define view ![MPLCustomsUsers] as
-        select from Users as u {
-            key u.UserId               as UserId,
-                u.FirstName            as FirstName,
-                u.LastName             as LastName,
-                u.MiddleName           as MiddleName,
-                u.UserName             as UserName : String,
-                u.Email                as Email,
-                u.Address              as Address,
-                u.State                as State,
-                u.Country              as Country,
-                u.PinCode              as PinCode,
-                u.PhoneNumber          as PhoneNumber,
-                u.MobileNumber         as MobileNumber,
-                u.AlternatePhoneNumber as AlternatePhoneNumber,
-                u.LinkToRole           as LinkToRole
-        }
-        where
-            u.LinkToRole.role = 'MPL Customs';
-define view ![FrightForwaderUsers] as
-        select from Users as u {
-            key u.UserId               as UserId,
-                u.FirstName            as FirstName,
-                u.LastName             as LastName,
-                u.MiddleName           as MiddleName,
-                u.UserName             as UserName : String,
-                u.Email                as Email,
-                u.Address              as Address,
-                u.State                as State,
-                u.Country              as Country,
-                u.PinCode              as PinCode,
-                u.PhoneNumber          as PhoneNumber,
-                u.MobileNumber         as MobileNumber,
-                u.AlternatePhoneNumber as AlternatePhoneNumber,
-                u.LinkToRole           as LinkToRole
-        }
-        where
-            u.LinkToRole.role = 'Freight Forwador';
-define view ![CHAgentUsers] as
-        select from Users as u {
-            key u.UserId               as UserId,
-                u.FirstName            as FirstName,
-                u.LastName             as LastName,
-                u.MiddleName           as MiddleName,
-                u.UserName             as UserName : String,
-                u.Email                as Email,
-                u.Address              as Address,
-                u.State                as State,
-                u.Country              as Country,
-                u.PinCode              as PinCode,
-                u.PhoneNumber          as PhoneNumber,
-                u.MobileNumber         as MobileNumber,
-                u.AlternatePhoneNumber as AlternatePhoneNumber,
-                u.LinkToRole           as LinkToRole
-        }
-        where
-            u.LinkToRole.role = 'CH Agent';
+// // define view ![MPLCustomsUsers] as
+// //         select from Users as u {
+// //             key u.UserId               as UserId,
+// //                 u.FirstName            as FirstName,
+// //                 u.LastName             as LastName,
+// //                 u.MiddleName           as MiddleName,
+// //                 u.UserName             as UserName : String,
+// //                 u.Email                as Email,
+// //                 u.Address              as Address,
+// //                 u.State                as State,
+// //                 u.Country              as Country,
+// //                 u.PinCode              as PinCode,
+// //                 u.PhoneNumber          as PhoneNumber,
+// //                 u.MobileNumber         as MobileNumber,
+// //                 u.AlternatePhoneNumber as AlternatePhoneNumber,
+// //                 u.LinkToRole           as LinkToRole
+// //         }
+// //         where
+// //             u.LinkToRole.role = 'MPL Customs';
+// define view ![FrightForwaderUsers] as
+//         select from Users as u {
+//             key u.UserId               as UserId,
+//                 u.FirstName            as FirstName,
+//                 u.LastName             as LastName,
+//                 u.MiddleName           as MiddleName,
+//                 u.UserName             as UserName : String,
+//                 u.Email                as Email,
+//                 u.Address              as Address,
+//                 u.State                as State,
+//                 u.Country              as Country,
+//                 u.PinCode              as PinCode,
+//                 u.PhoneNumber          as PhoneNumber,
+//                 u.MobileNumber         as MobileNumber,
+//                 u.AlternatePhoneNumber as AlternatePhoneNumber,
+//                 u.LinkToRole           as LinkToRole
+//         }
+//         where
+//             u.LinkToRole.role = 'Freight Forwador';
+// define view ![CHAgentUsers] as
+//         select from Users as u {
+//             key u.UserId               as UserId,
+//                 u.FirstName            as FirstName,
+//                 u.LastName             as LastName,
+//                 u.MiddleName           as MiddleName,
+//                 u.UserName             as UserName : String,
+//                 u.Email                as Email,
+//                 u.Address              as Address,
+//                 u.State                as State,
+//                 u.Country              as Country,
+//                 u.PinCode              as PinCode,
+//                 u.PhoneNumber          as PhoneNumber,
+//                 u.MobileNumber         as MobileNumber,
+//                 u.AlternatePhoneNumber as AlternatePhoneNumber,
+//                 u.LinkToRole           as LinkToRole
+//         }
+//         where
+//             u.LinkToRole.role = 'CH Agent';
 view Configuration as
         select from customLogistics.Configuration as u {
             key u.configElement as ConfigElement,
