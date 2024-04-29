@@ -117,7 +117,7 @@ entity per_Adani_Logistics_LRF_Master : managed {
         TotalPackage                 :      Integer default 0;
         To_CkeckList                 :      Composition of many PAdani_Logistics_Check_List
                                                 on To_CkeckList.per_Adani_Logistics_LRF_Master = $self;
-        Sp_Req                       :      SText;
+        Sp_Req                       :      String;
         Remarks                      :      String;
         lrfStatus                       : String;
         lrfDisplayStatus                : String;
