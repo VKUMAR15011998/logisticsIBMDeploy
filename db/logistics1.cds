@@ -66,7 +66,7 @@ entity per_Adani_Logistics_LRF_Master : managed {
         PO_Inco_Terms                :      SText @(title: 'PO INCOTERMS');
         Act_Incoterms                :      SText @(title: 'Actual INCOTERMS');
         TypeOfVehicle                : many SText @(title: 'Type of Vehicle');
-        TypeOfLoadPort               :      String(100) @(title: 'Type of Load Port');
+        TypeOfLoadPort               :      String(100) @(title: 'Name of Load Port');
         NameOfDisPort                :      String(100) @(title: 'Name of Discharge Port');
         Ship_Cont_Name               :      SText @(title: 'Contact Name');
         Ship_Cont_No                 :      SText @(title: 'Contact Number');
