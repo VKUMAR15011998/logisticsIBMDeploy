@@ -172,18 +172,18 @@ module.exports = cds.service.impl( async function(){
     }
    
   }
-  if(req.user.is("logistic_expeditor")){
-    if (!req.query && !req.query.SELECT) {
-        req.query.SELECT = {};
-    }
-    if (req.query.SELECT.where) {
-      req.query.SELECT.where.push('and');
-      req.query.SELECT.where.push({ ref: ['Email_Id'] }, '=', { val: req.user.id });
-    } else if (!req.query.SELECT.where) {
-        req.query.SELECT.where = [];
-        req.query.SELECT.where.push({ ref: ['Email_Id'] }, '=', { val: req.user.id });
-    }
-  }
+  // if(req.user.is("logistic_expeditor")){
+  //   if (!req.query && !req.query.SELECT) {
+  //       req.query.SELECT = {};
+  //   }
+  //   if (req.query.SELECT.where) {
+  //     req.query.SELECT.where.push('and');
+  //     req.query.SELECT.where.push({ ref: ['Email_Id'] }, '=', { val: req.user.id });
+  //   } else if (!req.query.SELECT.where) {
+  //       req.query.SELECT.where = [];
+  //       req.query.SELECT.where.push({ ref: ['Email_Id'] }, '=', { val: req.user.id });
+  //   }
+  // }
   if(req.user.is("ff_logistics")){
     if (!req.query && !req.query.SELECT) {
         req.query.SELECT = {};
