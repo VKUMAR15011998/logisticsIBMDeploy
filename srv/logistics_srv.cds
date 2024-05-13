@@ -246,7 +246,10 @@ service Logistics_Service @(path: '/logistics')
   entity MPLLogisticsUsers                  as projection on userdetails.UserRoleSet;
   entity MPLCustomsUsers                   as projection on userdetails.UserRoleSet;
   entity FrightForwaderUsers               as projection on userdetails.UserRoleSet;
+  entity LogisticsManagerUsers               as projection on userdetails.UserRoleSet;
+  entity CustomsManagerUsers              as projection on userdetails.UserRoleSet;
   function getIASUsers()  returns String;
   function getIASGroups() returns String;
+  action   sendPublishedMail(LRF_Master_ID : String,Lrf_No:String,PO_Number:String,To:String)  returns String;
 //function getUserRoles(Role:String) returns String;
 }

@@ -86,19 +86,6 @@ async function ConnectMPLCustomUserRole(req) {
 async function ConnectFreightUserRole(req) {
     const backendconnect = await cds.connect.to('userdetails');
     const tx = backendconnect.tx(req);
-    //const response = await tx.run(req.query);
-
-    // Filter emails based on role
-    //const filteredEmails = await response.filter(entry => entry.role === "FREIGHT-FORWADOR");
-
-    // const response = await tx.run(
-    //     SELECT.from('Logistics_Service.FrightForwaderUsers')
-    //         .where({ role: 'FREIGHT-FORWADOR' })
-            
-    // );
-    
-
-    // return response;
     if (!req.query && !req.query.SELECT) {
         req.query.SELECT = {};
     }
@@ -108,6 +95,36 @@ async function ConnectFreightUserRole(req) {
     }else if(!req.query.SELECT.where) {
         req.query.SELECT.where = [];
         req.query.SELECT.where.push({ ref: ['role'] }, '=', { val: 'FREIGHT-FORWADOR'});
+    }
+    return tx.run(req.query);
+}
+async function ConnectLogisticsMangUserRole(req) {
+    const backendconnect = await cds.connect.to('userdetails');
+    const tx = backendconnect.tx(req);
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['role'] }, '=', { val:'LOGISTICS-MANAGER'});
+    }else if(!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['role'] }, '=', { val: 'LOGISTICS-MANAGER'});
+    }
+    return tx.run(req.query);
+}
+async function ConnectCustMangUserRole(req) {
+    const backendconnect = await cds.connect.to('userdetails');
+    const tx = backendconnect.tx(req);
+    if (!req.query && !req.query.SELECT) {
+        req.query.SELECT = {};
+    }
+    if (req.query.SELECT.where) {
+      req.query.SELECT.where.push('and');
+      req.query.SELECT.where.push({ ref: ['role'] }, '=', { val:'CUSTOMS-MANAGER' });
+    }else if(!req.query.SELECT.where) {
+        req.query.SELECT.where = [];
+        req.query.SELECT.where.push({ ref: ['role'] }, '=', { val:'CUSTOMS-MANAGER'});
     }
     return tx.run(req.query);
 }
@@ -129,5 +146,5 @@ async function ConnectFreightUserRole(req) {
 //     return response;
 // }
 module.exports = {
-    ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLCustomUserRole,ConnectMPLogUserRole,ConnectFreightUserRole,ConnectBackendValueHelp
+    ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLCustomUserRole,ConnectMPLogUserRole,ConnectFreightUserRole,ConnectLogisticsMangUserRole,ConnectCustMangUserRole,ConnectBackendValueHelp
 }

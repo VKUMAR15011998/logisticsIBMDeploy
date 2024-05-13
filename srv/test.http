@@ -232,4 +232,12 @@ Content-Type: application/json
     "CHA_AssignEmail_Id": "nishchaiy.patel@ibm.com "
 }
 ###
-DELETE   http://localhost:4004/odata/v4/logistics-/DocumentsConfig/1
+POST    http://localhost:4004/logistics/sendPublishedMail
+Content-Type: application/json
+
+{
+    "LRF_Master_ID": "01f6f582-7a48-4d1f-994d-03111876060f",
+    "Lrf_No": "MPL-LRF-4500330754-006",
+    "PO_Number": "4500330754",
+    "To": "vishalece5124@gmail.com"
+}

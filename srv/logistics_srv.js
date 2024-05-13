@@ -1,8 +1,9 @@
 const cds = require("@sap/cds");
 const { NOTFOUND } = require("dns");
 const { run } = require("node:test");
+const SapCfMailer = require('sap-cf-mailer').default;
 
-const { ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectMPLCustomUserRole,ConnectFreightUserRole,ConnectBackendValueHelp } = require('./lib/ConnectionHandler')
+const { ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectMPLCustomUserRole,ConnectFreightUserRole,ConnectLogisticsMangUserRole,ConnectCustMangUserRole,ConnectBackendValueHelp } = require('./lib/ConnectionHandler')
 
 module.exports = cds.service.impl( async function(){
   const { Adani_Logistics_LRF_Master,
@@ -29,6 +30,8 @@ module.exports = cds.service.impl( async function(){
     MPLLogisticsUsers,
     MPLCustomsUsers,
     FrightForwaderUsers,
+    CustomsManagerUsers,
+    LogisticsManagerUsers,
     VendorHelp,
     LrfTracker1,
     Terminal_handler_charges_Join ,
@@ -59,7 +62,7 @@ module.exports = cds.service.impl( async function(){
     })
 
     this.before("READ", "Transporter_Details_Join", async (req, res) => {
- 
+
       const user = await cds.connect.to('userdetails');
       const tran = user.tx(req);
       const response = await tran.run(
@@ -86,6 +89,8 @@ module.exports = cds.service.impl( async function(){
   this.on('READ',MPLLogisticsUsers,ConnectMPLogUserRole)
   this.on('READ',MPLCustomsUsers,ConnectMPLCustomUserRole)
   this.on('READ',FrightForwaderUsers,ConnectFreightUserRole)
+  this.on('READ',LogisticsManagerUsers,ConnectLogisticsMangUserRole)
+  this.on('READ',CustomsManagerUsers,ConnectCustMangUserRole)
   
 
   this.on('READ',LoginUsers, async req => {
@@ -140,12 +145,13 @@ module.exports = cds.service.impl( async function(){
         const Temp_LRF_Number = "Temp-"+req.data.Project_ID+"-LRF-"+req.data.PO_Number+"-"+maxID.toString().padStart(3, '0');
         req.data.Lrf_No = Temp_LRF_Number;
         
-      }  
+      } 
+
+      
       
   });
 
   this.before("READ", "per_Adani_Logistics_LRF_Master", async (req, res) => {
-    
     if(req.user.is("logistic_vendor")){
     if (!req.query && !req.query.SELECT) {
         req.query.SELECT = {};
@@ -159,19 +165,19 @@ module.exports = cds.service.impl( async function(){
     }
     }
     
-    if(req.user.is("mpl_logistics")){
-    if (!req.query && !req.query.SELECT) {
-        req.query.SELECT = {};
-    }
-    if (req.query.SELECT.where) {
-      req.query.SELECT.where.push('and');
-      req.query.SELECT.where.push({ ref: ['LogisticsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
-    }else if (!req.query.SELECT.where) {
-        req.query.SELECT.where = [];
-        req.query.SELECT.where.push({ ref: ['LogisticsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
-    }
+  //   if(req.user.is("mpl_logistics")){
+  //   if (!req.query && !req.query.SELECT) {
+  //       req.query.SELECT = {};
+  //   }
+  //   if (req.query.SELECT.where) {
+  //     req.query.SELECT.where.push('and');
+  //     req.query.SELECT.where.push({ ref: ['LogisticsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+  //   }else if (!req.query.SELECT.where) {
+  //       req.query.SELECT.where = [];
+  //       req.query.SELECT.where.push({ ref: ['LogisticsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+  //   }
    
-  }
+  // }
   // if(req.user.is("logistic_expeditor")){
   //   if (!req.query && !req.query.SELECT) {
   //       req.query.SELECT = {};
@@ -198,20 +204,20 @@ module.exports = cds.service.impl( async function(){
     }
     
   }
-  if(req.user.is("mpl_customs")){
-    if (!req.query && !req.query.SELECT) {
-        req.query.SELECT = {};
-    }
-    if (req.query.SELECT.where) {
-      req.query.SELECT.where.push('and');
-      req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
-  }
-    else if (!req.query.SELECT.where) {
-        req.query.SELECT.where = [];
-        req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
-    }
+  // if(req.user.is("mpl_customs")){
+  //   if (!req.query && !req.query.SELECT) {
+  //       req.query.SELECT = {};
+  //   }
+  //   if (req.query.SELECT.where) {
+  //     req.query.SELECT.where.push('and');
+  //     req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+  // }
+  //   else if (!req.query.SELECT.where) {
+  //       req.query.SELECT.where = [];
+  //       req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+  //   }
     
-  }
+  // }
   if(req.user.is("ch_logistics")){
     if (!req.query && !req.query.SELECT) {
         req.query.SELECT = {};
@@ -243,20 +249,20 @@ module.exports = cds.service.impl( async function(){
         req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
     }
   }
-  if(req.user.is("mpl_customs")){
-    if (!req.query && !req.query.SELECT) {
-        req.query.SELECT = {};
-    }
-    if (req.query.SELECT.where) {
-      req.query.SELECT.where.push('and');
-      req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
-  }
-    else if (!req.query.SELECT.where) {
-        req.query.SELECT.where = [];
-        req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
-    }
+  // if(req.user.is("mpl_customs")){
+  //   if (!req.query && !req.query.SELECT) {
+  //       req.query.SELECT = {};
+  //   }
+  //   if (req.query.SELECT.where) {
+  //     req.query.SELECT.where.push('and');
+  //     req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+  // }
+  //   else if (!req.query.SELECT.where) {
+  //       req.query.SELECT.where = [];
+  //       req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+  //   }
     
-  }
+  // }
   });
 
   this.before("READ", "Customs_Duty_Advice_Join", async (req, res) => {
@@ -274,20 +280,20 @@ module.exports = cds.service.impl( async function(){
         req.query.SELECT.where.push({ ref: ['CHA_AssignEmail_Id'] }, '=', { val: req.user.id });
     }
   }
-  if(req.user.is("mpl_customs")){
-    if (!req.query && !req.query.SELECT) {
-        req.query.SELECT = {};
-    }
-    if (req.query.SELECT.where) {
-      req.query.SELECT.where.push('and');
-      req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
-  }
-    else if (!req.query.SELECT.where) {
-        req.query.SELECT.where = [];
-        req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
-    }
+  // if(req.user.is("mpl_customs")){
+  //   if (!req.query && !req.query.SELECT) {
+  //       req.query.SELECT = {};
+  //   }
+  //   if (req.query.SELECT.where) {
+  //     req.query.SELECT.where.push('and');
+  //     req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+  // }
+  //   else if (!req.query.SELECT.where) {
+  //       req.query.SELECT.where = [];
+  //       req.query.SELECT.where.push({ ref: ['CustomsMPL_AssignEmail_Id'] }, '=', { val: req.user.id });
+  //   }
     
-  }
+  // }
   });
 
 this.before('CREATE', 'PAdani_Logistics_Packing_Doc', req => {
@@ -346,5 +352,25 @@ this.on('getIASGroups', async req => {
   console.log("****************",result)
   return result;
 });
+this.on('sendPublishedMail', async req => {
+   //Email Test
+   try {
+
+    const transporter = new SapCfMailer("sap_process_automation_mail_2");
+    const lrfID=req.data.LRF_Master_ID;
+    const result = await transporter.sendMail({
+        to: req.data.To,
+        //cc: 'CC',
+        subject: req.data.Lrf_No,
+
+        html: `<html><body><h1>LRF ID: ${req.data.LRF_Master_ID}</h1><p>Click <a href="https://example.com">here</a> to get Details</p>`,
+        //attachments: req.data
+    });
+}
+catch (err) {
+    console.log(err);
+}
+});
+
 
 });
