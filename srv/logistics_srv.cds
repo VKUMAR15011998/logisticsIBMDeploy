@@ -250,6 +250,35 @@ service Logistics_Service @(path: '/logistics')
   entity CustomsManagerUsers              as projection on userdetails.UserRoleSet;
   function getIASUsers()  returns String;
   function getIASGroups() returns String;
-  action   sendPublishedMail(LRF_Master_ID : String,Lrf_No:String,PO_Number:String,To:String)  returns String;
-//function getUserRoles(Role:String) returns String;
-}
+  
+
+  action   sendPublishedMail(
+    
+    source: String,
+    LRF_Master_ID: String,
+    LRF_No: String,
+    PO_Number: String,
+    To: String,
+    Subject: String,
+    Date: String,
+    Vendor: String,
+    End_User: String,
+    Incoterms: String,
+    Shipper_Name: String,
+    Port_of_Loading: String,
+    Port_of_Discharge: String,
+    FF_Name: String,
+    BL_No: String,
+    BL_Date: String,
+    Vessel_No: String,
+    Expected_Arrival_Date: String,
+    CHA_Name: String,
+    THC_Request_No: String,
+    THC_Payment_Status: String,
+    CDA_Request_No:String,
+    CDA_Payment_Status:String,
+    MPL_Logistics_Person_Name:String,
+    Link: String
+    )  returns String;
+  
+  }

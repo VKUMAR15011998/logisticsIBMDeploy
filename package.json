@@ -15,7 +15,9 @@
     "@sap/hana-client": "^2.19.21",
     "@sap/xssec": "^3.6.1",
     "express": "^4",
+    "fs": "^0.0.1-security",
     "passport": "^0.7.0",
+    "path": "^0.12.7",
     "sap-cf-mailer": "^0.0.5"
   },
   "devDependencies": {
@@ -51,11 +53,11 @@
         "model": "srv/external/PODetails",
         "path": "/sap/opu/odata/sap/ZMM_BTP_PO_DET_SRV",
         "credentials": {
-          "destination": "MPL_P00_ODATA_CLONING"
+          "destination": "MPL_P00_ODATA_LOGISTICS"
         },
         "[production]": {
           "credentials": {
-            "destination": "MPL_P00_ODATA_CLONING"
+            "destination": "MPL_P00_ODATA_LOGISTICS"
           }
         }
       },

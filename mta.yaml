@@ -11,7 +11,7 @@ modules:
       - name: Logisticss-uaa
       - name: Logistics-destination
       - name: Logistics-connectivity-service
-      - name: dest_PoDetails
+      # - name: dest_PoDetails
       - name: Po_Connect
       - name: sap_processautomation
     provides:
@@ -104,11 +104,11 @@ modules:
       no-source: true
 
 resources:
-  - name: dest_PoDetails
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: destination
-      service-plan: lite
+  # - name: dest_PoDetails
+  #   type: org.cloudfoundry.managed-service
+  #   parameters:
+  #     service: destination
+  #     service-plan: lite
   - name: Po_Connect
     type: org.cloudfoundry.managed-service
     parameters:

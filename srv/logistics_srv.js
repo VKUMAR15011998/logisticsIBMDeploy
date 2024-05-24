@@ -2,6 +2,9 @@ const cds = require("@sap/cds");
 const { NOTFOUND } = require("dns");
 const { run } = require("node:test");
 const SapCfMailer = require('sap-cf-mailer').default;
+const fs = require('fs');
+const path = require('path');
+
 
 const { ConnectBackend,ConnectUserHanaDB,ConnectCHAUserRole,ConnectMPLogUserRole,ConnectMPLCustomUserRole,ConnectFreightUserRole,ConnectLogisticsMangUserRole,ConnectCustMangUserRole,ConnectBackendValueHelp } = require('./lib/ConnectionHandler')
 
@@ -331,7 +334,9 @@ this.before('CREATE', 'PAdani_Logistics_FF_Doc_Upload', req => {
 })
 this.on('getIASUsers', async req => {
   const backendconnect = await cds.connect.to('userdetails');
-  const result = await backendconnect.getIASUsers();
+  //const result = await backendconnect.getIASUsers();
+  const result = await backendconnect.searchIASUsers('','','');
+  console.log("@@@@@@@@@@@@@@@@@",result)
   var result1 ;
   var result2 = [];
 
@@ -357,15 +362,75 @@ this.on('sendPublishedMail', async req => {
    try {
 
     const transporter = new SapCfMailer("sap_process_automation_mail_2");
-    const lrfID=req.data.LRF_Master_ID;
-    const result = await transporter.sendMail({
-        to: req.data.To,
-        //cc: 'CC',
-        subject: req.data.Lrf_No,
+    const source=req.data.source;
+    var htmlFilePath;
+    // Read the HTML file content
+    if(source=="cda_request"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'cda_request.html');
+    }else if(source=="cda_complete"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'cda_complete.html');
+    }else if(source=="cha_assign"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'cha_assign.html');
+    }else if(source=="doc_return"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'doc_return.html');
+    }else if(source=="doc_submit"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'doc_submit.html');
+    }else if(source=="ff_accept"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'ff_accept.html');
+    }else if(source=="lrf_accept"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'lrf_accept.html');
+    }else if(source=="thc_complete"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'thc_complete.html');
+    }else if(source=="thc_request"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'thc_request.html');
+    }else if(source=="trans_assign"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'trans_assign.html');
+    }else if(source=="eta_vessel"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'eta_vessel.html');
+    }else if(source=="vessel_sail"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'vessel_sail.html');
+    }else if(source=="doc_accept"){
+      htmlFilePath = path.join(__dirname, '/mails_html', 'doc_accept.html');
+    }
+    else{
+      return "File not found"
+    }
+    //const htmlFilePath = path.join(__dirname, '/thc_request.html', 'source1.html');
+    const htmlContent = await fs.promises.readFile(htmlFilePath, 'utf8');
 
-        html: `<html><body><h1>LRF ID: ${req.data.LRF_Master_ID}</h1><p>Click <a href="https://example.com">here</a> to get Details</p>`,
-        //attachments: req.data
-    });
+    // Replace placeholders in the HTML content with actual data
+    const filledHtmlContent = htmlContent
+        .replace('{{LRF_No}}', req.data.LRF_No)
+        .replace('{{LRF_No}}', req.data.LRF_No)
+        .replace('{{LRF_No}}', req.data.LRF_No)
+        .replace('{{Date}}', req.data.Date)
+        .replace('{{Vendor}}', req.data.Vendor)
+        .replace('{{PO_Number}}', req.data.PO_Number)
+        .replace('{{End_User}}', req.data.End_User)
+        .replace('{{Incoterms}}', req.data.Incoterms)
+        .replace('{{Shipper_Name}}', req.data.Shipper_Name)
+        .replace('{{Port_of_Loading}}', req.data.Port_of_Loading)
+        .replace('{{Port_of_Discharge}}', req.data.Port_of_Discharge)
+        .replace('{{FF_Name}}', req.data.FF_Name)
+        .replace('{{BL_No}}', req.data.BL_No)
+        .replace('{{BL_Date}}', req.data.BL_Date)
+        .replace('{{Vessel_No}}', req.data.Vessel_No)
+        .replace('{{Expected_Arrival_Date}}', req.data.Expected_Arrival_Date)
+        .replace('{{CHA_Name}}', req.data.CHA_Name)
+        .replace('{{THC_Request_No}}', req.data.THC_Request_No)
+        .replace('{{THC_Payment_Status}}', req.data.THC_Payment_Status)
+        .replace('{{CDA_Request_No}}', req.data.CDA_Request_No)
+        .replace('{{CDA_Payment_Status}}', req.data.CDA_Payment_Status)
+        .replace('{{MPL_Logistics_Person_Name}}', req.data.MPL_Logistics_Person_Name)
+        .replace('{{Link}}', req.data.Link);
+    // Send the email
+    const result = await transporter.sendMail({
+      to: req.data.To,
+      subject: req.data.Subject,
+      html: filledHtmlContent,
+  });
+
+  return "Email sent successfully";
 }
 catch (err) {
     console.log(err);

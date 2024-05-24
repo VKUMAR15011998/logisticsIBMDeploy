@@ -1,0 +1,102 @@
+<html>
+<style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 2px;
+    }
+    </style>
+<p>
+Dear Sir/Mam,
+<br><br>
+Document is Returned against LRF no. {{LRF_No}}. 
+<br>
+</p>
+<table>
+    <tr>
+      <th>Sr No.</th>
+      <th>Description</th> 
+      <th>Details</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>LRF No.</td>
+      <td>{{LRF_No}}</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Date</td>
+      <td>{{Date}}</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>PO Number</td>
+      <td>{{PO_Number}}</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Vendor</td>
+        <td>{{Vendor}}</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>End User</td>
+        <td>{{End_User}}</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Inco Terms</td>
+        <td>{{Incoterms}}</td>
+      </tr>  <tr>
+        <td>7</td>
+        <td>Shipper Name</td>
+        <td>{{Shipper_Name}}</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Name of Load Port</td>
+        <td>{{Port_of_Loading}}</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Name of Discharge Port</td>
+        <td>{{Port_of_Discharge}}</td>
+      </tr>  <tr>
+        <td>10</td>
+        <td>FF Name</td>
+        <td>{{FF_Name}}</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>BL No</td>
+        <td>{{BL_No}}</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>BL Date</td>
+        <td>{{BL_Date}}</td>
+      </tr>  <tr>
+        <td>13</td>
+        <td>Vessel No.</td>
+        <td>{{Vessel_No}}</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>Expected Arrival Date</td>
+        <td>{{Expected_Arrival_Date}}</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>CHA Name</td>
+        <td>{{CHA_Name}}</td>
+      </tr>
+      
+  </table>
+  <p>
+    Click Here to open LRF for further details <a href = {{Link}}>{{LRF_No}}</a>.
+    <br>
+    <br>
+    Thanking you.
+
+  </p>
+  </html>
